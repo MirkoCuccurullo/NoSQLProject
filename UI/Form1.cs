@@ -24,6 +24,7 @@ namespace DemoApp
             foreach (var db in dbList)
             {
                 listBox1.Items.Add(db.name);
+                
             }
         }
 
