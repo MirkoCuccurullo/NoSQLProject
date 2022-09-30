@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 using Model;
 using MongoDB.Bson.Serialization;
+using System.Configuration;
 
 namespace DAL
 {
@@ -11,7 +12,7 @@ namespace DAL
         private MongoClient client;
 
         public DAO()
-        {
+        {     
             client = new MongoClient("mongodb+srv://projectUser:1234@nosqldb.yqlm6qi.mongodb.net/test");
         }
 
@@ -26,10 +27,19 @@ namespace DAL
             return all_databases;
         }
 
-        public IMongoCollection<BsonDocument> ReturnCollection(string collectionName)
+        private IMongoCollection<BsonDocument> ReturnCollection(string collectionName)
         {
+            //get the collection from database "noSqlProject"
             var database = client.GetDatabase("noSqlProject");
             return database.GetCollection<BsonDocument>(collectionName);
+        }
+
+        public void AddDocumentToCollection(BsonDocument document, string collectionName)
+        {
+            //add a document to a collection in "noSqlProject"
+            var collection = ReturnCollection(collectionName);
+            collection.InsertOne(document);
+
         }
     }
 

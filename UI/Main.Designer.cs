@@ -1,6 +1,6 @@
 ﻿namespace DemoApp
 {
-    partial class Form2
+    partial class Main
     {
         /// <summary>
         /// Required designer variable.

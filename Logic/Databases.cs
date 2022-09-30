@@ -19,9 +19,9 @@ namespace Logic
             return dao.GetDatabases();
         }
 
-        public IMongoCollection<BsonDocument> returnCollection(string collectionName)
+        public void AddDocumentToCollection(BsonDocument document, string collectionName)
         {
-            return dao.ReturnCollection(collectionName);
+            dao.AddDocumentToCollection(document, collectionName);
         }
     }
 }
