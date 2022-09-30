@@ -13,13 +13,13 @@ namespace Model
         [BsonId]
         public BsonObjectId Id { get; set; }
         [BsonElement("name")]
-        public string[] name { get; set; }
+        public BsonDocument name = new BsonDocument();
 
         [BsonElement("username")]
         public string Username { get; set; }
         [BsonElement("password")]
-        public string[] Password { get; set; }
-
+        public BsonDocument Password = new BsonDocument();
+        
         [BsonElement("location")]
         public string Location { get; set; }
         [BsonElement("role")]
@@ -30,7 +30,7 @@ namespace Model
 
         public override string ToString()
         {
-            return name[0];
+            return name["first"].AsString;
         }
 
 

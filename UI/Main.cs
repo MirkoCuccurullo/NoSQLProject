@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using Logic;
 using Model;
@@ -65,11 +59,11 @@ namespace DemoApp
 
             ticket.ID = new BsonObjectId(ObjectId.GenerateNewId());
             ticket.ticketDeadline = (TicketDeadline)cbDeadline.SelectedItem;
-            ticket.incident[1] = rtbTicketDescription.Text;
+            ticket.incidentDocument.Add(new BsonElement("description", rtbTicketDescription.Text));
             ticket.ticketPriority = (TicketPriority)cbPriority.SelectedItem;
             ticket.ticketType = (TicketType)cbIncidentType.SelectedItem;
             ticket.dateTime = DateTime.Now;
-            ticket.incident[0] = tbIncidentSubject.Text;
+            ticket.incidentDocument.Add(new BsonElement("subject", tbIncidentSubject.Text));
             ticket.UserID = ((User)cbReportUser.SelectedItem).Id;
 
             //parsing ticket object to bson document sending it to db

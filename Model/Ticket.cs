@@ -18,7 +18,7 @@ namespace Model
         [BsonElement("DateReport")]
         public DateTime dateTime { get; set; }
         [BsonElement("incident")]
-        public string[] incident = new string[2];
+        public BsonDocument incidentDocument = new BsonDocument();
         [BsonElement("type")]
         public TicketType ticketType { get; set; }
         [BsonElement("priority")]
