@@ -25,6 +25,12 @@ namespace DAL
             }
             return all_databases;
         }
+
+        public IMongoCollection<BsonDocument> ReturnCollection(string collectionName)
+        {
+            var database = client.GetDatabase("noSqlProject");
+            return database.GetCollection<BsonDocument>(collectionName);
+        }
     }
 
 
