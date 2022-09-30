@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +11,19 @@ namespace Model
 {
     public class Ticket
     {
-        public string ID { get; set; }
-        public string UserID {get; set ;}
+        [BsonId]
+        public BsonObjectId ID { get; set; }
+        [BsonElement("userID")]
+        public BsonObjectId UserID {get; set ;}
+        [BsonElement("DateReport")]
         public DateTime dateTime { get; set; }
-        public string subject { get; set; }
-        public string description { get; set; }
+        [BsonElement("incident")]
+        public string[] incident = new string[2];
+        [BsonElement("type")]
         public TicketType ticketType { get; set; }
+        [BsonElement("priority")]
         public TicketPriority ticketPriority { get; set; }
+        [BsonElement("deadline")]
         public TicketDeadline ticketDeadline { get; set; }
 
     }

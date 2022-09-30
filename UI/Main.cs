@@ -18,10 +18,15 @@ namespace DemoApp
     {
 
         Databases db;
+        UserLogic userLogic;
+        List<User> users;
+
         public Main()
         {
             InitializeComponent();
             db = new Databases();
+            userLogic = new UserLogic();
+            users = userLogic.GetAllUsers();
             pnlCreateTicket.Show();
             InitComboBoxes();
         }
@@ -32,6 +37,15 @@ namespace DemoApp
             cbPriority.DataSource = Enum.GetValues(typeof(TicketPriority));
             cbDeadline.DataSource = Enum.GetValues(typeof(TicketDeadline));
             cbIncidentType.DataSource = Enum.GetValues(typeof(TicketType));
+
+            foreach (User u in users)
+            {
+                cbReportUser.Items.Add(u);
+                cbReportUser.Tag = u;
+            }
+
+            cbReportUser.SelectedIndex = 0;
+
         }
 
         private void refreshCreateTicket()
@@ -48,12 +62,15 @@ namespace DemoApp
 
             //creating new Ticket and assigning values to it
             Ticket ticket = new Ticket();
-            ticket.ticketDeadline = (TicketDeadline)cbPriority.SelectedItem;
-            ticket.description = rtbTicketDescription.Text;
+
+            ticket.ID = new BsonObjectId(ObjectId.GenerateNewId());
+            ticket.ticketDeadline = (TicketDeadline)cbDeadline.SelectedItem;
+            ticket.incident[1] = rtbTicketDescription.Text;
             ticket.ticketPriority = (TicketPriority)cbPriority.SelectedItem;
             ticket.ticketType = (TicketType)cbIncidentType.SelectedItem;
             ticket.dateTime = DateTime.Now;
-            ticket.subject = tbIncidentSubject.Text;
+            ticket.incident[0] = tbIncidentSubject.Text;
+            ticket.UserID = ((User)cbReportUser.SelectedItem).Id;
 
             //parsing ticket object to bson document sending it to db
 

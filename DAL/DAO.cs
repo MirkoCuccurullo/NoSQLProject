@@ -12,7 +12,7 @@ namespace DAL
         private MongoClient client;
 
         public DAO()
-        {     
+        {
             client = new MongoClient("mongodb+srv://projectUser:1234@nosqldb.yqlm6qi.mongodb.net/test");
         }
 
@@ -27,7 +27,7 @@ namespace DAL
             return all_databases;
         }
 
-        private IMongoCollection<BsonDocument> ReturnCollection(string collectionName)
+        protected IMongoCollection<BsonDocument> ReturnCollection(string collectionName)
         {
             //get the collection from database "noSqlProject"
             var database = client.GetDatabase("noSqlProject");
