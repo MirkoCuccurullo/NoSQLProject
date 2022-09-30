@@ -174,6 +174,7 @@
             this.btnCancelTicket.TabIndex = 14;
             this.btnCancelTicket.Text = "Cancel";
             this.btnCancelTicket.UseVisualStyleBackColor = true;
+            this.btnCancelTicket.Click += new System.EventHandler(this.btnCancelTicket_Click);
             // 
             // btnSubmitTicket
             // 
@@ -210,13 +211,13 @@
             this.pnlCreateTicket.Size = new System.Drawing.Size(795, 623);
             this.pnlCreateTicket.TabIndex = 16;
             // 
-            // Form2
+            // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 655);
             this.Controls.Add(this.pnlCreateTicket);
-            this.Name = "Form2";
+            this.Name = "Main";
             this.Text = "Create Ticket";
             this.pnlCreateTicket.ResumeLayout(false);
             this.pnlCreateTicket.PerformLayout();

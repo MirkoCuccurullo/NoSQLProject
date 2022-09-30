@@ -76,5 +76,10 @@ namespace DemoApp
             refreshCreateTicket();
 
         }
+
+        private void btnCancelTicket_Click(object sender, EventArgs e)
+        {
+            refreshCreateTicket();
+        }
     }
 }
