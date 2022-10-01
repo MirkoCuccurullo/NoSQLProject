@@ -45,7 +45,15 @@
             this.btnCancelTicket = new System.Windows.Forms.Button();
             this.btnSubmitTicket = new System.Windows.Forms.Button();
             this.pnlCreateTicket = new System.Windows.Forms.Panel();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.incidentManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createTicketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pnlDashboard = new System.Windows.Forms.Panel();
             this.pnlCreateTicket.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -208,20 +216,82 @@
             this.pnlCreateTicket.Controls.Add(this.btnSubmitTicket);
             this.pnlCreateTicket.Location = new System.Drawing.Point(0, 27);
             this.pnlCreateTicket.Name = "pnlCreateTicket";
-            this.pnlCreateTicket.Size = new System.Drawing.Size(795, 623);
+            this.pnlCreateTicket.Size = new System.Drawing.Size(795, 639);
             this.pnlCreateTicket.TabIndex = 16;
+            // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.dashboardToolStripMenuItem,
+            this.incidentManagementToolStripMenuItem,
+            this.userManagementToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(800, 28);
+            this.menuStrip1.TabIndex = 17;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // dashboardToolStripMenuItem
+            // 
+            this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
+            this.dashboardToolStripMenuItem.Text = "Dashboard";
+            this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
+            // 
+            // incidentManagementToolStripMenuItem
+            // 
+            this.incidentManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createTicketToolStripMenuItem});
+            this.incidentManagementToolStripMenuItem.Name = "incidentManagementToolStripMenuItem";
+            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
+            this.incidentManagementToolStripMenuItem.Text = "Incident Management";
+            // 
+            // userManagementToolStripMenuItem
+            // 
+            this.userManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.createUserToolStripMenuItem});
+            this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
+            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
+            this.userManagementToolStripMenuItem.Text = "User Management";
+            // 
+            // createTicketToolStripMenuItem
+            // 
+            this.createTicketToolStripMenuItem.Name = "createTicketToolStripMenuItem";
+            this.createTicketToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.createTicketToolStripMenuItem.Text = "Create Ticket";
+            this.createTicketToolStripMenuItem.Click += new System.EventHandler(this.createTicketToolStripMenuItem_Click);
+            // 
+            // createUserToolStripMenuItem
+            // 
+            this.createUserToolStripMenuItem.Name = "createUserToolStripMenuItem";
+            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.createUserToolStripMenuItem.Text = "Create User";
+            // 
+            // pnlDashboard
+            // 
+            this.pnlDashboard.Location = new System.Drawing.Point(1, 27);
+            this.pnlDashboard.Name = "pnlDashboard";
+            this.pnlDashboard.Size = new System.Drawing.Size(794, 639);
+            this.pnlDashboard.TabIndex = 18;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 655);
+            this.ClientSize = new System.Drawing.Size(800, 671);
+            this.Controls.Add(this.pnlDashboard);
             this.Controls.Add(this.pnlCreateTicket);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
             this.Text = "Create Ticket";
             this.pnlCreateTicket.ResumeLayout(false);
             this.pnlCreateTicket.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -244,5 +314,12 @@
         private System.Windows.Forms.Button btnCancelTicket;
         private System.Windows.Forms.Button btnSubmitTicket;
         private System.Windows.Forms.Panel pnlCreateTicket;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem dashboardToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem incidentManagementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createTicketToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userManagementToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem createUserToolStripMenuItem;
+        private System.Windows.Forms.Panel pnlDashboard;
     }
 }

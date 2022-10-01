@@ -15,11 +15,16 @@ namespace DAL
         public List<User> GetAllUsers()
         {
             List<User> users = new List<User>();
+
+            //getting user collection
             var collection = base.ReturnCollection("Users");
+
+            //getting all documents in the collection 
             var documents = collection.Find(new BsonDocument()).ToList();
 
             foreach (BsonDocument document in documents)
             {
+                //deserealizing a Bdon document in a User object
                 User user = BsonSerializer.Deserialize<User>(document);
                 users.Add(user);
             }

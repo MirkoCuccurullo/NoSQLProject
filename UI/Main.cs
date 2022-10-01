@@ -21,8 +21,29 @@ namespace DemoApp
             db = new Databases();
             userLogic = new UserLogic();
             users = userLogic.GetAllUsers();
-            pnlCreateTicket.Show();
+            DisplayPanel("Dashboard");
             InitComboBoxes();
+        }
+
+        private void DisplayPanel(string panelName)
+        {
+            switch (panelName)
+            {
+                case "CreateTicket":
+                    HideAllPanels();
+                    pnlCreateTicket.Show();
+                    break;
+                case "Dashboard":
+                    HideAllPanels();
+                    pnlDashboard.Show();
+                    break;
+            }
+        }
+
+        private void HideAllPanels()
+        {
+            pnlDashboard.Hide();
+            pnlCreateTicket.Hide();
         }
 
         private void InitComboBoxes()
@@ -32,6 +53,8 @@ namespace DemoApp
             cbDeadline.DataSource = Enum.GetValues(typeof(TicketDeadline));
             cbIncidentType.DataSource = Enum.GetValues(typeof(TicketType));
 
+
+            //adding users to combobox and tagging them
             foreach (User u in users)
             {
                 cbReportUser.Items.Add(u);
@@ -67,7 +90,6 @@ namespace DemoApp
             ticket.UserID = ((User)cbReportUser.SelectedItem).Id;
 
             //parsing ticket object to bson document sending it to db
-
             BsonDocument document = ticket.ToBsonDocument();
             db.AddDocumentToCollection(document, "Ticket");
 
@@ -80,6 +102,16 @@ namespace DemoApp
         private void btnCancelTicket_Click(object sender, EventArgs e)
         {
             refreshCreateTicket();
+        }
+
+        private void createTicketToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayPanel("CreateTicket");
+        }
+
+        private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayPanel("Dashboard");
         }
     }
 }
