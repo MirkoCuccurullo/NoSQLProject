@@ -21,19 +21,19 @@ namespace DemoApp
             db = new Databases();
             userLogic = new UserLogic();
             users = userLogic.GetAllUsers();
-            DisplayPanel("Dashboard");
+            DisplayPanel(PanelName.Dashboard);
             InitComboBoxes();
         }
 
-        private void DisplayPanel(string panelName)
+        private void DisplayPanel(PanelName panelName)
         {
             switch (panelName)
             {
-                case "CreateTicket":
+                case PanelName.CreateTicket:
                     HideAllPanels();
                     pnlCreateTicket.Show();
                     break;
-                case "Dashboard":
+                case PanelName.Dashboard:
                     HideAllPanels();
                     pnlDashboard.Show();
                     break;
@@ -107,12 +107,12 @@ namespace DemoApp
 
         private void createTicketToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DisplayPanel("CreateTicket");
+            DisplayPanel(PanelName.CreateTicket);
         }
 
         private void dashboardToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DisplayPanel("Dashboard");
+            DisplayPanel(PanelName.Dashboard);
         }
 
 

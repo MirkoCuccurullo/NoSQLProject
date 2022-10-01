@@ -10,4 +10,6 @@ namespace Model
     public enum TicketPriority { Low, Medium, High }
     public enum TicketDeadline { Seven, Fourtheen, Twentysix }
 
+    public enum PanelName { CreateTicket, Dashboard}
+
 }
