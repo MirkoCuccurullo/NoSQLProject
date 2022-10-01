@@ -35,7 +35,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.cbDateTime = new System.Windows.Forms.ComboBox();
             this.cbIncidentType = new System.Windows.Forms.ComboBox();
             this.cbReportUser = new System.Windows.Forms.ComboBox();
             this.cbPriority = new System.Windows.Forms.ComboBox();
@@ -45,11 +44,12 @@
             this.btnCancelTicket = new System.Windows.Forms.Button();
             this.btnSubmitTicket = new System.Windows.Forms.Button();
             this.pnlCreateTicket = new System.Windows.Forms.Panel();
+            this.dtpTicketDate = new System.Windows.Forms.DateTimePicker();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.dashboardToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.incidentManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.userManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createTicketToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDashboard = new System.Windows.Forms.Panel();
             this.pnlCreateTicket.SuspendLayout();
@@ -68,7 +68,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(86, 99);
+            this.label2.Location = new System.Drawing.Point(86, 120);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(115, 16);
             this.label2.TabIndex = 1;
@@ -77,7 +77,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(86, 140);
+            this.label3.Location = new System.Drawing.Point(81, 190);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(102, 16);
             this.label3.TabIndex = 2;
@@ -86,7 +86,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(86, 185);
+            this.label4.Location = new System.Drawing.Point(81, 261);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(111, 16);
             this.label4.TabIndex = 3;
@@ -95,7 +95,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(86, 245);
+            this.label5.Location = new System.Drawing.Point(86, 345);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(48, 16);
             this.label5.TabIndex = 4;
@@ -104,7 +104,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(86, 294);
+            this.label6.Location = new System.Drawing.Point(86, 411);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(120, 16);
             this.label6.TabIndex = 5;
@@ -113,24 +113,16 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(86, 386);
+            this.label7.Location = new System.Drawing.Point(81, 494);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(75, 16);
             this.label7.TabIndex = 6;
             this.label7.Text = "Description";
             // 
-            // cbDateTime
-            // 
-            this.cbDateTime.FormattingEnabled = true;
-            this.cbDateTime.Location = new System.Drawing.Point(319, 47);
-            this.cbDateTime.Name = "cbDateTime";
-            this.cbDateTime.Size = new System.Drawing.Size(264, 24);
-            this.cbDateTime.TabIndex = 7;
-            // 
             // cbIncidentType
             // 
             this.cbIncidentType.FormattingEnabled = true;
-            this.cbIncidentType.Location = new System.Drawing.Point(319, 132);
+            this.cbIncidentType.Location = new System.Drawing.Point(317, 182);
             this.cbIncidentType.Name = "cbIncidentType";
             this.cbIncidentType.Size = new System.Drawing.Size(264, 24);
             this.cbIncidentType.TabIndex = 8;
@@ -138,7 +130,7 @@
             // cbReportUser
             // 
             this.cbReportUser.FormattingEnabled = true;
-            this.cbReportUser.Location = new System.Drawing.Point(319, 177);
+            this.cbReportUser.Location = new System.Drawing.Point(317, 253);
             this.cbReportUser.Name = "cbReportUser";
             this.cbReportUser.Size = new System.Drawing.Size(264, 24);
             this.cbReportUser.TabIndex = 9;
@@ -146,7 +138,7 @@
             // cbPriority
             // 
             this.cbPriority.FormattingEnabled = true;
-            this.cbPriority.Location = new System.Drawing.Point(319, 237);
+            this.cbPriority.Location = new System.Drawing.Point(317, 325);
             this.cbPriority.Name = "cbPriority";
             this.cbPriority.Size = new System.Drawing.Size(264, 24);
             this.cbPriority.TabIndex = 10;
@@ -154,21 +146,21 @@
             // cbDeadline
             // 
             this.cbDeadline.FormattingEnabled = true;
-            this.cbDeadline.Location = new System.Drawing.Point(319, 294);
+            this.cbDeadline.Location = new System.Drawing.Point(317, 403);
             this.cbDeadline.Name = "cbDeadline";
             this.cbDeadline.Size = new System.Drawing.Size(264, 24);
             this.cbDeadline.TabIndex = 11;
             // 
             // tbIncidentSubject
             // 
-            this.tbIncidentSubject.Location = new System.Drawing.Point(319, 93);
+            this.tbIncidentSubject.Location = new System.Drawing.Point(317, 117);
             this.tbIncidentSubject.Name = "tbIncidentSubject";
             this.tbIncidentSubject.Size = new System.Drawing.Size(264, 22);
             this.tbIncidentSubject.TabIndex = 12;
             // 
             // rtbTicketDescription
             // 
-            this.rtbTicketDescription.Location = new System.Drawing.Point(319, 375);
+            this.rtbTicketDescription.Location = new System.Drawing.Point(317, 491);
             this.rtbTicketDescription.Name = "rtbTicketDescription";
             this.rtbTicketDescription.Size = new System.Drawing.Size(264, 180);
             this.rtbTicketDescription.TabIndex = 13;
@@ -176,7 +168,7 @@
             // 
             // btnCancelTicket
             // 
-            this.btnCancelTicket.Location = new System.Drawing.Point(319, 586);
+            this.btnCancelTicket.Location = new System.Drawing.Point(317, 739);
             this.btnCancelTicket.Name = "btnCancelTicket";
             this.btnCancelTicket.Size = new System.Drawing.Size(97, 38);
             this.btnCancelTicket.TabIndex = 14;
@@ -188,7 +180,7 @@
             // 
             this.btnSubmitTicket.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btnSubmitTicket.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.btnSubmitTicket.Location = new System.Drawing.Point(486, 586);
+            this.btnSubmitTicket.Location = new System.Drawing.Point(484, 739);
             this.btnSubmitTicket.Name = "btnSubmitTicket";
             this.btnSubmitTicket.Size = new System.Drawing.Size(97, 38);
             this.btnSubmitTicket.TabIndex = 15;
@@ -198,6 +190,7 @@
             // 
             // pnlCreateTicket
             // 
+            this.pnlCreateTicket.Controls.Add(this.dtpTicketDate);
             this.pnlCreateTicket.Controls.Add(this.label1);
             this.pnlCreateTicket.Controls.Add(this.label2);
             this.pnlCreateTicket.Controls.Add(this.label3);
@@ -205,7 +198,6 @@
             this.pnlCreateTicket.Controls.Add(this.label5);
             this.pnlCreateTicket.Controls.Add(this.label6);
             this.pnlCreateTicket.Controls.Add(this.label7);
-            this.pnlCreateTicket.Controls.Add(this.cbDateTime);
             this.pnlCreateTicket.Controls.Add(this.cbIncidentType);
             this.pnlCreateTicket.Controls.Add(this.cbReportUser);
             this.pnlCreateTicket.Controls.Add(this.cbPriority);
@@ -216,8 +208,15 @@
             this.pnlCreateTicket.Controls.Add(this.btnSubmitTicket);
             this.pnlCreateTicket.Location = new System.Drawing.Point(0, 27);
             this.pnlCreateTicket.Name = "pnlCreateTicket";
-            this.pnlCreateTicket.Size = new System.Drawing.Size(795, 639);
+            this.pnlCreateTicket.Size = new System.Drawing.Size(795, 870);
             this.pnlCreateTicket.TabIndex = 16;
+            // 
+            // dtpTicketDate
+            // 
+            this.dtpTicketDate.Location = new System.Drawing.Point(317, 50);
+            this.dtpTicketDate.Name = "dtpTicketDate";
+            this.dtpTicketDate.Size = new System.Drawing.Size(264, 22);
+            this.dtpTicketDate.TabIndex = 17;
             // 
             // menuStrip1
             // 
@@ -247,6 +246,13 @@
             this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
             this.incidentManagementToolStripMenuItem.Text = "Incident Management";
             // 
+            // createTicketToolStripMenuItem
+            // 
+            this.createTicketToolStripMenuItem.Name = "createTicketToolStripMenuItem";
+            this.createTicketToolStripMenuItem.Size = new System.Drawing.Size(178, 26);
+            this.createTicketToolStripMenuItem.Text = "Create Ticket";
+            this.createTicketToolStripMenuItem.Click += new System.EventHandler(this.createTicketToolStripMenuItem_Click);
+            // 
             // userManagementToolStripMenuItem
             // 
             this.userManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -255,17 +261,10 @@
             this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
             this.userManagementToolStripMenuItem.Text = "User Management";
             // 
-            // createTicketToolStripMenuItem
-            // 
-            this.createTicketToolStripMenuItem.Name = "createTicketToolStripMenuItem";
-            this.createTicketToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.createTicketToolStripMenuItem.Text = "Create Ticket";
-            this.createTicketToolStripMenuItem.Click += new System.EventHandler(this.createTicketToolStripMenuItem_Click);
-            // 
             // createUserToolStripMenuItem
             // 
             this.createUserToolStripMenuItem.Name = "createUserToolStripMenuItem";
-            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(168, 26);
             this.createUserToolStripMenuItem.Text = "Create User";
             // 
             // pnlDashboard
@@ -279,10 +278,10 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 671);
-            this.Controls.Add(this.pnlDashboard);
+            this.ClientSize = new System.Drawing.Size(800, 1055);
             this.Controls.Add(this.pnlCreateTicket);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pnlDashboard);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
             this.Text = "Create Ticket";
@@ -304,7 +303,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.ComboBox cbDateTime;
         private System.Windows.Forms.ComboBox cbIncidentType;
         private System.Windows.Forms.ComboBox cbReportUser;
         private System.Windows.Forms.ComboBox cbPriority;
@@ -321,5 +319,6 @@
         private System.Windows.Forms.ToolStripMenuItem userManagementToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem createUserToolStripMenuItem;
         private System.Windows.Forms.Panel pnlDashboard;
+        private System.Windows.Forms.DateTimePicker dtpTicketDate;
     }
 }

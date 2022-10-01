@@ -63,6 +63,7 @@ namespace DemoApp
 
             cbReportUser.SelectedIndex = 0;
 
+
         }
 
         private void refreshCreateTicket()
@@ -85,7 +86,7 @@ namespace DemoApp
             ticket.incidentDocument.Add(new BsonElement("description", rtbTicketDescription.Text));
             ticket.ticketPriority = (TicketPriority)cbPriority.SelectedItem;
             ticket.ticketType = (TicketType)cbIncidentType.SelectedItem;
-            ticket.dateTime = DateTime.Now;
+            ticket.dateTime = dtpTicketDate.Value;
             ticket.incidentDocument.Add(new BsonElement("subject", tbIncidentSubject.Text));
             ticket.UserID = ((User)cbReportUser.SelectedItem).Id;
 
@@ -113,5 +114,7 @@ namespace DemoApp
         {
             DisplayPanel("Dashboard");
         }
+
+
     }
 }
