@@ -1,5 +1,7 @@
 ﻿using DAL;
 using Model;
+using MongoDB.Bson;
+using MongoDB.Driver;
 using System.Collections.Generic;
 
 namespace Logic
@@ -15,6 +17,11 @@ namespace Logic
         public List<Databases_Model> Get_All_Databases()
         {
             return dao.GetDatabases();
+        }
+
+        public void AddDocumentToCollection(BsonDocument document, string collectionName)
+        {
+            dao.AddDocumentToCollection(document, collectionName);
         }
     }
 }
