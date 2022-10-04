@@ -89,6 +89,7 @@ namespace DemoApp
             ticket.DateTime = dtpTicketDate.Value;
             ticket.IncidentDocument.Add(new BsonElement("subject", tbIncidentSubject.Text));
             ticket.UserID = ((User)cbReportUser.SelectedItem).Id;
+            ticket.Status = false;
 
             //parsing ticket object to bson document sending it to db
             BsonDocument document = ticket.ToBsonDocument();

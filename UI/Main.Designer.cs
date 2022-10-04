@@ -52,6 +52,7 @@
             this.userManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDashboard = new System.Windows.Forms.Panel();
+            this.pnlTicketOverview = new System.Windows.Forms.Panel();
             this.pnlCreateTicket.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -274,11 +275,19 @@
             this.pnlDashboard.Size = new System.Drawing.Size(794, 639);
             this.pnlDashboard.TabIndex = 18;
             // 
+            // pnlTicketOverview
+            // 
+            this.pnlTicketOverview.Location = new System.Drawing.Point(0, 27);
+            this.pnlTicketOverview.Name = "pnlTicketOverview";
+            this.pnlTicketOverview.Size = new System.Drawing.Size(792, 840);
+            this.pnlTicketOverview.TabIndex = 19;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 1055);
+            this.Controls.Add(this.pnlTicketOverview);
             this.Controls.Add(this.pnlCreateTicket);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pnlDashboard);
@@ -320,5 +329,6 @@
         private System.Windows.Forms.ToolStripMenuItem createUserToolStripMenuItem;
         private System.Windows.Forms.Panel pnlDashboard;
         private System.Windows.Forms.DateTimePicker dtpTicketDate;
+        private System.Windows.Forms.Panel pnlTicketOverview;
     }
 }
