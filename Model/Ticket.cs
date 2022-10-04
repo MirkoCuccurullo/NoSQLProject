@@ -16,15 +16,15 @@ namespace Model
         [BsonElement("userID")]
         public BsonObjectId UserID {get; set ;}
         [BsonElement("DateReport")]
-        public DateTime dateTime { get; set; }
+        public DateTime DateTime { get; set; }
         [BsonElement("incident")]
-        public BsonDocument incidentDocument = new BsonDocument();
+        public BsonDocument IncidentDocument = new BsonDocument();
         [BsonElement("type")]
-        public TicketType ticketType { get; set; }
+        public TicketType TicketType { get; set; }
         [BsonElement("priority")]
-        public TicketPriority ticketPriority { get; set; }
+        public TicketPriority TicketPriority { get; set; }
         [BsonElement("deadline")]
-        public TicketDeadline ticketDeadline { get; set; }
+        public TicketDeadline TicketDeadline { get; set; }
 
     }
 }
