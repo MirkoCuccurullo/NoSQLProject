@@ -14,10 +14,12 @@ namespace DemoApp
         Databases db;
         UserLogic userLogic;
         List<User> users;
+        User currentUser;
 
-        public Main()
+        public Main(User currentUser)
         {
             InitializeComponent();
+            this.currentUser = currentUser;
             db = new Databases();
             userLogic = new UserLogic();
             users = userLogic.GetAllUsers();
@@ -57,8 +59,6 @@ namespace DemoApp
             cbPriority.DataSource = Enum.GetValues(typeof(TicketPriority));
             cbDeadline.DataSource = Enum.GetValues(typeof(TicketDeadline));
             cbIncidentType.DataSource = Enum.GetValues(typeof(TicketType));
-            comboBoxTypeOfUser.DataSource= Enum.GetValues(typeof(UserRoles));
-            comboBoxLocation.DataSource = Enum.GetValues(typeof(Branch));
 
 
             //adding users to combobox and tagging them
