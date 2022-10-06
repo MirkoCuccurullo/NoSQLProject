@@ -12,6 +12,6 @@ namespace Model
     public enum UserRoles { Employee,ServiceDeskEmployee}
     public enum Branch { Haarlem,Amsterdam,HeadQuaters,Kunppeldam}
 
-    public enum PanelName { CreateTicket, Dashboard,CreateUser, TicketOverview}
+    public enum PanelName { CreateTicket, Dashboard,CreateUser, TicketOverview, UserOverview}
 
 }
