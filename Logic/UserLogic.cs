@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL;
 using Model;
+using MongoDB.Bson;
 
 namespace Logic
 {
@@ -17,5 +18,13 @@ namespace Logic
         {
             return userDAO.GetAllUsers();
         }
+
+        public User GetUserById(BsonObjectId id)
+        {
+            return userDAO.GetUserById(id);
+
+        }
     }
+
+    
 }

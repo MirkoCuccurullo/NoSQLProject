@@ -111,6 +111,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums.cs" />
+    <Compile Include="Incident.cs" />
+    <Compile Include="Name.cs" />
+    <Compile Include="Password.cs" />
     <Compile Include="Ticket.cs" />
     <Compile Include="Databases_Model.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
