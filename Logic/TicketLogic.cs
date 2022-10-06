@@ -17,5 +17,10 @@ namespace Logic
         {
             return td.GetAllTickets();
         }
+
+        public void CloseTicket(Ticket t)
+        {
+            td.CloseTicket(t);
+        }
     }
 }

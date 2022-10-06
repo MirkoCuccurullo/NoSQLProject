@@ -32,5 +32,16 @@ namespace DAL
 
             return users;
         }
+
+        public void CloseTicket(Ticket ticket)
+        {
+            var collection = base.ReturnCollection("Ticket");
+
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", ticket.ID);
+
+            var update = Builders<BsonDocument>.Update.Set("status", true);
+
+            collection.UpdateOne(filter, update);
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Windows.Forms;
 using Logic;
 using Model;
 using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 
 namespace DemoApp
@@ -13,6 +14,7 @@ namespace DemoApp
 
         Databases db;
         UserLogic userLogic;
+        TicketLogic ticketLogic;
         List<User> users;
         User currentUser;
 
@@ -22,6 +24,7 @@ namespace DemoApp
             this.currentUser = currentUser;
             db = new Databases();
             userLogic = new UserLogic();
+            ticketLogic = new TicketLogic();
             users = userLogic.GetAllUsers();
             DisplayPanel(PanelName.Dashboard);
             InitComboBoxes();
@@ -39,9 +42,14 @@ namespace DemoApp
                     HideAllPanels();
                     pnlDashboard.Show();
                     break;
-                    case PanelName.CreateUser:
+                case PanelName.CreateUser:
                     HideAllPanels();
                     pnlAddUser.Show();
+                    break;
+                case PanelName.TicketOverview:
+                    HideAllPanels();
+                    pnlTicketOverview.Show();
+                    PopulateTicketListView();
                     break;
             }
         }
@@ -51,6 +59,7 @@ namespace DemoApp
             pnlDashboard.Hide();
             pnlCreateTicket.Hide();
             pnlAddUser.Hide();
+            pnlTicketOverview.Hide();
         }
 
         private void InitComboBoxes()
@@ -71,6 +80,48 @@ namespace DemoApp
             cbReportUser.SelectedIndex = 0;
 
 
+        }
+
+        private void PopulateTicketListView()
+        {
+            try
+            {
+                //retrieveing all ordered drinks
+                List<Ticket> tickets = ticketLogic.GetAllTicket();
+
+                //clearing preavious items
+                lvTicketOverview.Items.Clear();
+
+                //checking each item in the drinkList
+                foreach (Ticket ticket in tickets)
+                {
+                    Incident incident = BsonSerializer.Deserialize<Incident>(ticket.IncidentDocument);
+
+                    ListViewItem li = new ListViewItem(incident.Subject);
+
+                    User user = userLogic.GetUserById(ticket.UserID);
+                    Name name = BsonSerializer.Deserialize<Name>(user.Name);
+                    li.SubItems.Add(name.First);
+                    li.SubItems.Add(ticket.DateTime.ToString());
+
+                    if (ticket.Status)
+                    {
+                        li.SubItems.Add("Close");
+                    }
+                    else
+                    {
+                        li.SubItems.Add("Open");
+
+                    }
+
+                    //adding item to the list
+                    lvTicketOverview.Items.Add(li);
+                }
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message, "Error");
+            }
         }
 
         private void refreshCreateTicket()
@@ -153,6 +204,11 @@ namespace DemoApp
             db.AddDocumentToCollection(document, "Users");
 
             MessageBox.Show("The new user can be created", "Successful");
+        }
+
+        private void incidentManagementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayPanel(PanelName.TicketOverview);
         }
     }
 }
