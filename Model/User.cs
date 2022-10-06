@@ -21,11 +21,14 @@ namespace Model
         public BsonDocument Password = new BsonDocument();
         
         [BsonElement("location")]
-        public string Location { get; set; }
+        public Branch Location { get; set; }
         [BsonElement("role")]
-        public string Role { get; set; }
+        public UserRoles Role { get; set; }
         [BsonElement("email")]
         public string Email { get; set; }
+
+        [BsonElement("number")]
+        public string PhoneNumber { get; set; }    
 
 
         public override string ToString()
