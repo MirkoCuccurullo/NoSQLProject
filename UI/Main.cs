@@ -16,12 +16,16 @@ namespace DemoApp
         Databases db;
         UserLogic userLogic;
         List<User> users;
+
         private PasswordGenerator passwordGenerator;
         private string password;
 
-        public Main()
+        User currentUser;
+
+        public Main(User currentUser)
         {
             InitializeComponent();
+            this.currentUser = currentUser;
             db = new Databases();
             userLogic = new UserLogic();
             users = userLogic.GetAllUsers();
