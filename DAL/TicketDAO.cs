@@ -36,7 +36,9 @@ namespace DAL
 
         public void CloseTicket(Ticket ticket)
         {
-            var collection = ReturnCollection("Ticket");
+
+            var collection = base.ReturnCollection("Ticket");
+
 
             var filter = Builders<BsonDocument>.Filter.Eq("_id", ticket.ID);
 
@@ -62,6 +64,6 @@ namespace DAL
                 ticket = te;
             }
             return ticket;
-        }
+         }
     }
 }
