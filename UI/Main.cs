@@ -116,6 +116,7 @@ namespace DemoApp
 
                     //adding item to the list
                     lvTicketOverview.Items.Add(li);
+                    li.Tag = ticket as Ticket;
                 }
             }
             catch (Exception exp)
@@ -209,6 +210,21 @@ namespace DemoApp
         private void incidentManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DisplayPanel(PanelName.TicketOverview);
+        }
+
+        private void lvTicketOverview_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvTicketOverview.SelectedItems.Count != 0)
+            {
+                btnCloseTicket.Enabled = true;
+            }
+        }
+
+        private void btnCloseTicket_Click(object sender, EventArgs e)
+        {
+            Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
+            ticketLogic.CloseTicket(ticket);
+            PopulateTicketListView();
         }
     }
 }

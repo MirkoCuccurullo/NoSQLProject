@@ -71,6 +71,7 @@
             this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDashboard = new System.Windows.Forms.Panel();
             this.pnlTicketOverview = new System.Windows.Forms.Panel();
+            this.btnCloseTicket = new System.Windows.Forms.Button();
             this.lvTicketOverview = new System.Windows.Forms.ListView();
             this.clSubject = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -414,7 +415,6 @@
             this.userManagementToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(6, 2, 0, 2);
             this.menuStrip1.Size = new System.Drawing.Size(800, 28);
             this.menuStrip1.TabIndex = 17;
             this.menuStrip1.Text = "menuStrip1";
@@ -422,7 +422,7 @@
             // dashboardToolStripMenuItem
             // 
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(96, 26);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
@@ -447,7 +447,7 @@
             this.userManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createUserToolStripMenuItem});
             this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
-            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(144, 26);
+            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
             this.userManagementToolStripMenuItem.Text = "User Management";
             // 
             // createUserToolStripMenuItem
@@ -466,11 +466,23 @@
             // 
             // pnlTicketOverview
             // 
+            this.pnlTicketOverview.Controls.Add(this.btnCloseTicket);
             this.pnlTicketOverview.Controls.Add(this.lvTicketOverview);
             this.pnlTicketOverview.Location = new System.Drawing.Point(0, 31);
             this.pnlTicketOverview.Name = "pnlTicketOverview";
             this.pnlTicketOverview.Size = new System.Drawing.Size(800, 857);
             this.pnlTicketOverview.TabIndex = 18;
+            // 
+            // btnCloseTicket
+            // 
+            this.btnCloseTicket.Enabled = false;
+            this.btnCloseTicket.Location = new System.Drawing.Point(613, 57);
+            this.btnCloseTicket.Name = "btnCloseTicket";
+            this.btnCloseTicket.Size = new System.Drawing.Size(113, 23);
+            this.btnCloseTicket.TabIndex = 1;
+            this.btnCloseTicket.Text = "Close Ticket";
+            this.btnCloseTicket.UseVisualStyleBackColor = true;
+            this.btnCloseTicket.Click += new System.EventHandler(this.btnCloseTicket_Click);
             // 
             // lvTicketOverview
             // 
@@ -479,13 +491,16 @@
             this.clUser,
             this.clDate,
             this.clStatus});
+            this.lvTicketOverview.FullRowSelect = true;
             this.lvTicketOverview.HideSelection = false;
             this.lvTicketOverview.Location = new System.Drawing.Point(77, 98);
+            this.lvTicketOverview.MultiSelect = false;
             this.lvTicketOverview.Name = "lvTicketOverview";
             this.lvTicketOverview.Size = new System.Drawing.Size(649, 669);
             this.lvTicketOverview.TabIndex = 0;
             this.lvTicketOverview.UseCompatibleStateImageBehavior = false;
             this.lvTicketOverview.View = System.Windows.Forms.View.Details;
+            this.lvTicketOverview.SelectedIndexChanged += new System.EventHandler(this.lvTicketOverview_SelectedIndexChanged);
             // 
             // clSubject
             // 
@@ -582,5 +597,6 @@
         private System.Windows.Forms.ColumnHeader clUser;
         private System.Windows.Forms.ColumnHeader clDate;
         private System.Windows.Forms.ColumnHeader clStatus;
+        private System.Windows.Forms.Button btnCloseTicket;
     }
 }
