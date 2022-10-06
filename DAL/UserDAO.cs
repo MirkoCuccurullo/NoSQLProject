@@ -32,5 +32,19 @@ namespace DAL
             return users;
         }
 
+        public User GetUserById(BsonObjectId id)
+        {
+            var collection = base.ReturnCollection("Users");
+
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", id);
+
+            var document = collection.Find(filter).FirstOrDefault();
+
+
+            //deserealizing a Bdon document in a User object
+            return BsonSerializer.Deserialize<User>(document);
+
+        }
+
     }
 }
