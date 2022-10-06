@@ -14,10 +14,12 @@ namespace DemoApp
         Databases db;
         UserLogic userLogic;
         List<User> users;
+        User currentUser;
 
-        public Main()
+        public Main(User currentUser)
         {
             InitializeComponent();
+            this.currentUser = currentUser;
             db = new Databases();
             userLogic = new UserLogic();
             users = userLogic.GetAllUsers();
