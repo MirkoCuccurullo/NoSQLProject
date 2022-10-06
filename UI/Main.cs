@@ -23,6 +23,8 @@ namespace DemoApp
         private string password;
 
         User currentUser;
+        List<User> users;
+
 
         public Main(User currentUser)
         {
@@ -58,6 +60,12 @@ namespace DemoApp
                     pnlTicketOverview.Show();
                     PopulateTicketListView();
                     break;
+                case PanelName.UserOverview:
+                    HideAllPanels();
+                    pnlUserOverview.Show();
+                    PopulateUserListView();
+                    break;
+
             }
         }
 
@@ -67,6 +75,7 @@ namespace DemoApp
             pnlCreateTicket.Hide();
             pnlAddUser.Hide();
             pnlTicketOverview.Hide();
+            pnlUserOverview.Hide();
         }
 
         private void InitComboBoxes()
@@ -125,7 +134,45 @@ namespace DemoApp
 
                     //adding item to the list
                     lvTicketOverview.Items.Add(li);
-                    li.Tag = ticket as Ticket;
+                    li.Tag = ticket;
+                }
+            }
+            catch (Exception exp)
+            {
+                MessageBox.Show(exp.Message, "Error");
+            }
+        }
+
+        private void PopulateUserListView()
+        {
+            try
+            {
+                List<Ticket> tickets = ticketLogic.GetAllTicket();
+
+                lvUserOverview.Items.Clear();
+
+                foreach (User user in users)
+                {
+                    Name name = BsonSerializer.Deserialize<Name>(user.Name);
+                    Ticket userTicket=ticketLogic.GetTicketByUser(user);
+                    
+                    foreach (Ticket ticket in tickets)
+                    {
+                        ticket.UserID = user.Id;
+                        userTicket = ticket;
+                    }
+
+                    ListViewItem li = new ListViewItem(user.Id.ToString());
+
+                    li.SubItems.Add(user.Email);
+                    li.SubItems.Add(name.First);
+                    li.SubItems.Add(name.Last);
+                    li.SubItems.Add(userTicket.ID.ToString());
+
+                    //adding item to the list
+                    lvTicketOverview.Items.Add(li);
+                    li.Tag = user;
+
                 }
             }
             catch (Exception exp)
@@ -141,7 +188,6 @@ namespace DemoApp
             rtbTicketDescription.Clear();
             tbIncidentSubject.Clear();
         }
-
 
         private void btnSubmitTicket_Click(object sender, EventArgs e)
         {
@@ -188,6 +234,7 @@ namespace DemoApp
         {
             DisplayPanel(PanelName.CreateUser);
         }
+
         private User CreateUser()
         {
             User user = new User();
@@ -255,6 +302,31 @@ namespace DemoApp
             ticketLogic.CloseTicket(ticket);
             PopulateTicketListView();
         }
-       
+
+        private void incidentManagementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayPanel(PanelName.TicketOverview);
+        }
+
+        private void lvTicketOverview_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvTicketOverview.SelectedItems.Count != 0)
+            {
+                btnCloseTicket.Enabled = true;
+            }
+        }
+
+        private void btnCloseTicket_Click(object sender, EventArgs e)
+        {
+            Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
+            ticketLogic.CloseTicket(ticket);
+            PopulateTicketListView();
+        }
+
+        private void userManagementToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayPanel(PanelName.UserOverview);
+        }
+
     }
 }

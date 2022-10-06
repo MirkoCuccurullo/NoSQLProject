@@ -7,6 +7,7 @@ using Model;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
+using MongoDB.Driver.Core.Configuration;
 
 namespace DAL
 {
@@ -18,7 +19,7 @@ namespace DAL
             List<Ticket> users = new List<Ticket>();
 
             //getting user collection
-            var collection = base.ReturnCollection("Ticket");
+            var collection = ReturnCollection("Ticket");
 
             //getting all documents in the collection 
             var documents = collection.Find(new BsonDocument()).ToList();
@@ -35,7 +36,9 @@ namespace DAL
 
         public void CloseTicket(Ticket ticket)
         {
+
             var collection = base.ReturnCollection("Ticket");
+
 
             var filter = Builders<BsonDocument>.Filter.Eq("_id", ticket.ID);
 
@@ -43,5 +46,24 @@ namespace DAL
 
             collection.UpdateOne(filter, update);
         }
+
+        public Ticket GetTicketByUser(User user)
+        {
+            Ticket ticket = new Ticket();
+
+            var collection = ReturnCollection("Ticket");
+
+            var builder = Builders<BsonDocument>.Filter;
+            var baseFilter = builder.Eq("_id", user.Id) & builder.Eq("status", true);
+
+            var documents = collection.Find(baseFilter, null).ToList();
+
+            foreach (BsonDocument document in documents)
+            {
+                Ticket te = BsonSerializer.Deserialize<Ticket>(document);
+                ticket = te;
+            }
+            return ticket;
+         }
     }
 }
