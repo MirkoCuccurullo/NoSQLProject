@@ -37,6 +37,10 @@ namespace DemoApp
                     HideAllPanels();
                     pnlDashboard.Show();
                     break;
+                    case PanelName.CreateUser:
+                    HideAllPanels();
+                    pnlAddUser.Show();
+                    break;
             }
         }
 
@@ -121,7 +125,34 @@ namespace DemoApp
 
         private void createUserToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            DisplayPanel(PanelName.CreateTicket);
+            DisplayPanel(PanelName.CreateUser);
+        }
+        private User CreateUser()
+        {
+            User user = new User();
+            user.Id = new BsonObjectId(ObjectId.GenerateNewId());
+            // making new document because it is a new object in NosqlDatabase
+            BsonDocument nameDocument = new BsonDocument();
+            nameDocument.Add("first",txtBoxFirstName.Text);
+            nameDocument.Add("last",txtBoxLastName.Text);
+            user.Name = nameDocument;
+            user.Email = txtBoxEmailAddress.Text;
+            user.PhoneNumber = txtBoxPhoneNumber.Text;
+            user.Role = (UserRoles)comboBoxTypeOfUser.SelectedItem;
+            user.Location=(Branch)comboBoxLocation.SelectedItem;
+            return user;
+
+        }
+
+        private void btnCreateUser_Click(object sender, EventArgs e)
+        {
+             User createdUser=CreateUser();
+           
+            //parsing ticket object to bson document sending it to  DAL and adding to Database
+            BsonDocument document = createdUser.ToBsonDocument();
+            db.AddDocumentToCollection(document, "Users");
+
+            MessageBox.Show("The new user can be created", "Successful");
         }
     }
 }
