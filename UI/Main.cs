@@ -52,6 +52,8 @@ namespace DemoApp
             cbPriority.DataSource = Enum.GetValues(typeof(TicketPriority));
             cbDeadline.DataSource = Enum.GetValues(typeof(TicketDeadline));
             cbIncidentType.DataSource = Enum.GetValues(typeof(TicketType));
+            comboBoxTypeOfUser.DataSource= Enum.GetValues(typeof(UserRoles));
+            comboBoxLocation.DataSource = Enum.GetValues(typeof(Branch));
 
 
             //adding users to combobox and tagging them
@@ -115,6 +117,9 @@ namespace DemoApp
             DisplayPanel(PanelName.Dashboard);
         }
 
-
+        private void createUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayPanel(PanelName.CreateTicket);
+        }
     }
 }

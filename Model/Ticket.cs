@@ -25,6 +25,7 @@ namespace Model
         public TicketPriority TicketPriority { get; set; }
         [BsonElement("deadline")]
         public TicketDeadline TicketDeadline { get; set; }
+        
 
     }
 }
