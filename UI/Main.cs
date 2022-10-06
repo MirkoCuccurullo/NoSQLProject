@@ -44,6 +44,7 @@ namespace DemoApp
         {
             pnlDashboard.Hide();
             pnlCreateTicket.Hide();
+            pnlAddUser.Hide();
         }
 
         private void InitComboBoxes()
