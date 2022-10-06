@@ -155,7 +155,7 @@ namespace DemoApp
                 {
                     Name name = BsonSerializer.Deserialize<Name>(user.Name);
                     Ticket userTicket=ticketLogic.GetTicketByUser(user);
-                    
+
                     foreach (Ticket ticket in tickets)
                     {
                         ticket.UserID = user.Id;
@@ -170,7 +170,7 @@ namespace DemoApp
                     li.SubItems.Add(userTicket.ID.ToString());
 
                     //adding item to the list
-                    lvTicketOverview.Items.Add(li);
+                    lvUserOverview.Items.Add(li);
                     li.Tag = user;
 
                 }
