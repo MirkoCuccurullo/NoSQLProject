@@ -45,6 +45,7 @@
             this.btnSubmitTicket = new System.Windows.Forms.Button();
             this.pnlCreateTicket = new System.Windows.Forms.Panel();
             this.pnlAddUser = new System.Windows.Forms.Panel();
+            this.btnCreateUser = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.lblDisplay = new System.Windows.Forms.Label();
             this.checkBoxSendpassword = new System.Windows.Forms.CheckBox();
@@ -69,11 +70,9 @@
             this.userManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDashboard = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.pnlCreateTicket.SuspendLayout();
             this.pnlAddUser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
-            this.pnlDashboard.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -218,7 +217,6 @@
             // 
             // pnlCreateTicket
             // 
-            this.pnlCreateTicket.Controls.Add(this.pnlAddUser);
             this.pnlCreateTicket.Controls.Add(this.dtpTicketDate);
             this.pnlCreateTicket.Controls.Add(this.label1);
             this.pnlCreateTicket.Controls.Add(this.label2);
@@ -235,7 +233,7 @@
             this.pnlCreateTicket.Controls.Add(this.rtbTicketDescription);
             this.pnlCreateTicket.Controls.Add(this.btnCancelTicket);
             this.pnlCreateTicket.Controls.Add(this.btnSubmitTicket);
-            this.pnlCreateTicket.Location = new System.Drawing.Point(0, 0);
+            this.pnlCreateTicket.Location = new System.Drawing.Point(1, 26);
             this.pnlCreateTicket.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlCreateTicket.Name = "pnlCreateTicket";
             this.pnlCreateTicket.Size = new System.Drawing.Size(894, 1088);
@@ -243,7 +241,7 @@
             // 
             // pnlAddUser
             // 
-            this.pnlAddUser.Controls.Add(this.button1);
+            this.pnlAddUser.Controls.Add(this.btnCreateUser);
             this.pnlAddUser.Controls.Add(this.btnCancel);
             this.pnlAddUser.Controls.Add(this.lblDisplay);
             this.pnlAddUser.Controls.Add(this.checkBoxSendpassword);
@@ -260,11 +258,22 @@
             this.pnlAddUser.Controls.Add(this.lblLastName);
             this.pnlAddUser.Controls.Add(this.txtBoxFirstName);
             this.pnlAddUser.Controls.Add(this.lblFirstName);
-            this.pnlAddUser.Location = new System.Drawing.Point(4, 5);
+            this.pnlAddUser.Location = new System.Drawing.Point(6, 30);
             this.pnlAddUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlAddUser.Name = "pnlAddUser";
             this.pnlAddUser.Size = new System.Drawing.Size(894, 1088);
             this.pnlAddUser.TabIndex = 18;
+            // 
+            // btnCreateUser
+            // 
+            this.btnCreateUser.Location = new System.Drawing.Point(540, 659);
+            this.btnCreateUser.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCreateUser.Name = "btnCreateUser";
+            this.btnCreateUser.Size = new System.Drawing.Size(202, 58);
+            this.btnCreateUser.TabIndex = 17;
+            this.btnCreateUser.Text = "Create";
+            this.btnCreateUser.UseVisualStyleBackColor = true;
+            this.btnCreateUser.Click += new System.EventHandler(this.btnCreateUser_Click);
             // 
             // btnCancel
             // 
@@ -332,7 +341,7 @@
             // 
             this.lblEmailAddress.Location = new System.Drawing.Point(78, 425);
             this.lblEmailAddress.Name = "lblEmailAddress";
-            this.lblEmailAddress.Size = new System.Drawing.Size(112, 29);
+            this.lblEmailAddress.Size = new System.Drawing.Size(154, 29);
             this.lblEmailAddress.TabIndex = 9;
             this.lblEmailAddress.Text = "Email address: ";
             // 
@@ -348,7 +357,7 @@
             // 
             this.lblPhoneNumber.Location = new System.Drawing.Point(78, 359);
             this.lblPhoneNumber.Name = "lblPhoneNumber";
-            this.lblPhoneNumber.Size = new System.Drawing.Size(112, 29);
+            this.lblPhoneNumber.Size = new System.Drawing.Size(163, 29);
             this.lblPhoneNumber.TabIndex = 7;
             this.lblPhoneNumber.Text = "Phone Number:";
             // 
@@ -420,14 +429,14 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(7, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(900, 33);
+            this.menuStrip1.Size = new System.Drawing.Size(900, 36);
             this.menuStrip1.TabIndex = 17;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // dashboardToolStripMenuItem
             // 
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(116, 29);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(116, 32);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
@@ -436,7 +445,7 @@
             this.incidentManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createTicketToolStripMenuItem});
             this.incidentManagementToolStripMenuItem.Name = "incidentManagementToolStripMenuItem";
-            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(201, 29);
+            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(201, 32);
             this.incidentManagementToolStripMenuItem.Text = "Incident Management";
             // 
             // createTicketToolStripMenuItem
@@ -451,34 +460,23 @@
             this.userManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createUserToolStripMenuItem});
             this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
-            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(173, 29);
+            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(173, 32);
             this.userManagementToolStripMenuItem.Text = "User Management";
             // 
             // createUserToolStripMenuItem
             // 
             this.createUserToolStripMenuItem.Name = "createUserToolStripMenuItem";
-            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.createUserToolStripMenuItem.Size = new System.Drawing.Size(204, 34);
             this.createUserToolStripMenuItem.Text = "Create User";
             this.createUserToolStripMenuItem.Click += new System.EventHandler(this.createUserToolStripMenuItem_Click);
             // 
             // pnlDashboard
             // 
-            this.pnlDashboard.Controls.Add(this.pnlCreateTicket);
             this.pnlDashboard.Location = new System.Drawing.Point(1, 34);
             this.pnlDashboard.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.pnlDashboard.Name = "pnlDashboard";
             this.pnlDashboard.Size = new System.Drawing.Size(893, 799);
             this.pnlDashboard.TabIndex = 18;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(540, 659);
-            this.button1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(202, 58);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "Create";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
@@ -486,7 +484,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 1319);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pnlAddUser);
             this.Controls.Add(this.pnlDashboard);
+            this.Controls.Add(this.pnlCreateTicket);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Main";
@@ -497,7 +497,6 @@
             this.pnlAddUser.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
-            this.pnlDashboard.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -546,6 +545,6 @@
         private System.Windows.Forms.CheckBox checkBoxSendpassword;
         private System.Windows.Forms.Label lblSendPassword;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnCreateUser;
     }
 }
