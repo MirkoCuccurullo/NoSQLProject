@@ -77,6 +77,7 @@
             this.clUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.clStatus = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+
             this.lvUserOverview = new System.Windows.Forms.ListView();
             this.userId = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.email = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -89,142 +90,173 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+
             this.pnlCreateTicket.SuspendLayout();
             this.pnlAddUser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.pnlTicketOverview.SuspendLayout();
+
             this.pnlUserOverview.SuspendLayout();
+
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
+
             this.label1.Location = new System.Drawing.Point(129, 78);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(198, 25);
+
             this.label1.TabIndex = 0;
             this.label1.Text = "DateTime Reported";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
+
             this.label2.Location = new System.Drawing.Point(129, 188);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(189, 25);
+
             this.label2.TabIndex = 1;
             this.label2.Text = "Subject of incident";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+
             this.label3.Location = new System.Drawing.Point(122, 297);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(165, 25);
+
             this.label3.TabIndex = 2;
             this.label3.Text = "Type of Incident";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
+
             this.label4.Location = new System.Drawing.Point(122, 408);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(177, 25);
+
             this.label4.TabIndex = 3;
             this.label4.Text = "Reported by user";
             // 
             // label5
             // 
             this.label5.AutoSize = true;
+
             this.label5.Location = new System.Drawing.Point(129, 539);
             this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(79, 25);
+
             this.label5.TabIndex = 4;
             this.label5.Text = "Priority";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
+<
             this.label6.Location = new System.Drawing.Point(129, 642);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(189, 25);
+
             this.label6.TabIndex = 5;
             this.label6.Text = "Deadline/Followup";
             // 
             // label7
             // 
             this.label7.AutoSize = true;
+
             this.label7.Location = new System.Drawing.Point(122, 772);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(120, 25);
+
             this.label7.TabIndex = 6;
             this.label7.Text = "Description";
             // 
             // cbIncidentType
             // 
             this.cbIncidentType.FormattingEnabled = true;
+
             this.cbIncidentType.Location = new System.Drawing.Point(476, 284);
             this.cbIncidentType.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbIncidentType.Name = "cbIncidentType";
             this.cbIncidentType.Size = new System.Drawing.Size(394, 33);
+
             this.cbIncidentType.TabIndex = 8;
             // 
             // cbReportUser
             // 
             this.cbReportUser.FormattingEnabled = true;
+
             this.cbReportUser.Location = new System.Drawing.Point(476, 395);
             this.cbReportUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbReportUser.Name = "cbReportUser";
             this.cbReportUser.Size = new System.Drawing.Size(394, 33);
+
             this.cbReportUser.TabIndex = 9;
             // 
             // cbPriority
             // 
             this.cbPriority.FormattingEnabled = true;
+
             this.cbPriority.Location = new System.Drawing.Point(476, 508);
             this.cbPriority.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbPriority.Name = "cbPriority";
             this.cbPriority.Size = new System.Drawing.Size(394, 33);
+
             this.cbPriority.TabIndex = 10;
             // 
             // cbDeadline
             // 
             this.cbDeadline.FormattingEnabled = true;
+
             this.cbDeadline.Location = new System.Drawing.Point(476, 630);
             this.cbDeadline.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.cbDeadline.Name = "cbDeadline";
             this.cbDeadline.Size = new System.Drawing.Size(394, 33);
+
             this.cbDeadline.TabIndex = 11;
             // 
             // tbIncidentSubject
             // 
+
             this.tbIncidentSubject.Location = new System.Drawing.Point(476, 183);
             this.tbIncidentSubject.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbIncidentSubject.Name = "tbIncidentSubject";
             this.tbIncidentSubject.Size = new System.Drawing.Size(394, 31);
+
             this.tbIncidentSubject.TabIndex = 12;
             // 
             // rtbTicketDescription
             // 
+
             this.rtbTicketDescription.Location = new System.Drawing.Point(476, 767);
             this.rtbTicketDescription.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.rtbTicketDescription.Name = "rtbTicketDescription";
             this.rtbTicketDescription.Size = new System.Drawing.Size(394, 279);
+
             this.rtbTicketDescription.TabIndex = 13;
             this.rtbTicketDescription.Text = "";
             // 
             // btnCancelTicket
             // 
+
             this.btnCancelTicket.Location = new System.Drawing.Point(476, 1155);
             this.btnCancelTicket.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCancelTicket.Name = "btnCancelTicket";
             this.btnCancelTicket.Size = new System.Drawing.Size(146, 59);
+
             this.btnCancelTicket.TabIndex = 14;
             this.btnCancelTicket.Text = "Cancel";
             this.btnCancelTicket.UseVisualStyleBackColor = true;
@@ -234,10 +266,12 @@
             // 
             this.btnSubmitTicket.BackColor = System.Drawing.Color.LightSkyBlue;
             this.btnSubmitTicket.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+
             this.btnSubmitTicket.Location = new System.Drawing.Point(726, 1155);
             this.btnSubmitTicket.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnSubmitTicket.Name = "btnSubmitTicket";
             this.btnSubmitTicket.Size = new System.Drawing.Size(146, 59);
+
             this.btnSubmitTicket.TabIndex = 15;
             this.btnSubmitTicket.Text = "Submit Ticket";
             this.btnSubmitTicket.UseVisualStyleBackColor = false;
@@ -265,6 +299,7 @@
             this.pnlCreateTicket.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlCreateTicket.Name = "pnlCreateTicket";
             this.pnlCreateTicket.Size = new System.Drawing.Size(1192, 1359);
+
             this.pnlCreateTicket.TabIndex = 16;
             // 
             // dtpTicketDate
@@ -298,6 +333,7 @@
             this.pnlAddUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlAddUser.Name = "pnlAddUser";
             this.pnlAddUser.Size = new System.Drawing.Size(1192, 1359);
+
             this.pnlAddUser.TabIndex = 18;
             // 
             // btnCreateUser
@@ -328,6 +364,7 @@
             this.lblDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDisplay.Name = "lblDisplay";
             this.lblDisplay.Size = new System.Drawing.Size(524, 75);
+
             this.lblDisplay.TabIndex = 0;
             this.lblDisplay.Text = "Create New User";
             // 
@@ -456,7 +493,6 @@
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dashboardToolStripMenuItem,
@@ -675,6 +711,7 @@
             this.Controls.Add(this.pnlCreateTicket);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+
             this.Name = "Main";
             this.Text = "No Desk";
             this.pnlCreateTicket.ResumeLayout(false);
@@ -685,6 +722,7 @@
             this.menuStrip1.PerformLayout();
             this.pnlTicketOverview.ResumeLayout(false);
             this.pnlUserOverview.ResumeLayout(false);
+
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -754,5 +792,6 @@
         private System.Windows.Forms.ColumnHeader firstName;
         private System.Windows.Forms.ColumnHeader lastName;
         private System.Windows.Forms.ColumnHeader ticket;
+
     }
 }
