@@ -23,7 +23,6 @@ namespace DemoApp
         private string password;
 
         User currentUser;
-        List<User> users;
 
 
         public Main(User currentUser)
@@ -281,26 +280,6 @@ namespace DemoApp
             db.AddDocumentToCollection(document, "Users");
 
             //MessageBox.Show("The new user has been created", "Successful");
-        }
-
-        private void incidentManagementToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DisplayPanel(PanelName.TicketOverview);
-        }
-
-        private void lvTicketOverview_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lvTicketOverview.SelectedItems.Count != 0)
-            {
-                btnCloseTicket.Enabled = true;
-            }
-        }
-
-        private void btnCloseTicket_Click(object sender, EventArgs e)
-        {
-            Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
-            ticketLogic.CloseTicket(ticket);
-            PopulateTicketListView();
         }
 
         private void incidentManagementToolStripMenuItem_Click(object sender, EventArgs e)
