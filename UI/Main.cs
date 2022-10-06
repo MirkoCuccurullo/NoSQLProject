@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Mail;
+using System.Net;
 using System.Windows.Forms;
 using Logic;
 using Model;
@@ -14,6 +16,10 @@ namespace DemoApp
         Databases db;
         UserLogic userLogic;
         List<User> users;
+
+        private PasswordGenerator passwordGenerator;
+        private string password;
+
         User currentUser;
 
         public Main(User currentUser)
@@ -23,6 +29,7 @@ namespace DemoApp
             db = new Databases();
             userLogic = new UserLogic();
             users = userLogic.GetAllUsers();
+            passwordGenerator = new PasswordGenerator();
             DisplayPanel(PanelName.Dashboard);
             InitComboBoxes();
         }
@@ -141,7 +148,13 @@ namespace DemoApp
             user.Email = txtBoxEmailAddress.Text;
             user.PhoneNumber = txtBoxPhoneNumber.Text;
             user.Role = (UserRoles)comboBoxTypeOfUser.SelectedItem;
+            user.Username = txtBoxFirstName.Text + "123";
             user.Location=(Branch)comboBoxLocation.SelectedItem;
+            password= passwordGenerator.RandomPasswordGenrator();    
+            BsonDocument passwordDocument = new BsonDocument();
+            passwordDocument.Add("hash", passwordGenerator.GeneratedHashedSaltPassword(password));
+            passwordDocument.Add("salt", passwordGenerator.GetSaltOfHashedPassword(password));
+            user.Password= passwordDocument;
             return user;
 
         }
@@ -150,11 +163,26 @@ namespace DemoApp
         {
              User createdUser=CreateUser();
            
+            // sending LoginDetails if user select CheckBox
+            if (checkBoxSendpassword.Checked == true)
+            {
+                try
+                {
+                    EmailServer.SendLoginDetailsThroughSMTP(createdUser.Email, createdUser.Username, password);
+                    MessageBox.Show($"The login details have been send to this email:{createdUser.Email}", "Successful");
+                }
+                catch (Exception )
+                {
+                    MessageBox.Show("No email address exist this ");
+                }
+                
+            }
             //parsing ticket object to bson document sending it to  DAL and adding to Database
             BsonDocument document = createdUser.ToBsonDocument();
             db.AddDocumentToCollection(document, "Users");
 
-            MessageBox.Show("The new user can be created", "Successful");
+            //MessageBox.Show("The new user has been created", "Successful");
         }
+       
     }
 }
