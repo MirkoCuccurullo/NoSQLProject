@@ -52,6 +52,8 @@ namespace DemoApp
             cbPriority.DataSource = Enum.GetValues(typeof(TicketPriority));
             cbDeadline.DataSource = Enum.GetValues(typeof(TicketDeadline));
             cbIncidentType.DataSource = Enum.GetValues(typeof(TicketType));
+            comboBoxTypeOfUser.DataSource= Enum.GetValues(typeof(UserRoles));
+            comboBoxLocation.DataSource = Enum.GetValues(typeof(Branch));
 
 
             //adding users to combobox and tagging them
@@ -82,12 +84,12 @@ namespace DemoApp
             Ticket ticket = new Ticket();
 
             ticket.ID = new BsonObjectId(ObjectId.GenerateNewId());
-            ticket.ticketDeadline = (TicketDeadline)cbDeadline.SelectedItem;
-            ticket.incidentDocument.Add(new BsonElement("description", rtbTicketDescription.Text));
-            ticket.ticketPriority = (TicketPriority)cbPriority.SelectedItem;
-            ticket.ticketType = (TicketType)cbIncidentType.SelectedItem;
-            ticket.dateTime = dtpTicketDate.Value;
-            ticket.incidentDocument.Add(new BsonElement("subject", tbIncidentSubject.Text));
+            ticket.TicketDeadline = (TicketDeadline)cbDeadline.SelectedItem;
+            ticket.IncidentDocument.Add(new BsonElement("description", rtbTicketDescription.Text));
+            ticket.TicketPriority = (TicketPriority)cbPriority.SelectedItem;
+            ticket.TicketType = (TicketType)cbIncidentType.SelectedItem;
+            ticket.DateTime = dtpTicketDate.Value;
+            ticket.IncidentDocument.Add(new BsonElement("subject", tbIncidentSubject.Text));
             ticket.UserID = ((User)cbReportUser.SelectedItem).Id;
 
             //parsing ticket object to bson document sending it to db
@@ -115,6 +117,9 @@ namespace DemoApp
             DisplayPanel(PanelName.Dashboard);
         }
 
-
+        private void createUserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DisplayPanel(PanelName.CreateTicket);
+        }
     }
 }
