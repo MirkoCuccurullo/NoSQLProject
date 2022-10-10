@@ -154,24 +154,15 @@ namespace DemoApp
                 {
                     Name name = BsonSerializer.Deserialize<Name>(user.Name);
                     Ticket userTicket=ticketLogic.GetTicketByUser(user);
-
-                    foreach (Ticket ticket in tickets)
-                    {
-                        ticket.UserID = user.Id;
-                        userTicket = ticket;
-                    }
-
                     ListViewItem li = new ListViewItem(user.Id.ToString());
-
                     li.SubItems.Add(user.Email);
                     li.SubItems.Add(name.First);
                     li.SubItems.Add(name.Last);
-                    li.SubItems.Add(userTicket.ID.ToString());
-
+                    if(userTicket.ID!=null)
+                        li.SubItems.Add(userTicket.ID.ToString());
                     //adding item to the list
                     lvUserOverview.Items.Add(li);
                     li.Tag = user;
-
                 }
             }
             catch (Exception exp)
