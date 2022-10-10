@@ -64,7 +64,8 @@ namespace DemoApp
                     pnlUserOverview.Show();
                     PopulateUserListView();
                     break;
-
+                default:
+                    break;
             }
         }
 
