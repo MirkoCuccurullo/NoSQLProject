@@ -23,7 +23,6 @@ namespace DemoApp
         private string password;
 
         User currentUser;
-        List<User> users;
 
 
         public Main(User currentUser)
@@ -65,7 +64,8 @@ namespace DemoApp
                     pnlUserOverview.Show();
                     PopulateUserListView();
                     break;
-
+                default:
+                    break;
             }
         }
 
@@ -155,24 +155,15 @@ namespace DemoApp
                 {
                     Name name = BsonSerializer.Deserialize<Name>(user.Name);
                     Ticket userTicket=ticketLogic.GetTicketByUser(user);
-
-                    foreach (Ticket ticket in tickets)
-                    {
-                        ticket.UserID = user.Id;
-                        userTicket = ticket;
-                    }
-
                     ListViewItem li = new ListViewItem(user.Id.ToString());
-
                     li.SubItems.Add(user.Email);
                     li.SubItems.Add(name.First);
                     li.SubItems.Add(name.Last);
-                    li.SubItems.Add(userTicket.ID.ToString());
-
+                    if(userTicket.ID!=null)
+                        li.SubItems.Add(userTicket.ID.ToString());
                     //adding item to the list
                     lvUserOverview.Items.Add(li);
                     li.Tag = user;
-
                 }
             }
             catch (Exception exp)
@@ -281,26 +272,6 @@ namespace DemoApp
             db.AddDocumentToCollection(document, "Users");
 
             //MessageBox.Show("The new user has been created", "Successful");
-        }
-
-        private void incidentManagementToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DisplayPanel(PanelName.TicketOverview);
-        }
-
-        private void lvTicketOverview_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (lvTicketOverview.SelectedItems.Count != 0)
-            {
-                btnCloseTicket.Enabled = true;
-            }
-        }
-
-        private void btnCloseTicket_Click(object sender, EventArgs e)
-        {
-            Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
-            ticketLogic.CloseTicket(ticket);
-            PopulateTicketListView();
         }
 
         private void incidentManagementToolStripMenuItem_Click(object sender, EventArgs e)

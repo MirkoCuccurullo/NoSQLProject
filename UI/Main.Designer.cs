@@ -163,7 +163,6 @@
             // label6
             // 
             this.label6.AutoSize = true;
-<
             this.label6.Location = new System.Drawing.Point(129, 642);
             this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
