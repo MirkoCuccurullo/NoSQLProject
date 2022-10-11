@@ -319,6 +319,7 @@ namespace DemoApp
             ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Escalated);
             PopulateTicketListView();
 
+        }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             RefreshCreateUser();
