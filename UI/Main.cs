@@ -122,13 +122,27 @@ namespace DemoApp
                     li.SubItems.Add(name.First);
                     li.SubItems.Add(ticket.DateTime.ToString());
 
-                    if (ticket.Status)
+                    switch (ticket.Status)
                     {
-                        li.SubItems.Add("Close");
+                        case TicketStatus.Open:
+                            li.SubItems.Add("Open");
+                            break;
+                        case TicketStatus.Escalated:
+                            li.SubItems.Add("Escalated");
+                            break;
+                        case TicketStatus.Closed:
+                            li.SubItems.Add("Close");
+                            break;
+                        default:
+                            li.SubItems.Add("NaN");
+                            break;
+                    }
+
+                    if (ticket.Status == TicketStatus.Closed)
+                    {
                     }
                     else
                     {
-                        li.SubItems.Add("Open");
 
                     }
 
@@ -194,7 +208,7 @@ namespace DemoApp
             ticket.DateTime = dtpTicketDate.Value;
             ticket.IncidentDocument.Add(new BsonElement("subject", tbIncidentSubject.Text));
             ticket.UserID = ((User)cbReportUser.SelectedItem).Id;
-            ticket.Status = false;
+            ticket.Status = TicketStatus.Open;
 
             //parsing ticket object to bson document sending it to db
             BsonDocument document = ticket.ToBsonDocument();
@@ -290,7 +304,7 @@ namespace DemoApp
         private void btnCloseTicket_Click(object sender, EventArgs e)
         {
             Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
-            ticketLogic.CloseTicket(ticket);
+            ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Closed);
             PopulateTicketListView();
         }
 
@@ -299,5 +313,11 @@ namespace DemoApp
             DisplayPanel(PanelName.UserOverview);
         }
 
+        private void btnEscalateTicket_Click(object sender, EventArgs e)
+        {
+            Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
+            ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Escalated);
+            PopulateTicketListView();
+        }
     }
 }
