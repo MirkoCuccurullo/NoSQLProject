@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Mail;
-using System.Net;
 using System.Windows.Forms;
 using Logic;
 using Model;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
-using MongoDB.Driver;
 
 namespace DemoApp
 {
@@ -231,20 +228,24 @@ namespace DemoApp
             User user = new User();
             user.Id = new BsonObjectId(ObjectId.GenerateNewId());
             // making new document because it is a new object in NosqlDatabase
-            BsonDocument nameDocument = new BsonDocument();
-            nameDocument.Add("first",txtBoxFirstName.Text);
-            nameDocument.Add("last",txtBoxLastName.Text);
+            Name name = new Name();
+            name.First = txtBoxFirstName.Text;
+            name.Last = txtBoxLastName.Text;
+            BsonDocument nameDocument = name.ToBsonDocument();
             user.Name = nameDocument;
             user.Email = txtBoxEmailAddress.Text;
             user.PhoneNumber = txtBoxPhoneNumber.Text;
             user.Role = (UserRoles)comboBoxTypeOfUser.SelectedItem;
-            user.Username = txtBoxFirstName.Text + "123";
+            user.Username = txtBoxFirstName.Text + "123"; // making username firstName+123
             user.Location=(Branch)comboBoxLocation.SelectedItem;
-            password= passwordGenerator.RandomPasswordGenrator();    
-            BsonDocument passwordDocument = new BsonDocument();
-            passwordDocument.Add("hash", passwordGenerator.GeneratedHashedSaltPassword(password));
-            passwordDocument.Add("salt", passwordGenerator.GetSaltOfHashedPassword(password));
-            user.Password= passwordDocument;
+            password= passwordGenerator.RandomPasswordGenrator();  
+            
+            // making the password hash using password generator class
+            Dictionary<string, string> passwordDictionary = passwordGenerator.GenerateSaltedHash(password);
+            Password passwordObject= new Password();
+            passwordObject.Salt = passwordDictionary["Salt"];
+            passwordObject.Hash= passwordDictionary["Salt"]; 
+            user.Password= passwordObject.ToBsonDocument();
             return user;
 
         }
@@ -263,7 +264,7 @@ namespace DemoApp
                 }
                 catch (Exception )
                 {
-                    MessageBox.Show("No email address exist this ");
+                    MessageBox.Show($"{createdUser.Email} does not exist");
                 }
                 
             }
@@ -271,7 +272,6 @@ namespace DemoApp
             BsonDocument document = createdUser.ToBsonDocument();
             db.AddDocumentToCollection(document, "Users");
 
-            //MessageBox.Show("The new user has been created", "Successful");
         }
 
         private void incidentManagementToolStripMenuItem_Click(object sender, EventArgs e)
@@ -299,5 +299,18 @@ namespace DemoApp
             DisplayPanel(PanelName.UserOverview);
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            RefreshCreateUser();
+        }
+        private void RefreshCreateUser()
+        {
+            //refreshing every element of panel Create user
+            InitComboBoxes();
+            txtBoxEmailAddress.Clear();
+            txtBoxFirstName.Clear();
+            txtBoxPhoneNumber.Clear();
+            checkBoxSendpassword.Checked = false;
+        }
     }
 }
