@@ -302,6 +302,7 @@
             this.btnCancel.TabIndex = 16;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // lblDisplay
             // 
@@ -506,7 +507,11 @@
             // btnTicketArchive
             // 
             this.btnTicketArchive.Enabled = false;
+
             this.btnTicketArchive.Location = new System.Drawing.Point(366, 57);
+
+            this.btnTicketArchive.Location = new System.Drawing.Point(485, 57);
+
             this.btnTicketArchive.Name = "btnTicketArchive";
             this.btnTicketArchive.Size = new System.Drawing.Size(113, 23);
             this.btnTicketArchive.TabIndex = 18;
@@ -651,11 +656,16 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(800, 675);
             this.Controls.Add(this.menuStrip1);
+
             this.Controls.Add(this.pnlTicketOverview);
+
             this.Controls.Add(this.pnlAddUser);
             this.Controls.Add(this.pnlDashboard);
             this.Controls.Add(this.pnlCreateTicket);
             this.Controls.Add(this.pnlUserOverview);
+
+            this.Controls.Add(this.pnlTicketOverview);
+
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
             this.Text = "No Desk";
