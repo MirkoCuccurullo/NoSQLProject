@@ -45,7 +45,7 @@ namespace DemoApp
             foreach (User u in users)
             {
                 Password pswrd = BsonSerializer.Deserialize<Password>(u.Password);
-                if (u.Username == username && pswrd.Hash == HashingEnteredPassword(password,pswrd.Salt))
+                if (u.Username == username && PasswordGenerator.ComparingPasswordToHash(password, pswrd.Salt, pswrd.Hash))
                 {
                     currentUser = u;
                     return true;
@@ -55,11 +55,6 @@ namespace DemoApp
             return false;
 
         }
-        private string HashingEnteredPassword(string enteredPassword, string storedSalt)
-        {
-            byte[] saltBytes = Convert.FromBase64String(storedSalt);
-            Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(enteredPassword, saltBytes, 10000);
-            return Convert.ToBase64String(rfc2898DeriveBytes.GetBytes(32)); // using 32 bits 
-        }
+
     }
 }

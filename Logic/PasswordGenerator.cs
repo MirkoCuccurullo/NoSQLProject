@@ -33,5 +33,12 @@ namespace Logic
             return hashedPassword;
         }
 
+        public static bool ComparingPasswordToHash(string enteredPassword, string storedSalt, string hashedPassword)
+        {
+            byte[] saltBytes = Convert.FromBase64String(storedSalt);
+            Rfc2898DeriveBytes rfc2898DeriveBytes = new Rfc2898DeriveBytes(enteredPassword, saltBytes, 10000);
+            return hashedPassword == Convert.ToBase64String(rfc2898DeriveBytes.GetBytes(32)); // using 32 bits 
+        }
+
     }
 }

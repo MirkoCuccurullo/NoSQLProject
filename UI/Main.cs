@@ -258,7 +258,7 @@ namespace DemoApp
             Dictionary<string, string> passwordDictionary = passwordGenerator.GenerateSaltedHash(password);
             Password passwordObject= new Password();
             passwordObject.Salt = passwordDictionary["Salt"];
-            passwordObject.Hash= passwordDictionary["Salt"]; 
+            passwordObject.Hash= passwordDictionary["HashedPassword"]; 
             user.Password= passwordObject.ToBsonDocument();
             return user;
 
