@@ -17,7 +17,7 @@ namespace DAL
             List<User> users = new List<User>();
 
             //getting user collection
-            var collection = base.ReturnCollection("Users");
+            var collection = base.ReturnCollection(Database.noSqlProject, "Users");
 
             //getting all documents in the collection 
             var documents = collection.Find(new BsonDocument()).ToList();
@@ -34,7 +34,7 @@ namespace DAL
 
         public User GetUserById(BsonObjectId id)
         {
-            var collection = base.ReturnCollection("Users");
+            var collection = base.ReturnCollection(Database.noSqlProject,"Users");
 
             var filter = Builders<BsonDocument>.Filter.Eq("_id", id);
 
