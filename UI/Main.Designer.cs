@@ -476,7 +476,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1200, 40);
+            this.menuStrip1.Size = new System.Drawing.Size(1200, 48);
             this.menuStrip1.TabIndex = 17;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -553,14 +553,14 @@
             this.btnArchive.Name = "btnArchive";
             this.btnArchive.Size = new System.Drawing.Size(170, 36);
             this.btnArchive.TabIndex = 25;
-            this.btnArchive.Text = "ArchiveTicket";
+            this.btnArchive.Text = "Archive Tickets";
             this.btnArchive.UseVisualStyleBackColor = true;
             this.btnArchive.Click += new System.EventHandler(this.btnArchive_Click);
             // 
             // lbArchive
             // 
             this.lbArchive.AutoSize = true;
-            this.lbArchive.Location = new System.Drawing.Point(313, 982);
+            this.lbArchive.Location = new System.Drawing.Point(298, 982);
             this.lbArchive.Name = "lbArchive";
             this.lbArchive.Size = new System.Drawing.Size(174, 25);
             this.lbArchive.TabIndex = 24;
@@ -568,7 +568,7 @@
             // 
             // DTPArichive
             // 
-            this.DTPArichive.Location = new System.Drawing.Point(528, 982);
+            this.DTPArichive.Location = new System.Drawing.Point(487, 981);
             this.DTPArichive.Name = "DTPArichive";
             this.DTPArichive.Size = new System.Drawing.Size(200, 31);
             this.DTPArichive.TabIndex = 23;

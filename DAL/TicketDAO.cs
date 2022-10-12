@@ -1,14 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Sockets;
-using System.Text;
-using System.Threading.Tasks;
 using Model;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
-using MongoDB.Driver.Core.Configuration;
 
 namespace DAL
 {
@@ -59,7 +56,6 @@ namespace DAL
             return ticket;
         }
 
-
         public void UpdateTicketUser(Ticket ticket, User user)
         {
 
@@ -73,42 +69,33 @@ namespace DAL
             collection.UpdateOne(filter, update);
         }
 
-        public List<Ticket> ArchiveTicketsByDate(DateTime date)
+
+        //Hyunwoo_ for archive doucuments
+
+        public void ArchiveTickets(List<Ticket> tickets)
         {
-            List<Ticket> tickets = new List<Ticket>();
-
-            //getting user collection
-            var collection = ReturnCollection(Database.noSqlProject, "Ticket");
-
-            //getting all documents in the collection 
-            var documents = collection.Find(new BsonDocument()).ToList();
-
-            foreach (BsonDocument document in documents)
+            List<BsonDocument> documents = new List<BsonDocument>();
+            foreach (Ticket te in tickets)
             {
-                //deserealizing a Bdon document in a User object
-                Ticket ticket = BsonSerializer.Deserialize<Ticket>(document);
-                tickets.Add(ticket);
+                var documnent = te.ToBsonDocument();
+                documents.Add(documnent);
             }
 
-            return tickets;
+            AddManyDocumentToCollection(Database.Archive, documents, "Ticket");
+
+            //AddDocumentToCollection(Database.Archive, documents, "Ticket");
+
+            RemoveTickets(tickets);
         }
 
-        //public void archiveticket(list<ticket> tickets)
-        //{
-
-        //    foreach(ticket te in tickets)
-        //    {
-
-        //    }
-
-        //    var collection = base.returncollection(database.nosqlproject, "ticket");
-
-
-        //    var filter = builders<bsondocument>.filter.eq("_id", ticket.id);
-
-        //    var update = builders<bsondocument>.update.set("userid", user.id);
-
-        //    collection.updateone(filter, update);
-        //}
+        public void RemoveTickets(List<Ticket> tickets)
+        {
+            foreach (Ticket ticket in tickets)
+            {
+                var collection = ReturnCollection(Database.noSqlProject, "Ticket");
+                var condition = Builders<BsonDocument>.Filter.Eq("_id", ticket.ID);
+                collection.DeleteOneAsync(condition);
+            }
+        }
     }
 }
