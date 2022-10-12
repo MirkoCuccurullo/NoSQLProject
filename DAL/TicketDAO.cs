@@ -34,7 +34,7 @@ namespace DAL
             return users;
         }
 
-        public void CloseTicket(Ticket ticket)
+        public void UpdateTicketStatus(Ticket ticket, TicketStatus status)
         {
 
             var collection = base.ReturnCollection("Ticket");
@@ -42,7 +42,7 @@ namespace DAL
 
             var filter = Builders<BsonDocument>.Filter.Eq("_id", ticket.ID);
 
-            var update = Builders<BsonDocument>.Update.Set("status", true);
+            var update = Builders<BsonDocument>.Update.Set("status", status);
 
             collection.UpdateOne(filter, update);
         }
@@ -50,19 +50,12 @@ namespace DAL
         public Ticket GetTicketByUser(User user)
         {
             Ticket ticket = new Ticket();
-
             var collection = ReturnCollection("Ticket");
-
             var builder = Builders<BsonDocument>.Filter;
-            var baseFilter = builder.Eq("_id", user.Id) & builder.Eq("status", true);
-
+            var baseFilter = builder.Eq("userID", user.Id) & builder.Eq("status", true);
             var documents = collection.Find(baseFilter, null).ToList();
-
             foreach (BsonDocument document in documents)
-            {
-                Ticket te = BsonSerializer.Deserialize<Ticket>(document);
-                ticket = te;
-            }
+                ticket = BsonSerializer.Deserialize<Ticket>(document);
             return ticket;
          }
     }

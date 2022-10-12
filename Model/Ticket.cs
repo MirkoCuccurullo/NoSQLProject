@@ -26,7 +26,7 @@ namespace Model
         [BsonElement("deadline")]
         public TicketDeadline TicketDeadline { get; set; }
         [BsonElement("status")]
-        public bool Status { get; set; }
+        public TicketStatus Status { get; set; }
 
     }
 }
