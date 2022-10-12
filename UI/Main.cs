@@ -77,6 +77,7 @@ namespace DemoApp
 
         private void InitComboBoxes()
         {
+
             //assignign values to comboBoxes from enumerations
             cbPriority.DataSource = Enum.GetValues(typeof(TicketPriority));
             cbDeadline.DataSource = Enum.GetValues(typeof(TicketDeadline));
@@ -245,7 +246,7 @@ namespace DemoApp
             Name name = new Name();
             name.First = txtBoxFirstName.Text;
             name.Last = txtBoxLastName.Text;
-            BsonDocument nameDocument = name.ToBsonDocument();
+            BsonDocument nameDocument = name.ToBsonDocument();// parsing to Bson Document
             user.Name = nameDocument;
             user.Email = txtBoxEmailAddress.Text;
             user.PhoneNumber = txtBoxPhoneNumber.Text;
@@ -333,6 +334,14 @@ namespace DemoApp
             txtBoxPhoneNumber.Clear();
             checkBoxSendpassword.Checked = false;
 
+        }
+
+        private void btnTransferTicket_Click(object sender, EventArgs e)
+        {
+            Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
+            TransferTicket tranferTicketForm = new TransferTicket(ticket);
+            tranferTicketForm.StartPosition = this.StartPosition;
+            tranferTicketForm.ShowDialog();
         }
     }
 }

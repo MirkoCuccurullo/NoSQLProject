@@ -57,6 +57,19 @@ namespace DAL
             foreach (BsonDocument document in documents)
                 ticket = BsonSerializer.Deserialize<Ticket>(document);
             return ticket;
-         }
+        }
+
+        public void UpdateTicketUser(Ticket ticket, User user)
+        {
+
+            var collection = base.ReturnCollection("Ticket");
+
+
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", ticket.ID);
+
+            var update = Builders<BsonDocument>.Update.Set("userID", user.Id);
+
+            collection.UpdateOne(filter, update);
+        }
     }
 }
