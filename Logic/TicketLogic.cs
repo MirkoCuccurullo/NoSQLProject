@@ -18,9 +18,9 @@ namespace Logic
             return td.GetAllTickets();
         }
 
-        public void CloseTicket(Ticket t)
+        public void UpdateTicketStatus(Ticket t, TicketStatus status)
         {
-            td.CloseTicket(t);
+            td.UpdateTicketStatus(t, status);
         }
 
 

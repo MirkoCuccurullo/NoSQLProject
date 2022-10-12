@@ -34,15 +34,14 @@ namespace DAL
             return users;
         }
 
-        public void CloseTicket(Ticket ticket)
+        public void UpdateTicketStatus(Ticket ticket, TicketStatus status)
         {
 
             var collection = base.ReturnCollection("Ticket");
 
-
             var filter = Builders<BsonDocument>.Filter.Eq("_id", ticket.ID);
 
-            var update = Builders<BsonDocument>.Update.Set("status", true);
+            var update = Builders<BsonDocument>.Update.Set("status", status);
 
             collection.UpdateOne(filter, update);
         }

@@ -7,6 +7,7 @@ using Logic;
 using Model;
 using System.Collections.Generic;
 using MongoDB.Bson.Serialization;
+using System.Security.Cryptography;
 
 namespace DemoApp
 {
@@ -44,7 +45,7 @@ namespace DemoApp
             foreach (User u in users)
             {
                 Password pswrd = BsonSerializer.Deserialize<Password>(u.Password);
-                if (u.Username == username && pswrd.Hash == password)
+                if (u.Username == username && PasswordGenerator.ComparingPasswordToHash(password, pswrd.Salt, pswrd.Hash))
                 {
                     currentUser = u;
                     return true;
@@ -54,5 +55,6 @@ namespace DemoApp
             return false;
 
         }
+
     }
 }
