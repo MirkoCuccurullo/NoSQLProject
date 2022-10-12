@@ -71,6 +71,8 @@
             this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDashboard = new System.Windows.Forms.Panel();
             this.pnlTicketOverview = new System.Windows.Forms.Panel();
+            this.btnTransferTicket = new System.Windows.Forms.Button();
+            this.btnEscalateTicket = new System.Windows.Forms.Button();
             this.btnCloseTicket = new System.Windows.Forms.Button();
             this.btnTicketArchive = new System.Windows.Forms.Button();
             this.lvTicketOverview = new System.Windows.Forms.ListView();
@@ -85,12 +87,12 @@
             this.lastName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnlUserOverview = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnEscalateTicket = new System.Windows.Forms.Button();
             this.pnlCreateTicket.SuspendLayout();
             this.pnlAddUser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -370,7 +372,7 @@
             // 
             // lblPhoneNumber
             // 
-            this.lblPhoneNumber.Location = new System.Drawing.Point(69, 287);
+            this.lblPhoneNumber.Location = new System.Drawing.Point(69, 285);
             this.lblPhoneNumber.Name = "lblPhoneNumber";
             this.lblPhoneNumber.Size = new System.Drawing.Size(145, 23);
             this.lblPhoneNumber.TabIndex = 7;
@@ -386,7 +388,7 @@
             // 
             // lblTypeOfUser
             // 
-            this.lblTypeOfUser.Location = new System.Drawing.Point(69, 217);
+            this.lblTypeOfUser.Location = new System.Drawing.Point(69, 219);
             this.lblTypeOfUser.Name = "lblTypeOfUser";
             this.lblTypeOfUser.Size = new System.Drawing.Size(100, 23);
             this.lblTypeOfUser.TabIndex = 5;
@@ -432,14 +434,14 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 26);
             this.menuStrip1.TabIndex = 17;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // dashboardToolStripMenuItem
             // 
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(96, 28);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
@@ -448,7 +450,7 @@
             this.incidentManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createTicketToolStripMenuItem});
             this.incidentManagementToolStripMenuItem.Name = "incidentManagementToolStripMenuItem";
-            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(168, 28);
+            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
             this.incidentManagementToolStripMenuItem.Text = "Incident Management";
             this.incidentManagementToolStripMenuItem.Click += new System.EventHandler(this.incidentManagementToolStripMenuItem_Click);
             // 
@@ -464,7 +466,7 @@
             this.userManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createUserToolStripMenuItem});
             this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
-            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(144, 28);
+            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
             this.userManagementToolStripMenuItem.Text = "User Management";
             this.userManagementToolStripMenuItem.Click += new System.EventHandler(this.userManagementToolStripMenuItem_Click);
             // 
@@ -484,6 +486,7 @@
             // 
             // pnlTicketOverview
             // 
+            this.pnlTicketOverview.Controls.Add(this.btnTransferTicket);
             this.pnlTicketOverview.Controls.Add(this.btnEscalateTicket);
             this.pnlTicketOverview.Controls.Add(this.btnCloseTicket);
             this.pnlTicketOverview.Controls.Add(this.btnTicketArchive);
@@ -492,6 +495,26 @@
             this.pnlTicketOverview.Name = "pnlTicketOverview";
             this.pnlTicketOverview.Size = new System.Drawing.Size(800, 857);
             this.pnlTicketOverview.TabIndex = 18;
+            // 
+            // btnTransferTicket
+            // 
+            this.btnTransferTicket.Location = new System.Drawing.Point(308, 57);
+            this.btnTransferTicket.Name = "btnTransferTicket";
+            this.btnTransferTicket.Size = new System.Drawing.Size(171, 23);
+            this.btnTransferTicket.TabIndex = 20;
+            this.btnTransferTicket.Text = "Transfer Ticket ";
+            this.btnTransferTicket.UseVisualStyleBackColor = true;
+            this.btnTransferTicket.Click += new System.EventHandler(this.btnTransferTicket_Click);
+            // 
+            // btnEscalateTicket
+            // 
+            this.btnEscalateTicket.Location = new System.Drawing.Point(485, 57);
+            this.btnEscalateTicket.Name = "btnEscalateTicket";
+            this.btnEscalateTicket.Size = new System.Drawing.Size(113, 23);
+            this.btnEscalateTicket.TabIndex = 19;
+            this.btnEscalateTicket.Text = "Escalate Ticket";
+            this.btnEscalateTicket.UseVisualStyleBackColor = true;
+            this.btnEscalateTicket.Click += new System.EventHandler(this.btnEscalateTicket_Click);
             // 
             // btnCloseTicket
             // 
@@ -507,11 +530,7 @@
             // btnTicketArchive
             // 
             this.btnTicketArchive.Enabled = false;
-
-            this.btnTicketArchive.Location = new System.Drawing.Point(366, 57);
-
             this.btnTicketArchive.Location = new System.Drawing.Point(485, 57);
-
             this.btnTicketArchive.Name = "btnTicketArchive";
             this.btnTicketArchive.Size = new System.Drawing.Size(113, 23);
             this.btnTicketArchive.TabIndex = 18;
@@ -601,12 +620,22 @@
             // 
             // pnlUserOverview
             // 
+            this.pnlUserOverview.Controls.Add(this.button1);
             this.pnlUserOverview.Controls.Add(this.btnAddUser);
             this.pnlUserOverview.Controls.Add(this.lvUserOverview);
             this.pnlUserOverview.Location = new System.Drawing.Point(0, 32);
             this.pnlUserOverview.Name = "pnlUserOverview";
             this.pnlUserOverview.Size = new System.Drawing.Size(800, 857);
             this.pnlUserOverview.TabIndex = 18;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(381, 57);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 3;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
             // 
             // btnAddUser
             // 
@@ -638,17 +667,6 @@
             this.columnHeader9.Text = "Status";
             this.columnHeader9.Width = 100;
             // 
-            // btnEscalateTicket
-            // 
-            this.btnEscalateTicket.Enabled = false;
-            this.btnEscalateTicket.Location = new System.Drawing.Point(485, 57);
-            this.btnEscalateTicket.Name = "btnEscalateTicket";
-            this.btnEscalateTicket.Size = new System.Drawing.Size(113, 23);
-            this.btnEscalateTicket.TabIndex = 19;
-            this.btnEscalateTicket.Text = "Escalate Ticket";
-            this.btnEscalateTicket.UseVisualStyleBackColor = true;
-            this.btnEscalateTicket.Click += new System.EventHandler(this.btnEscalateTicket_Click);
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -656,16 +674,11 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(800, 675);
             this.Controls.Add(this.menuStrip1);
-
             this.Controls.Add(this.pnlTicketOverview);
-
             this.Controls.Add(this.pnlAddUser);
             this.Controls.Add(this.pnlDashboard);
             this.Controls.Add(this.pnlCreateTicket);
             this.Controls.Add(this.pnlUserOverview);
-
-            this.Controls.Add(this.pnlTicketOverview);
-
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
             this.Text = "No Desk";
@@ -748,5 +761,7 @@
         private System.Windows.Forms.ColumnHeader ticket;
         private System.Windows.Forms.Button btnTicketArchive;
         private System.Windows.Forms.Button btnEscalateTicket;
+        private System.Windows.Forms.Button btnTransferTicket;
+        private System.Windows.Forms.Button button1;
     }
 }
