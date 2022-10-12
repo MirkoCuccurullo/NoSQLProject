@@ -87,7 +87,7 @@ namespace DemoApp
             cbPriority.DataSource = Enum.GetValues(typeof(TicketPriority));
             cbDeadline.DataSource = Enum.GetValues(typeof(TicketDeadline));
             cbIncidentType.DataSource = Enum.GetValues(typeof(TicketType));
-            comboBoxTypeOfUser.DataSource= Enum.GetValues(typeof(UserRoles));
+            comboBoxTypeOfUser.DataSource = Enum.GetValues(typeof(UserRoles));
             comboBoxLocation.DataSource = Enum.GetValues(typeof(Branch));
 
 
@@ -164,12 +164,12 @@ namespace DemoApp
                 foreach (User user in users)
                 {
                     Name name = BsonSerializer.Deserialize<Name>(user.Name);
-                    Ticket userTicket=ticketLogic.GetTicketByUser(user);
+                    Ticket userTicket = ticketLogic.GetTicketByUser(user);
                     ListViewItem li = new ListViewItem(user.Id.ToString());
                     li.SubItems.Add(user.Email);
                     li.SubItems.Add(name.First);
                     li.SubItems.Add(name.Last);
-                    if(userTicket.ID!=null)
+                    if (userTicket.ID != null)
                         li.SubItems.Add(userTicket.ID.ToString());
                     //adding item to the list
                     lvUserOverview.Items.Add(li);
@@ -250,23 +250,23 @@ namespace DemoApp
             user.PhoneNumber = txtBoxPhoneNumber.Text;
             user.Role = (UserRoles)comboBoxTypeOfUser.SelectedItem;
             user.Username = txtBoxFirstName.Text + "123"; // making username firstName+123
-            user.Location=(Branch)comboBoxLocation.SelectedItem;
-            password= passwordGenerator.RandomPasswordGenrator();  
-            
+            user.Location = (Branch)comboBoxLocation.SelectedItem;
+            password = passwordGenerator.RandomPasswordGenrator();
+
             // making the password hash using password generator class
             Dictionary<string, string> passwordDictionary = passwordGenerator.GenerateSaltedHash(password);
-            Password passwordObject= new Password();
+            Password passwordObject = new Password();
             passwordObject.Salt = passwordDictionary["Salt"];
-            passwordObject.Hash= passwordDictionary["HashedPassword"]; 
-            user.Password= passwordObject.ToBsonDocument();
+            passwordObject.Hash = passwordDictionary["HashedPassword"];
+            user.Password = passwordObject.ToBsonDocument();
             return user;
 
         }
 
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
-             User createdUser=CreateUser();
-           
+            User createdUser = CreateUser();
+
             // sending LoginDetails if user select CheckBox
             if (checkBoxSendpassword.Checked == true)
             {
@@ -275,15 +275,19 @@ namespace DemoApp
                     EmailServer.SendLoginDetailsThroughSMTP(createdUser.Email, createdUser.Username, password);
                     MessageBox.Show($"The login details have been send to this email:{createdUser.Email}", "Successful");
                 }
-                catch (Exception )
+                catch (Exception)
                 {
                     MessageBox.Show($"{createdUser.Email} does not exist");
                 }
-                
             }
+            else
+            {
+                MessageBox.Show($"User added succesfully", "Successful");
+            }
+
             //parsing ticket object to bson document sending it to  DAL and adding to Database
             BsonDocument document = createdUser.ToBsonDocument();
-            db.AddDocumentToCollection(Database.noSqlProject,document, "Users");
+            db.AddDocumentToCollection(Database.noSqlProject, document, "Users");
 
         }
 
@@ -329,6 +333,7 @@ namespace DemoApp
             InitComboBoxes();
             txtBoxEmailAddress.Clear();
             txtBoxFirstName.Clear();
+            txtBoxLastName.Clear();
             txtBoxPhoneNumber.Clear();
             checkBoxSendpassword.Checked = false;
 
@@ -336,8 +341,8 @@ namespace DemoApp
 
         private void btnTransferTicket_Click(object sender, EventArgs e)
         {
-            Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
-            TransferTicket tranferTicketForm = new TransferTicket(ticket);
+            Ticket selectedTicket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
+            TransferTicket tranferTicketForm = new TransferTicket(selectedTicket);
             tranferTicketForm.StartPosition = this.StartPosition;
             tranferTicketForm.ShowDialog();
         }
@@ -358,11 +363,9 @@ namespace DemoApp
 
             foreach (Ticket ticket in tickets)
             {
-                if (ticket.DateTime.CompareTo(date)<=0) { expiredTickets.Add(ticket); }
+                if (ticket.DateTime.CompareTo(date) <= 0) { expiredTickets.Add(ticket); }
             }
             ticketLogic.ArchiveTickets(expiredTickets);
-
-
             MessageBox.Show("The tickets are stored in the archive database", "Successful");
         }
     }
