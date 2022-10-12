@@ -343,5 +343,11 @@ namespace DemoApp
             tranferTicketForm.StartPosition = this.StartPosition;
             tranferTicketForm.ShowDialog();
         }
+        private void btnCreateTicket_Click(object sender, EventArgs e)
+        {
+            DisplayPanel(PanelName.CreateTicket);
+        }
+      
+
     }
 }
