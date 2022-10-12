@@ -52,11 +52,11 @@ namespace DAL
             Ticket ticket = new Ticket();
             var collection = ReturnCollection("Ticket");
             var builder = Builders<BsonDocument>.Filter;
-            var baseFilter = builder.Eq("userID", user.Id) & builder.Eq("status", true);
+            var baseFilter = builder.Eq("userID", user.Id) & builder.Eq("status", false);
             var documents = collection.Find(baseFilter, null).ToList();
             foreach (BsonDocument document in documents)
                 ticket = BsonSerializer.Deserialize<Ticket>(document);
             return ticket;
-         }
+        }
     }
 }

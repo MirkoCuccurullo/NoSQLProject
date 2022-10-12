@@ -18,6 +18,7 @@ namespace DemoApp
         UserLogic userLogic;
         TicketLogic ticketLogic;
         List<User> users;
+        List<Ticket> tickets;
 
         private PasswordGenerator passwordGenerator;
         private string password;
@@ -32,8 +33,8 @@ namespace DemoApp
             db = new Databases();
             userLogic = new UserLogic();
             ticketLogic = new TicketLogic();
-            users = userLogic.GetAllUsers();
             passwordGenerator = new PasswordGenerator();
+            users = userLogic.GetAllUsers();
             DisplayPanel(PanelName.Dashboard);
             InitComboBoxes();
         }
@@ -105,7 +106,7 @@ namespace DemoApp
             try
             {
                 //retrieveing all ordered drinks
-                List<Ticket> tickets = ticketLogic.GetAllTicket();
+                tickets = ticketLogic.GetAllTicket();
 
                 //clearing preavious items
                 lvTicketOverview.Items.Clear();
@@ -147,7 +148,8 @@ namespace DemoApp
         {
             try
             {
-                List<Ticket> tickets = ticketLogic.GetAllTicket();
+                tickets = ticketLogic.GetAllTicket();
+                users = userLogic.GetAllUsers();
 
                 lvUserOverview.Items.Clear();
 
