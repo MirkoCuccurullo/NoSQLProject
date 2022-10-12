@@ -23,7 +23,6 @@ namespace Logic
             td.UpdateTicketStatus(t, status);
         }
 
-
         public Ticket GetTicketByUser(User user)=>td.GetTicketByUser(user);
 
     }

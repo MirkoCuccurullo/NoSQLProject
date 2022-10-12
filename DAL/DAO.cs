@@ -14,6 +14,7 @@ namespace DAL
         public DAO()
         {
             client = new MongoClient("mongodb+srv://projectUser:hyunwoo@nosqldb.yqlm6qi.mongodb.net/test");
+
         }
 
         public List<Databases_Model> GetDatabases()
@@ -41,6 +42,9 @@ namespace DAL
             collection.InsertOne(document);
 
         }
+
+
+
     }
 
 

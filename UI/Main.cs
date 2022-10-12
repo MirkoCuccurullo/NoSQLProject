@@ -334,5 +334,11 @@ namespace DemoApp
             checkBoxSendpassword.Checked = false;
 
         }
+        private void btnCreateTicket_Click(object sender, EventArgs e)
+        {
+            DisplayPanel(PanelName.CreateTicket);
+        }
+      
+
     }
 }
