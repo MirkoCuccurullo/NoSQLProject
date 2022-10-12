@@ -43,6 +43,7 @@ namespace DemoApp
                 case PanelName.CreateTicket:
                     HideAllPanels();
                     pnlCreateTicket.Show();
+                    InitComboBoxes();
                     break;
                 case PanelName.Dashboard:
                     HideAllPanels();
@@ -56,6 +57,7 @@ namespace DemoApp
                     HideAllPanels();
                     pnlTicketOverview.Show();
                     PopulateTicketListView();
+                    InitComboBoxes();
                     break;
                 case PanelName.UserOverview:
                     HideAllPanels();
@@ -78,6 +80,8 @@ namespace DemoApp
 
         private void InitComboBoxes()
         {
+
+            cbReportUser.Items.Clear();
 
             //assignign values to comboBoxes from enumerations
             cbPriority.DataSource = Enum.GetValues(typeof(TicketPriority));
@@ -135,14 +139,6 @@ namespace DemoApp
                         default:
                             li.SubItems.Add("NaN");
                             break;
-                    }
-
-                    if (ticket.Status == TicketStatus.Closed)
-                    {
-                    }
-                    else
-                    {
-
                     }
 
                     //adding item to the list
@@ -212,7 +208,7 @@ namespace DemoApp
 
             //parsing ticket object to bson document sending it to db
             BsonDocument document = ticket.ToBsonDocument();
-            db.AddDocumentToCollection(document, "Ticket");
+            db.AddDocumentToCollection(Database.noSqlProject, document, "Ticket");
 
             MessageBox.Show("The ticket has been submited", "Successful");
 
@@ -287,7 +283,7 @@ namespace DemoApp
             }
             //parsing ticket object to bson document sending it to  DAL and adding to Database
             BsonDocument document = createdUser.ToBsonDocument();
-            db.AddDocumentToCollection(document, "Users");
+            db.AddDocumentToCollection(Database.noSqlProject,document, "Users");
 
         }
 
@@ -349,7 +345,25 @@ namespace DemoApp
         {
             DisplayPanel(PanelName.CreateTicket);
         }
-      
 
+        private void txtBox_FilterBy_Click(object sender, EventArgs e)
+        {
+            txtBox_FilterBy.Clear();
+        }
+
+        private void btnArchive_Click(object sender, EventArgs e)
+        {
+            List<Ticket> tickets = new List<Ticket>();
+            foreach (Ticket ticket in lvTicketOverview.SelectedItems)
+            {
+                //parsing ticket object to bson document sending it to db
+                BsonDocument document = ticket.ToBsonDocument();
+                db.AddDocumentToCollection(Database.Archive, document, "Ticket");
+
+               
+            }
+            MessageBox.Show("The ticket has been stored in the archive", "Successful");
+
+        }
     }
 }

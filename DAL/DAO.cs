@@ -27,24 +27,19 @@ namespace DAL
             return all_databases;
         }
 
-        protected IMongoCollection<BsonDocument> ReturnCollection(string collectionName)
+        protected IMongoCollection<BsonDocument> ReturnCollection(Database currentDatabase ,string collectionName)
         {
             //get the collection from database "noSqlProject"
-            var database = client.GetDatabase("noSqlProject");
+            var database = client.GetDatabase(currentDatabase.ToString());
             return database.GetCollection<BsonDocument>(collectionName);
         }
 
-        public void AddDocumentToCollection(BsonDocument document, string collectionName)
+        public void AddDocumentToCollection(Database currentDatabase,BsonDocument document, string collectionName)
         {
             //add a document to a collection in "noSqlProject"
-            var collection = ReturnCollection(collectionName);
+            var collection = ReturnCollection(currentDatabase, collectionName);
             collection.InsertOne(document);
 
         }
-
-
-
     }
-
-
 }
