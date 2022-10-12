@@ -353,17 +353,17 @@ namespace DemoApp
 
         private void btnArchive_Click(object sender, EventArgs e)
         {
-            List<Ticket> tickets = new List<Ticket>();
-            foreach (Ticket ticket in lvTicketOverview.SelectedItems)
+            DateTime date = DTPArichive.Value;
+            List<Ticket> expiredTickets = new List<Ticket>();
+
+            foreach (Ticket ticket in tickets)
             {
-                //parsing ticket object to bson document sending it to db
-                BsonDocument document = ticket.ToBsonDocument();
-                db.AddDocumentToCollection(Database.Archive, document, "Ticket");
-
-               
+                if (ticket.DateTime.CompareTo(date)<=0) { expiredTickets.Add(ticket); }
             }
-            MessageBox.Show("The ticket has been stored in the archive", "Successful");
+            ticketLogic.ArchiveTickets(expiredTickets);
 
+
+            MessageBox.Show("The tickets are stored in the archive database", "Successful");
         }
     }
 }
