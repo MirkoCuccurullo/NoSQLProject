@@ -70,6 +70,11 @@
             this.userManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDashboard = new System.Windows.Forms.Panel();
+            this.lblOpenTickets = new System.Windows.Forms.Label();
+            this.lblUnresolvedIncident = new System.Windows.Forms.Label();
+            this.lblCurrentIncident = new System.Windows.Forms.Label();
+            this.pltIncident = new ScottPlot.FormsPlot();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.pnlTicketOverview = new System.Windows.Forms.Panel();
             this.btnArchive = new System.Windows.Forms.Button();
             this.lbArchive = new System.Windows.Forms.Label();
@@ -93,15 +98,20 @@
             this.lastName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnlUserOverview = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
             this.btnAddUser = new System.Windows.Forms.Button();
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.pltUrgentIncident = new ScottPlot.FormsPlot();
+            this.lblIncidentDeadline = new System.Windows.Forms.Label();
+            this.lblIncidentDeadlineTickets = new System.Windows.Forms.Label();
+            this.btnShowList = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pnlCreateTicket.SuspendLayout();
             this.pnlAddUser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.pnlDashboard.SuspendLayout();
             this.pnlTicketOverview.SuspendLayout();
             this.pnlUserOverview.SuspendLayout();
             this.SuspendLayout();
@@ -476,7 +486,7 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1200, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1200, 40);
             this.menuStrip1.TabIndex = 17;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -521,11 +531,70 @@
             // 
             // pnlDashboard
             // 
+            this.pnlDashboard.Controls.Add(this.btnShowList);
+            this.pnlDashboard.Controls.Add(this.lblIncidentDeadlineTickets);
+            this.pnlDashboard.Controls.Add(this.lblOpenTickets);
+            this.pnlDashboard.Controls.Add(this.lblIncidentDeadline);
+            this.pnlDashboard.Controls.Add(this.lblUnresolvedIncident);
+            this.pnlDashboard.Controls.Add(this.lblCurrentIncident);
+            this.pnlDashboard.Controls.Add(this.pltUrgentIncident);
+            this.pnlDashboard.Controls.Add(this.pltIncident);
+            this.pnlDashboard.Controls.Add(this.richTextBox2);
+            this.pnlDashboard.Controls.Add(this.richTextBox1);
             this.pnlDashboard.Location = new System.Drawing.Point(2, 42);
             this.pnlDashboard.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlDashboard.Name = "pnlDashboard";
             this.pnlDashboard.Size = new System.Drawing.Size(1191, 998);
             this.pnlDashboard.TabIndex = 18;
+            // 
+            // lblOpenTickets
+            // 
+            this.lblOpenTickets.AutoSize = true;
+            this.lblOpenTickets.BackColor = System.Drawing.SystemColors.Window;
+            this.lblOpenTickets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblOpenTickets.Location = new System.Drawing.Point(182, 285);
+            this.lblOpenTickets.Name = "lblOpenTickets";
+            this.lblOpenTickets.Size = new System.Drawing.Size(272, 29);
+            this.lblOpenTickets.TabIndex = 1;
+            this.lblOpenTickets.Text = "All tickets currently open";
+            // 
+            // lblUnresolvedIncident
+            // 
+            this.lblUnresolvedIncident.AutoSize = true;
+            this.lblUnresolvedIncident.BackColor = System.Drawing.SystemColors.Window;
+            this.lblUnresolvedIncident.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUnresolvedIncident.Location = new System.Drawing.Point(160, 235);
+            this.lblUnresolvedIncident.Name = "lblUnresolvedIncident";
+            this.lblUnresolvedIncident.Size = new System.Drawing.Size(312, 37);
+            this.lblUnresolvedIncident.TabIndex = 1;
+            this.lblUnresolvedIncident.Text = "Unresolved incidents";
+            // 
+            // lblCurrentIncident
+            // 
+            this.lblCurrentIncident.AutoSize = true;
+            this.lblCurrentIncident.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentIncident.Location = new System.Drawing.Point(60, 60);
+            this.lblCurrentIncident.Name = "lblCurrentIncident";
+            this.lblCurrentIncident.Size = new System.Drawing.Size(428, 61);
+            this.lblCurrentIncident.TabIndex = 1;
+            this.lblCurrentIncident.Text = "Current incidents";
+            // 
+            // pltIncident
+            // 
+            this.pltIncident.BackColor = System.Drawing.SystemColors.Window;
+            this.pltIncident.Location = new System.Drawing.Point(71, 335);
+            this.pltIncident.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
+            this.pltIncident.Name = "pltIncident";
+            this.pltIncident.Size = new System.Drawing.Size(500, 500);
+            this.pltIncident.TabIndex = 0;
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.Location = new System.Drawing.Point(48, 188);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.Size = new System.Drawing.Size(540, 670);
+            this.richTextBox1.TabIndex = 2;
+            this.richTextBox1.Text = "";
             // 
             // pnlTicketOverview
             // 
@@ -570,7 +639,7 @@
             // 
             this.DTPArichive.Location = new System.Drawing.Point(487, 981);
             this.DTPArichive.Name = "DTPArichive";
-            this.DTPArichive.Size = new System.Drawing.Size(200, 31);
+            this.DTPArichive.Size = new System.Drawing.Size(400, 31);
             this.DTPArichive.TabIndex = 23;
             // 
             // btnTransferTicket
@@ -728,12 +797,11 @@
             // 
             // ticket
             // 
-            this.ticket.Text = "# ticket";
+            this.ticket.Text = "Subject";
             this.ticket.Width = 50;
             // 
             // pnlUserOverview
             // 
-            this.pnlUserOverview.Controls.Add(this.button1);
             this.pnlUserOverview.Controls.Add(this.btnAddUser);
             this.pnlUserOverview.Controls.Add(this.lvUserOverview);
             this.pnlUserOverview.Location = new System.Drawing.Point(0, 50);
@@ -741,15 +809,6 @@
             this.pnlUserOverview.Name = "pnlUserOverview";
             this.pnlUserOverview.Size = new System.Drawing.Size(1200, 1339);
             this.pnlUserOverview.TabIndex = 18;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(381, 57);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
             // 
             // btnAddUser
             // 
@@ -782,6 +841,63 @@
             this.columnHeader9.Text = "Status";
             this.columnHeader9.Width = 100;
             // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Location = new System.Drawing.Point(610, 188);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(540, 670);
+            this.richTextBox2.TabIndex = 2;
+            this.richTextBox2.Text = "";
+            // 
+            // pltUrgentIncident
+            // 
+            this.pltUrgentIncident.BackColor = System.Drawing.SystemColors.Window;
+            this.pltUrgentIncident.Location = new System.Drawing.Point(621, 335);
+            this.pltUrgentIncident.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
+            this.pltUrgentIncident.Name = "pltUrgentIncident";
+            this.pltUrgentIncident.Size = new System.Drawing.Size(500, 500);
+            this.pltUrgentIncident.TabIndex = 0;
+            // 
+            // lblIncidentDeadline
+            // 
+            this.lblIncidentDeadline.AutoSize = true;
+            this.lblIncidentDeadline.BackColor = System.Drawing.SystemColors.Window;
+            this.lblIncidentDeadline.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIncidentDeadline.Location = new System.Drawing.Point(725, 235);
+            this.lblIncidentDeadline.Name = "lblIncidentDeadline";
+            this.lblIncidentDeadline.Size = new System.Drawing.Size(343, 37);
+            this.lblIncidentDeadline.TabIndex = 1;
+            this.lblIncidentDeadline.Text = "Incidents past deadline";
+            // 
+            // lblIncidentDeadlineTickets
+            // 
+            this.lblIncidentDeadlineTickets.AutoSize = true;
+            this.lblIncidentDeadlineTickets.BackColor = System.Drawing.SystemColors.Window;
+            this.lblIncidentDeadlineTickets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIncidentDeadlineTickets.Location = new System.Drawing.Point(645, 285);
+            this.lblIncidentDeadlineTickets.Name = "lblIncidentDeadlineTickets";
+            this.lblIncidentDeadlineTickets.Size = new System.Drawing.Size(485, 29);
+            this.lblIncidentDeadlineTickets.TabIndex = 1;
+            this.lblIncidentDeadlineTickets.Text = "These tickets need your immediate attention";
+            // 
+            // btnShowList
+            // 
+            this.btnShowList.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnShowList.BackColor = System.Drawing.Color.LightSeaGreen;
+            this.btnShowList.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnShowList.Depth = 0;
+            this.btnShowList.ForeColor = System.Drawing.SystemColors.Window;
+            this.btnShowList.Icon = null;
+            this.btnShowList.Location = new System.Drawing.Point(970, 83);
+            this.btnShowList.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnShowList.Name = "btnShowList";
+            this.btnShowList.Primary = true;
+            this.btnShowList.Size = new System.Drawing.Size(180, 50);
+            this.btnShowList.TabIndex = 4;
+            this.btnShowList.Text = "SHOW LIST";
+            this.btnShowList.UseVisualStyleBackColor = false;
+            this.btnShowList.Click += new System.EventHandler(this.btnShowList_Click_1);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -789,11 +905,11 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1200, 1278);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.pnlTicketOverview);
-            this.Controls.Add(this.pnlAddUser);
             this.Controls.Add(this.pnlDashboard);
             this.Controls.Add(this.pnlCreateTicket);
             this.Controls.Add(this.pnlUserOverview);
+            this.Controls.Add(this.pnlTicketOverview);
+            this.Controls.Add(this.pnlAddUser);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Main";
@@ -804,6 +920,8 @@
             this.pnlAddUser.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.pnlDashboard.ResumeLayout(false);
+            this.pnlDashboard.PerformLayout();
             this.pnlTicketOverview.ResumeLayout(false);
             this.pnlTicketOverview.PerformLayout();
             this.pnlUserOverview.ResumeLayout(false);
@@ -879,12 +997,21 @@
         private System.Windows.Forms.Button btnTicketArchive;
         private System.Windows.Forms.Button btnEscalateTicket;
         private System.Windows.Forms.Button btnTransferTicket;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.TextBox txtBox_FilterBy;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnCreateTicket;
         private System.Windows.Forms.Button btnArchive;
         private System.Windows.Forms.Label lbArchive;
         private System.Windows.Forms.DateTimePicker DTPArichive;
+        private ScottPlot.FormsPlot pltIncident;
+        private System.Windows.Forms.Label lblOpenTickets;
+        private System.Windows.Forms.Label lblUnresolvedIncident;
+        private System.Windows.Forms.Label lblCurrentIncident;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.Label lblIncidentDeadlineTickets;
+        private System.Windows.Forms.Label lblIncidentDeadline;
+        private ScottPlot.FormsPlot pltUrgentIncident;
+        private System.Windows.Forms.RichTextBox richTextBox2;
+        private MaterialSkin.Controls.MaterialRaisedButton btnShowList;
     }
 }
