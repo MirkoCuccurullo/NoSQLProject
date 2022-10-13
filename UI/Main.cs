@@ -118,17 +118,19 @@ namespace DemoApp
 
         public void DisplayUnresolvedIncidents(List<Ticket> tickets)
         {
-            int numberOfAllIncident = 0;
+            pltIncident.Plot.Clear();
+            int numberOfResolvedIncident = 0;
             int numberOfUnsolvedIncident = 0;
             foreach (Ticket ticket in tickets)
             {
-                numberOfAllIncident++;
                 if (ticket.Status == TicketStatus.Open)
                     numberOfUnsolvedIncident++;
+                else
+                    numberOfResolvedIncident++;
             }
 
-            double[] values = { numberOfAllIncident, numberOfUnsolvedIncident };
-            string centerText = $"{values[1]} / {values[0]}";
+            double[] values = { numberOfResolvedIncident, numberOfUnsolvedIncident };
+            string centerText = $"{values[1]} / {tickets.Count}";
             Color color1 = Color.DarkCyan;
             Color color2 = Color.Gray;
 
@@ -138,11 +140,12 @@ namespace DemoApp
             pie.DonutLabel = centerText;
             pie.CenterFont.Color = color2;
             pie.SliceFillColors = new Color[] { color1, color2 };
-            pltIncident.Refresh();
+            pltIncident.Refresh(true);
         }
 
         public void DisplayUrgentIncidents(List<Ticket> tickets)
         {
+            pltUrgentIncident.Plot.Clear();
             int numberOfUrgentIncident = 0;
             foreach (Ticket ticket in tickets)
             {
@@ -161,7 +164,7 @@ namespace DemoApp
             pie.DonutLabel = centerText;
             pie.CenterFont.Color = color2;
             pie.SliceFillColors = new Color[] { color1, color2 };
-            pltUrgentIncident.Refresh();
+            pltUrgentIncident.Refresh(true);
         }
 
         private bool UrgentIncident(Ticket ticket)
