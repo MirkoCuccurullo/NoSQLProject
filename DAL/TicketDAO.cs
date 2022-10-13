@@ -49,10 +49,13 @@ namespace DAL
             Ticket ticket = new Ticket();
             var collection = ReturnCollection(Database.noSqlProject,"Ticket");
             var builder = Builders<BsonDocument>.Filter;
-            var baseFilter = builder.Eq("userID", user.Id) & builder.Eq("status", false);
+            var baseFilter = builder.Eq("userID", user.Id) & builder.Eq("status", TicketStatus.Open);
             var documents = collection.Find(baseFilter, null).ToList();
             foreach (BsonDocument document in documents)
+            {
                 ticket = BsonSerializer.Deserialize<Ticket>(document);
+            }
+
             return ticket;
         }
 
@@ -80,11 +83,7 @@ namespace DAL
                 var documnent = te.ToBsonDocument();
                 documents.Add(documnent);
             }
-
             AddManyDocumentToCollection(Database.Archive, documents, "Ticket");
-
-            //AddDocumentToCollection(Database.Archive, documents, "Ticket");
-
             RemoveTickets(tickets);
         }
 

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Logic;
 using Model;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
+using ScottPlot;
 
 namespace DemoApp
 {
@@ -48,6 +51,7 @@ namespace DemoApp
                 case PanelName.Dashboard:
                     HideAllPanels();
                     pnlDashboard.Show();
+                    InitDashboard();
                     break;
                 case PanelName.CreateUser:
                     HideAllPanels();
@@ -101,6 +105,81 @@ namespace DemoApp
             cbReportUser.SelectedIndex = 0;
 
 
+        }
+
+        private void InitDashboard()
+        {
+
+            tickets = ticketLogic.GetAllTicket();
+            DisplayUnresolvedIncidents(tickets);
+            DisplayUrgentIncidents(tickets);
+            
+        }
+
+        public void DisplayUnresolvedIncidents(List<Ticket> tickets)
+        {
+            int numberOfAllIncident = 0;
+            int numberOfUnsolvedIncident = 0;
+            foreach (Ticket ticket in tickets)
+            {
+                numberOfAllIncident++;
+                if (ticket.Status == TicketStatus.Open)
+                    numberOfUnsolvedIncident++;
+            }
+
+            double[] values = { numberOfAllIncident, numberOfUnsolvedIncident };
+            string centerText = $"{values[1]} / {values[0]}";
+            Color color1 = Color.DarkCyan;
+            Color color2 = Color.Gray;
+
+            var pie = pltIncident.Plot.AddPie(values);
+            pie.DonutSize = .5;
+            pie.CenterFont.Size = 25;
+            pie.DonutLabel = centerText;
+            pie.CenterFont.Color = color2;
+            pie.SliceFillColors = new Color[] { color1, color2 };
+            pltIncident.Refresh();
+        }
+
+        public void DisplayUrgentIncidents(List<Ticket> tickets)
+        {
+            int numberOfUrgentIncident = 0;
+            foreach (Ticket ticket in tickets)
+            {
+                if (UrgentIncident(ticket))
+                    numberOfUrgentIncident++;
+            }
+
+            double[] values = { tickets.Count,numberOfUrgentIncident };
+            string centerText = $"{values[1]}";
+            Color color1 = Color.DarkRed;
+            Color color2 = Color.Gray;
+
+            var pie = pltUrgentIncident.Plot.AddPie(values);
+            pie.DonutSize = .5;
+            pie.CenterFont.Size = 25;
+            pie.DonutLabel = centerText;
+            pie.CenterFont.Color = color2;
+            pie.SliceFillColors = new Color[] { color1, color2 };
+            pltUrgentIncident.Refresh();
+        }
+
+        private bool UrgentIncident(Ticket ticket)
+        {
+            DateTime deadline=new DateTime();
+            switch (ticket.TicketDeadline)
+            {
+                case TicketDeadline.Seven:
+                    deadline = ticket.DateTime.AddDays(7);
+                    break;
+                case TicketDeadline.Fourteen:
+                    deadline = ticket.DateTime.AddDays(14);
+                    break;
+                case TicketDeadline.Twentysix:
+                    deadline = ticket.DateTime.AddDays(26);
+                    break;
+            }
+            return DateTime.Now.CompareTo(deadline) > 0;
         }
 
         private void PopulateTicketListView()
@@ -158,20 +237,19 @@ namespace DemoApp
             {
                 tickets = ticketLogic.GetAllTicket();
                 users = userLogic.GetAllUsers();
-
                 lvUserOverview.Items.Clear();
 
                 foreach (User user in users)
                 {
                     Name name = BsonSerializer.Deserialize<Name>(user.Name);
                     Ticket userTicket=ticketLogic.GetTicketByUser(user);
+                    Incident incident = BsonSerializer.Deserialize<Incident>(userTicket.IncidentDocument);
                     ListViewItem li = new ListViewItem(user.Id.ToString());
                     li.SubItems.Add(user.Email);
                     li.SubItems.Add(name.First);
                     li.SubItems.Add(name.Last);
                     if(userTicket.ID!=null)
-                        li.SubItems.Add(userTicket.ID.ToString());
-                    //adding item to the list
+                        li.SubItems.Add(incident.Subject);
                     lvUserOverview.Items.Add(li);
                     li.Tag = user;
                 }
@@ -192,7 +270,6 @@ namespace DemoApp
 
         private void btnSubmitTicket_Click(object sender, EventArgs e)
         {
-
             //creating new Ticket and assigning values to it
             Ticket ticket = new Ticket();
 
@@ -362,8 +439,12 @@ namespace DemoApp
             }
             ticketLogic.ArchiveTickets(expiredTickets);
 
-
             MessageBox.Show("The tickets are stored in the archive database", "Successful");
+        }
+
+        private void btnShowList_Click_1(object sender, EventArgs e)
+        {
+            DisplayPanel(PanelName.TicketOverview);
         }
     }
 }
