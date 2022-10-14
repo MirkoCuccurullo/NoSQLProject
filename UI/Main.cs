@@ -155,8 +155,8 @@ namespace DemoApp
 
             double[] values = { tickets.Count,numberOfUrgentIncident };
             string centerText = $"{values[1]}";
-            Color color1 = Color.DarkRed;
-            Color color2 = Color.Gray;
+            Color color2 = Color.DarkRed;
+            Color color1 = Color.Gray;
 
             var pie = pltUrgentIncident.Plot.AddPie(values);
             pie.DonutSize = .5;
