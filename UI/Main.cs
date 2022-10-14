@@ -171,8 +171,6 @@ namespace DemoApp
         {
             if (ticket.Status == TicketStatus.Open)
             {
-
-
                 DateTime deadline = new DateTime();
                 switch (ticket.TicketDeadline)
                 {
