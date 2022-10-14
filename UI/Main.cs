@@ -149,7 +149,7 @@ namespace DemoApp
             int numberOfUrgentIncident = 0;
             foreach (Ticket ticket in tickets)
             {
-                if (UrgentIncident(ticket))
+                if (IsUrgentTicket(ticket))
                     numberOfUrgentIncident++;
             }
 
@@ -167,22 +167,28 @@ namespace DemoApp
             pltUrgentIncident.Refresh(true);
         }
 
-        private bool UrgentIncident(Ticket ticket)
+        private bool IsUrgentTicket(Ticket ticket)
         {
-            DateTime deadline=new DateTime();
-            switch (ticket.TicketDeadline)
+            if (ticket.Status == TicketStatus.Open)
             {
-                case TicketDeadline.Seven:
-                    deadline = ticket.DateTime.AddDays(7);
-                    break;
-                case TicketDeadline.Fourteen:
-                    deadline = ticket.DateTime.AddDays(14);
-                    break;
-                case TicketDeadline.Twentysix:
-                    deadline = ticket.DateTime.AddDays(26);
-                    break;
+
+
+                DateTime deadline = new DateTime();
+                switch (ticket.TicketDeadline)
+                {
+                    case TicketDeadline.Seven:
+                        deadline = ticket.DateTime.AddDays(7);
+                        break;
+                    case TicketDeadline.Fourteen:
+                        deadline = ticket.DateTime.AddDays(14);
+                        break;
+                    case TicketDeadline.Twentysix:
+                        deadline = ticket.DateTime.AddDays(26);
+                        break;
+                }
+                return DateTime.Now.CompareTo(deadline) > 0;
             }
-            return DateTime.Now.CompareTo(deadline) > 0;
+            return false;
         }
 
         private void PopulateTicketListView()
