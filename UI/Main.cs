@@ -277,6 +277,13 @@ namespace DemoApp
 
         private void btnSubmitTicket_Click(object sender, EventArgs e)
         {
+
+            if (rtbTicketDescription.Text == "" || tbIncidentSubject.Text == "")
+            {
+                lblCreateTicketError.ForeColor = Color.Red;
+                lblCreateTicketError.Text = "Subject and Description can not be empty";
+                return;
+            }
             //creating new Ticket and assigning values to it
             Ticket ticket = new Ticket();
 
