@@ -28,9 +28,12 @@ namespace Logic
             td.UpdateTicketUser(t,u);
         }
 
-        public Ticket GetTicketByUser(User user)=>td.GetTicketByUser(user);
+        public Ticket GetTicketByUser(User user) => td.GetTicketByUser(user);
 
         public void ArchiveTickets(List<Ticket> tickets) => td.ArchiveTickets(tickets);
+
+        //public void SortList(List<Ticket> tickets ) => td.SortList(tickets);
+
 
     }
 }

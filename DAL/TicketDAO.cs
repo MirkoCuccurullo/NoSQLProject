@@ -6,6 +6,7 @@ using Model;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
+using MongoDB.Driver.Linq;
 
 namespace DAL
 {
@@ -96,5 +97,36 @@ namespace DAL
                 collection.DeleteOneAsync(condition);
             }
         }
+        public void SortList(Ticket ticket)
+        {
+            var collection = base.ReturnCollection(Database.noSqlProject, "Ticket");
+
+            //var filter = Builders<Ticket>.Filter.Eq(x => x.Status, client)
+            //            & Builders<Ticket>.Filter.Eq(x => x.TP_PESSOA, 3)
+            //            & Builders<Ticket>.Filter.Gte(x => x.FG_ATIVO, true);
+
+            //var result = collection.Aggregate().Match(filter)
+            //            .Project(p => new Ticket { CD_CLIENTE = p.CD_CLIENTE, ID_CENTRAL = p.ID_CENTRAL, FANTASIA = p.FANTASIA })
+            //            .SortBy(p => p.).ToList();
+
+            // var baseFilter = builder.Eq("userID", user.Id) & builder.Eq("status", TicketStatus.Open);
+
+            //foreach (Ticket ticket in tickets)
+            //{
+            //    var collection = ReturnCollection(Database.noSqlProject, "Ticket");
+            //    var condition = Builders<BsonDocument>.Filter.Eq("_id", ticket.ID);
+            //    collection.DeleteOneAsync(condition);
+            //}
+            //    var collection = ReturnCollection(Database.noSqlProject, "Ticket");
+            //    var filter = Builders<BsonDocument>.Filter.Empty;
+            //    var sort = Builders<BsonDocument>.Sort.Descending("userID", user.Id);
+            //collection.FindAsync(filter, new FindOptions<BsonDocument, BsonDocument>()
+            //    {
+            //        Sort = sort
+            //    });
+
+
+        }
+ 
     }
 }

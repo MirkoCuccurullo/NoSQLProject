@@ -453,5 +453,34 @@ namespace DemoApp
         {
             DisplayPanel(PanelName.TicketOverview);
         }
+
+        private void lvTicketOverview_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            //Ticket ticket = new Ticket();
+
+            //Incident incident = BsonSerializer.Deserialize<Incident>(ticket.IncidentDocument);
+
+            // User user = userLogic.GetUserById(ticket.UserID);
+            //Name name = BsonSerializer.Deserialize<Name>(user.Name);
+
+            //if (e.Column == 3)
+            //{
+            //    ticketLogic.SortListAscending(tickets, "status");
+            //}
+            //else if (e.Column == 1)
+            //{
+
+            //}
+            //else if (e.Column == 2)
+            //{
+            //    ticketLogic.SortListAscending(tickets, "DateReport");
+            //}
+            //else if (e.Column == 0)
+            //{
+
+            //}
+            //else
+            //    MessageBox.Show("dupaaa");
+        }
     }
 }
