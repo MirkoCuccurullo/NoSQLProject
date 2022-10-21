@@ -56,5 +56,10 @@ namespace DemoApp
 
         }
 
+        private void ForgotPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            ForgotPassword forgotPassword = new ForgotPassword();
+            forgotPassword.Show();
+        }
     }
 }
