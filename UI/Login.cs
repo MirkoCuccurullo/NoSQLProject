@@ -15,6 +15,7 @@ namespace DemoApp
     {
         private UserLogic userLogic;
         private User currentUser;
+        public static string username;
         public Login()
         {
             InitializeComponent();
@@ -28,14 +29,12 @@ namespace DemoApp
             string username = tbUsername.Text;
             string password = tbPassword.Text;
 
-
             if (CheckCredentials(username,password))
             {
                 Main main = new Main(currentUser);
                 this.Hide();
                 main.ShowDialog();              
             }
-
         }
 
         private bool CheckCredentials(string username, string password)
@@ -53,13 +52,29 @@ namespace DemoApp
                 }
             }
             return false;
-
         }
 
         private void ForgotPass_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            ForgotPassword forgotPassword = new ForgotPassword();
-            forgotPassword.Show();
+            if (string.IsNullOrWhiteSpace(tbUsername.Text))
+            {
+                MessageBox.Show("Which user are you? PLS enter your username");
+            }
+            else
+            {
+
+                DialogResult dialogResult = MessageBox.Show("An Email will be send with a new password", "Forgot Password", MessageBoxButtons.YesNo);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    username = tbUsername.Text;
+                    ForgotPassword forgotPassword = new ForgotPassword();
+                    forgotPassword.Show();
+                }
+                else if (dialogResult == DialogResult.No)
+                {
+                    //close
+                }
+            }
         }
     }
 }
