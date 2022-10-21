@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using Logic;
 using Model;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
+using ScottPlot;
 
 namespace DemoApp
 {
@@ -34,6 +37,30 @@ namespace DemoApp
             users = userLogic.GetAllUsers();
             DisplayPanel(PanelName.Dashboard);
             InitComboBoxes();
+            SetRolePrivilege();
+        }
+
+        private void SetRolePrivilege()
+        {
+            if (currentUser.Role == UserRoles.Employee)
+            {
+                userManagementToolStripMenuItem.Visible = false;
+                createTicketToolStripMenuItem.Visible = false;
+                btnCreateTicket.Visible = false;
+                btnTicketArchive.Visible = false;
+                btnTransferTicket.Visible = false;
+                btnCloseTicket.Visible = false;
+                btnEscalateTicket.Visible = false;
+                btnTicketArchive.Visible = false;
+                btnArchive.Visible = false;
+                lbArchive.Visible = false;
+                DTPArichive.Visible = false;
+            }
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            Application.Exit();
         }
 
         private void DisplayPanel(PanelName panelName)
@@ -43,10 +70,12 @@ namespace DemoApp
                 case PanelName.CreateTicket:
                     HideAllPanels();
                     pnlCreateTicket.Show();
+                    InitComboBoxes();
                     break;
                 case PanelName.Dashboard:
                     HideAllPanels();
                     pnlDashboard.Show();
+                    InitDashboard();
                     break;
                 case PanelName.CreateUser:
                     HideAllPanels();
@@ -56,6 +85,7 @@ namespace DemoApp
                     HideAllPanels();
                     pnlTicketOverview.Show();
                     PopulateTicketListView();
+                    InitComboBoxes();
                     break;
                 case PanelName.UserOverview:
                     HideAllPanels();
@@ -79,6 +109,8 @@ namespace DemoApp
         private void InitComboBoxes()
         {
 
+            cbReportUser.Items.Clear();
+
             //assignign values to comboBoxes from enumerations
             cbPriority.DataSource = Enum.GetValues(typeof(TicketPriority));
             cbDeadline.DataSource = Enum.GetValues(typeof(TicketDeadline));
@@ -99,12 +131,112 @@ namespace DemoApp
 
         }
 
-        private void PopulateTicketListView()
+        private void InitDashboard()
+        {
+
+            if (currentUser.Role == UserRoles.ServiceDeskEmployee)
+            {
+                tickets = ticketLogic.GetAllTicket();
+
+            }
+            else
+            {
+                tickets = ticketLogic.GetAllTicketOfCurrentUser(currentUser);
+            }
+
+            DisplayUnresolvedIncidents(tickets);
+            DisplayUrgentIncidents(tickets);
+            
+        }
+
+        public void DisplayUnresolvedIncidents(List<Ticket> tickets)
+        {
+            pltIncident.Plot.Clear();
+            int numberOfResolvedIncident = 0;
+            int numberOfUnsolvedIncident = 0;
+            foreach (Ticket ticket in tickets)
+            {
+                if (ticket.Status == TicketStatus.Open)
+                    numberOfUnsolvedIncident++;
+                else
+                    numberOfResolvedIncident++;
+            }
+
+            double[] values = { numberOfResolvedIncident, numberOfUnsolvedIncident };
+            string centerText = $"{values[1]} / {tickets.Count}";
+            Color color1 = Color.DarkCyan;
+            Color color2 = Color.Gray;
+
+            var pie = pltIncident.Plot.AddPie(values);
+            pie.DonutSize = .5;
+            pie.CenterFont.Size = 25;
+            pie.DonutLabel = centerText;
+            pie.CenterFont.Color = color2;
+            pie.SliceFillColors = new Color[] { color1, color2 };
+            pltIncident.Refresh(true);
+        }
+
+        public void DisplayUrgentIncidents(List<Ticket> tickets)
+        {
+            pltUrgentIncident.Plot.Clear();
+            int numberOfUrgentIncident = 0;
+            foreach (Ticket ticket in tickets)
+            {
+                if (IsUrgentTicket(ticket))
+                    numberOfUrgentIncident++;
+            }
+
+            double[] values = { tickets.Count,numberOfUrgentIncident };
+            string centerText = $"{values[1]}";
+            Color color2 = Color.DarkRed;
+            Color color1 = Color.Gray;
+
+            var pie = pltUrgentIncident.Plot.AddPie(values);
+            pie.DonutSize = .5;
+            pie.CenterFont.Size = 25;
+            pie.DonutLabel = centerText;
+            pie.CenterFont.Color = color2;
+            pie.SliceFillColors = new Color[] { color1, color2 };
+            pltUrgentIncident.Refresh(true);
+        }
+
+        private bool IsUrgentTicket(Ticket ticket)
+        {
+            if (ticket.Status == TicketStatus.Open)
+            {
+                DateTime deadline = new DateTime();
+                switch (ticket.TicketDeadline)
+                {
+                    case TicketDeadline.Seven:
+                        deadline = ticket.DateTime.AddDays(7);
+                        break;
+                    case TicketDeadline.Fourteen:
+                        deadline = ticket.DateTime.AddDays(14);
+                        break;
+                    case TicketDeadline.Twentysix:
+                        deadline = ticket.DateTime.AddDays(26);
+                        break;
+                }
+                return DateTime.Now.CompareTo(deadline) > 0;
+            }
+            return false;
+        }
+
+        public void PopulateTicketListView()
         {
             try
             {
-                //retrieveing all ordered drinks
-                tickets = ticketLogic.GetAllTicket();
+                if (currentUser.Role == UserRoles.ServiceDeskEmployee)
+                {
+                    //retrieveing all tickets 
+
+                    tickets = ticketLogic.GetAllTicket();
+
+                }
+                else
+                {
+                    tickets = ticketLogic.GetAllTicketOfCurrentUser(currentUser);
+                }
 
                 //clearing preavious items
                 lvTicketOverview.Items.Clear();
@@ -137,14 +269,6 @@ namespace DemoApp
                             break;
                     }
 
-                    if (ticket.Status == TicketStatus.Closed)
-                    {
-                    }
-                    else
-                    {
-
-                    }
-
                     //adding item to the list
                     lvTicketOverview.Items.Add(li);
                     li.Tag = ticket;
@@ -160,22 +284,21 @@ namespace DemoApp
         {
             try
             {
-                tickets = ticketLogic.GetAllTicket();
+                //tickets = ticketLogic.GetAllTicket();
                 users = userLogic.GetAllUsers();
-
                 lvUserOverview.Items.Clear();
 
                 foreach (User user in users)
                 {
                     Name name = BsonSerializer.Deserialize<Name>(user.Name);
                     Ticket userTicket=ticketLogic.GetTicketByUser(user);
+                    Incident incident = BsonSerializer.Deserialize<Incident>(userTicket.IncidentDocument);
                     ListViewItem li = new ListViewItem(user.Id.ToString());
                     li.SubItems.Add(user.Email);
                     li.SubItems.Add(name.First);
                     li.SubItems.Add(name.Last);
                     if(userTicket.ID!=null)
-                        li.SubItems.Add(userTicket.ID.ToString());
-                    //adding item to the list
+                        li.SubItems.Add(incident.Subject);
                     lvUserOverview.Items.Add(li);
                     li.Tag = user;
                 }
@@ -197,6 +320,12 @@ namespace DemoApp
         private void btnSubmitTicket_Click(object sender, EventArgs e)
         {
 
+            if (rtbTicketDescription.Text == "" || tbIncidentSubject.Text == "")
+            {
+                lblCreateTicketError.ForeColor = Color.Red;
+                lblCreateTicketError.Text = "Subject and Description can not be empty";
+                return;
+            }
             //creating new Ticket and assigning values to it
             Ticket ticket = new Ticket();
 
@@ -212,7 +341,7 @@ namespace DemoApp
 
             //parsing ticket object to bson document sending it to db
             BsonDocument document = ticket.ToBsonDocument();
-            db.AddDocumentToCollection(document, "Ticket");
+            db.AddDocumentToCollection(Database.noSqlProject, document, "Ticket");
 
             MessageBox.Show("The ticket has been submited", "Successful");
 
@@ -287,7 +416,7 @@ namespace DemoApp
             }
             //parsing ticket object to bson document sending it to  DAL and adding to Database
             BsonDocument document = createdUser.ToBsonDocument();
-            db.AddDocumentToCollection(document, "Users");
+            db.AddDocumentToCollection(Database.noSqlProject,document, "Users");
 
         }
 
@@ -306,9 +435,13 @@ namespace DemoApp
 
         private void btnCloseTicket_Click(object sender, EventArgs e)
         {
-            Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
-            ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Closed);
-            PopulateTicketListView();
+            if (lvTicketOverview.SelectedItems.Count != 0)
+            {
+                Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
+                ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Closed);
+                PopulateTicketListView();
+            }
+
         }
 
         private void userManagementToolStripMenuItem_Click(object sender, EventArgs e)
@@ -318,9 +451,13 @@ namespace DemoApp
 
         private void btnEscalateTicket_Click(object sender, EventArgs e)
         {
-            Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
-            ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Escalated);
-            PopulateTicketListView();
+            if (lvTicketOverview.SelectedItems.Count != 0)
+            {
+                Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
+                ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Escalated);
+                PopulateTicketListView();
+            }
+
 
         }
         private void btnCancel_Click(object sender, EventArgs e)
@@ -340,16 +477,43 @@ namespace DemoApp
 
         private void btnTransferTicket_Click(object sender, EventArgs e)
         {
-            Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
-            TransferTicket tranferTicketForm = new TransferTicket(ticket);
-            tranferTicketForm.StartPosition = this.StartPosition;
-            tranferTicketForm.ShowDialog();
+            if (lvTicketOverview.SelectedItems.Count != 0)
+            {
+                Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
+                TransferTicket tranferTicketForm = new TransferTicket(ticket, this);
+                tranferTicketForm.StartPosition = this.StartPosition;
+                tranferTicketForm.ShowDialog();
+            }
         }
         private void btnCreateTicket_Click(object sender, EventArgs e)
         {
             DisplayPanel(PanelName.CreateTicket);
         }
-      
 
+        private void txtBox_FilterBy_Click(object sender, EventArgs e)
+        {
+            txtBox_FilterBy.Clear();
+        }
+
+        private void btnArchive_Click(object sender, EventArgs e)
+        {
+            DateTime date = DTPArichive.Value;
+            List<Ticket> expiredTickets = new List<Ticket>();
+
+            foreach (Ticket ticket in tickets)
+            {
+                if (ticket.DateTime.CompareTo(date)<=0) { expiredTickets.Add(ticket); }
+            }
+            ticketLogic.ArchiveTickets(expiredTickets);
+
+            MessageBox.Show("The tickets are stored in the archive database", "Successful");
+
+            PopulateTicketListView();
+        }
+
+        private void btnShowList_Click_1(object sender, EventArgs e)
+        {
+            DisplayPanel(PanelName.TicketOverview);
+        }
     }
 }

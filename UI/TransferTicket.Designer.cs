@@ -40,7 +40,7 @@
             this.lblTransferTicketNo.Name = "lblTransferTicketNo";
             this.lblTransferTicketNo.Size = new System.Drawing.Size(221, 27);
             this.lblTransferTicketNo.TabIndex = 0;
-            this.lblTransferTicketNo.Text = "label1";
+            this.lblTransferTicketNo.Text = "Chose user to transfer ticket to:";
             // 
             // comboBoxUsers
             // 
