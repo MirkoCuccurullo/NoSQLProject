@@ -18,13 +18,15 @@ namespace DemoApp
         UserLogic ul = new UserLogic();
         TicketLogic tl = new TicketLogic();
         Ticket ticket;
-        public TransferTicket(Ticket selectedTicket)
+        Main main;
+        public TransferTicket(Ticket selectedTicket, Main main)
         {
 
             InitializeComponent();
             InitComboBox();
 
             ticket = selectedTicket;
+            this.main = main;
             
         }
 
@@ -48,6 +50,8 @@ namespace DemoApp
             User user = comboBoxUsers.SelectedItem as User;
 
             tl.UpdateTicketUser(ticket, user);
+            main.PopulateTicketListView();
+            
         }
     }
 }

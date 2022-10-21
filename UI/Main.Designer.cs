@@ -44,6 +44,7 @@
             this.btnCancelTicket = new System.Windows.Forms.Button();
             this.btnSubmitTicket = new System.Windows.Forms.Button();
             this.pnlCreateTicket = new System.Windows.Forms.Panel();
+            this.lblCreateTicketError = new System.Windows.Forms.Label();
             this.dtpTicketDate = new System.Windows.Forms.DateTimePicker();
             this.pnlAddUser = new System.Windows.Forms.Panel();
             this.btnCreateUser = new System.Windows.Forms.Button();
@@ -108,7 +109,6 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.lblCreateTicketError = new System.Windows.Forms.Label();
             this.pnlCreateTicket.SuspendLayout();
             this.pnlAddUser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -272,6 +272,14 @@
             this.pnlCreateTicket.Name = "pnlCreateTicket";
             this.pnlCreateTicket.Size = new System.Drawing.Size(795, 870);
             this.pnlCreateTicket.TabIndex = 16;
+            // 
+            // lblCreateTicketError
+            // 
+            this.lblCreateTicketError.AutoSize = true;
+            this.lblCreateTicketError.Location = new System.Drawing.Point(317, 813);
+            this.lblCreateTicketError.Name = "lblCreateTicketError";
+            this.lblCreateTicketError.Size = new System.Drawing.Size(0, 16);
+            this.lblCreateTicketError.TabIndex = 18;
             // 
             // dtpTicketDate
             // 
@@ -452,14 +460,14 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(800, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
             this.menuStrip1.TabIndex = 17;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // dashboardToolStripMenuItem
             // 
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(96, 28);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
@@ -468,7 +476,7 @@
             this.incidentManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createTicketToolStripMenuItem});
             this.incidentManagementToolStripMenuItem.Name = "incidentManagementToolStripMenuItem";
-            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
+            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(168, 28);
             this.incidentManagementToolStripMenuItem.Text = "Incident Management";
             this.incidentManagementToolStripMenuItem.Click += new System.EventHandler(this.incidentManagementToolStripMenuItem_Click);
             // 
@@ -484,7 +492,7 @@
             this.userManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createUserToolStripMenuItem});
             this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
-            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
+            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(144, 28);
             this.userManagementToolStripMenuItem.Text = "User Management";
             this.userManagementToolStripMenuItem.Click += new System.EventHandler(this.userManagementToolStripMenuItem_Click);
             // 
@@ -522,7 +530,7 @@
             this.btnShowList.ForeColor = System.Drawing.SystemColors.Window;
             this.btnShowList.Icon = null;
             this.btnShowList.Location = new System.Drawing.Point(647, 53);
-            this.btnShowList.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnShowList.Margin = new System.Windows.Forms.Padding(2);
             this.btnShowList.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnShowList.Name = "btnShowList";
             this.btnShowList.Primary = true;
@@ -612,7 +620,7 @@
             // richTextBox2
             // 
             this.richTextBox2.Location = new System.Drawing.Point(407, 120);
-            this.richTextBox2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox2.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox2.Name = "richTextBox2";
             this.richTextBox2.Size = new System.Drawing.Size(361, 430);
             this.richTextBox2.TabIndex = 2;
@@ -621,7 +629,7 @@
             // richTextBox1
             // 
             this.richTextBox1.Location = new System.Drawing.Point(32, 120);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(361, 430);
             this.richTextBox1.TabIndex = 2;
@@ -668,7 +676,7 @@
             // DTPArichive
             // 
             this.DTPArichive.Location = new System.Drawing.Point(325, 628);
-            this.DTPArichive.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.DTPArichive.Margin = new System.Windows.Forms.Padding(2);
             this.DTPArichive.Name = "DTPArichive";
             this.DTPArichive.Size = new System.Drawing.Size(268, 22);
             this.DTPArichive.TabIndex = 23;
@@ -676,7 +684,7 @@
             // btnTransferTicket
             // 
             this.btnTransferTicket.Location = new System.Drawing.Point(613, 21);
-            this.btnTransferTicket.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTransferTicket.Margin = new System.Windows.Forms.Padding(2);
             this.btnTransferTicket.Name = "btnTransferTicket";
             this.btnTransferTicket.Size = new System.Drawing.Size(113, 23);
             this.btnTransferTicket.TabIndex = 20;
@@ -688,7 +696,7 @@
             // 
             this.txtBox_FilterBy.ForeColor = System.Drawing.Color.Gray;
             this.txtBox_FilterBy.Location = new System.Drawing.Point(77, 60);
-            this.txtBox_FilterBy.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtBox_FilterBy.Margin = new System.Windows.Forms.Padding(2);
             this.txtBox_FilterBy.Name = "txtBox_FilterBy";
             this.txtBox_FilterBy.Size = new System.Drawing.Size(239, 22);
             this.txtBox_FilterBy.TabIndex = 22;
@@ -728,7 +736,6 @@
             // 
             // btnCloseTicket
             // 
-            this.btnCloseTicket.Enabled = false;
             this.btnCloseTicket.Location = new System.Drawing.Point(613, 57);
             this.btnCloseTicket.Name = "btnCloseTicket";
             this.btnCloseTicket.Size = new System.Drawing.Size(113, 23);
@@ -839,7 +846,6 @@
             // 
             // btnAddUser
             // 
-            this.btnAddUser.Enabled = false;
             this.btnAddUser.Location = new System.Drawing.Point(613, 57);
             this.btnAddUser.Name = "btnAddUser";
             this.btnAddUser.Size = new System.Drawing.Size(113, 23);
@@ -867,14 +873,6 @@
             this.columnHeader9.Text = "Status";
             this.columnHeader9.Width = 100;
             // 
-            // lblCreateTicketError
-            // 
-            this.lblCreateTicketError.AutoSize = true;
-            this.lblCreateTicketError.Location = new System.Drawing.Point(317, 813);
-            this.lblCreateTicketError.Name = "lblCreateTicketError";
-            this.lblCreateTicketError.Size = new System.Drawing.Size(0, 16);
-            this.lblCreateTicketError.TabIndex = 18;
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -882,11 +880,11 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(800, 895);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pnlDashboard);
             this.Controls.Add(this.pnlCreateTicket);
             this.Controls.Add(this.pnlUserOverview);
             this.Controls.Add(this.pnlTicketOverview);
             this.Controls.Add(this.pnlAddUser);
-            this.Controls.Add(this.pnlDashboard);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
             this.Text = "No Desk";

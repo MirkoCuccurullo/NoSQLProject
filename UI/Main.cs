@@ -37,6 +37,30 @@ namespace DemoApp
             users = userLogic.GetAllUsers();
             DisplayPanel(PanelName.Dashboard);
             InitComboBoxes();
+            SetRolePrivilege();
+        }
+
+        private void SetRolePrivilege()
+        {
+            if (currentUser.Role == UserRoles.Employee)
+            {
+                userManagementToolStripMenuItem.Visible = false;
+                createTicketToolStripMenuItem.Visible = false;
+                btnCreateTicket.Visible = false;
+                btnTicketArchive.Visible = false;
+                btnTransferTicket.Visible = false;
+                btnCloseTicket.Visible = false;
+                btnEscalateTicket.Visible = false;
+                btnTicketArchive.Visible = false;
+                btnArchive.Visible = false;
+                lbArchive.Visible = false;
+                DTPArichive.Visible = false;
+            }
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            Application.Exit();
         }
 
         private void DisplayPanel(PanelName panelName)
@@ -110,7 +134,16 @@ namespace DemoApp
         private void InitDashboard()
         {
 
-            tickets = ticketLogic.GetAllTicket();
+            if (currentUser.Role == UserRoles.ServiceDeskEmployee)
+            {
+                tickets = ticketLogic.GetAllTicket();
+
+            }
+            else
+            {
+                tickets = ticketLogic.GetAllTicketOfCurrentUser(currentUser);
+            }
+
             DisplayUnresolvedIncidents(tickets);
             DisplayUrgentIncidents(tickets);
             
@@ -189,12 +222,21 @@ namespace DemoApp
             return false;
         }
 
-        private void PopulateTicketListView()
+        public void PopulateTicketListView()
         {
             try
             {
-                //retrieveing all ordered drinks
-                tickets = ticketLogic.GetAllTicket();
+                if (currentUser.Role == UserRoles.ServiceDeskEmployee)
+                {
+                    //retrieveing all tickets 
+
+                    tickets = ticketLogic.GetAllTicket();
+
+                }
+                else
+                {
+                    tickets = ticketLogic.GetAllTicketOfCurrentUser(currentUser);
+                }
 
                 //clearing preavious items
                 lvTicketOverview.Items.Clear();
@@ -242,7 +284,7 @@ namespace DemoApp
         {
             try
             {
-                tickets = ticketLogic.GetAllTicket();
+                //tickets = ticketLogic.GetAllTicket();
                 users = userLogic.GetAllUsers();
                 lvUserOverview.Items.Clear();
 
@@ -393,9 +435,13 @@ namespace DemoApp
 
         private void btnCloseTicket_Click(object sender, EventArgs e)
         {
-            Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
-            ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Closed);
-            PopulateTicketListView();
+            if (lvTicketOverview.SelectedItems.Count != 0)
+            {
+                Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
+                ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Closed);
+                PopulateTicketListView();
+            }
+
         }
 
         private void userManagementToolStripMenuItem_Click(object sender, EventArgs e)
@@ -405,9 +451,13 @@ namespace DemoApp
 
         private void btnEscalateTicket_Click(object sender, EventArgs e)
         {
-            Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
-            ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Escalated);
-            PopulateTicketListView();
+            if (lvTicketOverview.SelectedItems.Count != 0)
+            {
+                Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
+                ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Escalated);
+                PopulateTicketListView();
+            }
+
 
         }
         private void btnCancel_Click(object sender, EventArgs e)
@@ -427,10 +477,13 @@ namespace DemoApp
 
         private void btnTransferTicket_Click(object sender, EventArgs e)
         {
-            Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
-            TransferTicket tranferTicketForm = new TransferTicket(ticket);
-            tranferTicketForm.StartPosition = this.StartPosition;
-            tranferTicketForm.ShowDialog();
+            if (lvTicketOverview.SelectedItems.Count != 0)
+            {
+                Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
+                TransferTicket tranferTicketForm = new TransferTicket(ticket, this);
+                tranferTicketForm.StartPosition = this.StartPosition;
+                tranferTicketForm.ShowDialog();
+            }
         }
         private void btnCreateTicket_Click(object sender, EventArgs e)
         {
@@ -454,6 +507,8 @@ namespace DemoApp
             ticketLogic.ArchiveTickets(expiredTickets);
 
             MessageBox.Show("The tickets are stored in the archive database", "Successful");
+
+            PopulateTicketListView();
         }
 
         private void btnShowList_Click_1(object sender, EventArgs e)

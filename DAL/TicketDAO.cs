@@ -32,6 +32,28 @@ namespace DAL
             return tickets;
         }
 
+        public List<Ticket> GetAllTicketOfCurrentUser(User currentUser)
+        {
+            List<Ticket> tickets = new List<Ticket>();
+
+            //getting user collection
+            var collection = ReturnCollection(Database.noSqlProject, "Ticket");
+
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", currentUser.Id);
+
+            //getting all documents in the collection 
+            var documents = collection.Find(filter).ToList();
+
+            foreach (BsonDocument document in documents)
+            {
+                //deserealizing a Bdon document in a User object
+                Ticket ticket = BsonSerializer.Deserialize<Ticket>(document);
+                tickets.Add(ticket);
+            }
+
+            return tickets;
+        }
+
         public void UpdateTicketStatus(Ticket ticket, TicketStatus status)
         {
 
@@ -46,6 +68,8 @@ namespace DAL
 
         public Ticket GetTicketByUser(User user)
         {
+
+            //to correct, should return a list not a single ticket
             Ticket ticket = new Ticket();
             var collection = ReturnCollection(Database.noSqlProject,"Ticket");
             var builder = Builders<BsonDocument>.Filter;
