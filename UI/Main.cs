@@ -164,15 +164,13 @@ namespace DemoApp
 
             double[] values = { numberOfResolvedIncident, numberOfUnsolvedIncident };
             string centerText = $"{values[1]} / {tickets.Count}";
-            Color color1 = Color.DarkCyan;
-            Color color2 = Color.Gray;
 
             var pie = pltIncident.Plot.AddPie(values);
             pie.DonutSize = .5;
             pie.CenterFont.Size = 25;
             pie.DonutLabel = centerText;
-            pie.CenterFont.Color = color2;
-            pie.SliceFillColors = new Color[] { color1, color2 };
+            pie.CenterFont.Color = Color.Gray;
+            pie.SliceFillColors = new Color[] { Color.DarkCyan, Color.Gray };
             pltIncident.Refresh(true);
         }
 
@@ -188,15 +186,13 @@ namespace DemoApp
 
             double[] values = { tickets.Count,numberOfUrgentIncident };
             string centerText = $"{values[1]}";
-            Color color2 = Color.DarkRed;
-            Color color1 = Color.Gray;
 
             var pie = pltUrgentIncident.Plot.AddPie(values);
             pie.DonutSize = .5;
             pie.CenterFont.Size = 25;
             pie.DonutLabel = centerText;
-            pie.CenterFont.Color = color2;
-            pie.SliceFillColors = new Color[] { color1, color2 };
+            pie.CenterFont.Color = Color.Gray;
+            pie.SliceFillColors = new Color[] { Color.Gray, Color.DarkRed };
             pltUrgentIncident.Refresh(true);
         }
 
@@ -205,18 +201,8 @@ namespace DemoApp
             if (ticket.Status == TicketStatus.Open)
             {
                 DateTime deadline = new DateTime();
-                switch (ticket.TicketDeadline)
-                {
-                    case TicketDeadline.Seven:
-                        deadline = ticket.DateTime.AddDays(7);
-                        break;
-                    case TicketDeadline.Fourteen:
-                        deadline = ticket.DateTime.AddDays(14);
-                        break;
-                    case TicketDeadline.Twentysix:
-                        deadline = ticket.DateTime.AddDays(26);
-                        break;
-                }
+                deadline = ticket.DateTime.AddDays((double)ticket.TicketDeadline);
+
                 return DateTime.Now.CompareTo(deadline) > 0;
             }
             return false;
@@ -311,6 +297,13 @@ namespace DemoApp
                 lblCreateTicketError.Text = "Subject and Description can not be empty";
                 return;
             }
+
+            if (cbIncidentType.SelectedIndex == -1 || cbDeadline.SelectedIndex == -1 || cbPriority.SelectedIndex == -1 || cbReportUser.SelectedIndex == -1)
+            {
+                lblCreateTicketError.Text = "Fields can not be empty";
+                return;
+            }
+
             //creating new Ticket and assigning values to it
             Ticket ticket = new Ticket();
 
@@ -500,5 +493,6 @@ namespace DemoApp
         {
             DisplayPanel(PanelName.TicketOverview);
         }
+
     }
 }

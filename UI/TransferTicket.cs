@@ -42,16 +42,21 @@ namespace DemoApp
                 comboBoxUsers.Tag = u;
             }
 
-            comboBoxUsers.SelectedItem = 0;
+            comboBoxUsers.SelectedIndex = 0;
         }
 
         private void btnTransfer_Click(object sender, EventArgs e)
         {
             User user = comboBoxUsers.SelectedItem as User;
+            if (user != null)
+            {
+                tl.UpdateTicketUser(ticket, user);
+                main.PopulateTicketListView();
+            }
+            else
+                return;
 
-            tl.UpdateTicketUser(ticket, user);
-            main.PopulateTicketListView();
-            
+            this.Close();
         }
     }
 }
