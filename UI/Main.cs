@@ -341,7 +341,7 @@ namespace DemoApp
 
             //parsing ticket object to bson document sending it to db
             BsonDocument document = ticket.ToBsonDocument();
-            db.AddDocumentToCollection(Database.noSqlProject, document, "Ticket");
+            db.AddDocumentToCollection(Database.noSqlProject, document, Collection.Ticket);
 
             MessageBox.Show("The ticket has been submited", "Successful");
 
@@ -416,7 +416,7 @@ namespace DemoApp
             }
             //parsing ticket object to bson document sending it to  DAL and adding to Database
             BsonDocument document = createdUser.ToBsonDocument();
-            db.AddDocumentToCollection(Database.noSqlProject,document, "Users");
+            db.AddDocumentToCollection(Database.noSqlProject,document, Collection.Users);
 
         }
 
