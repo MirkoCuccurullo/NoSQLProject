@@ -39,7 +39,7 @@ namespace DAL
             //getting user collection
             var collection = ReturnCollection(Database.noSqlProject, "Ticket");
 
-            var filter = Builders<BsonDocument>.Filter.Eq("_id", currentUser.Id);
+            var filter = Builders<BsonDocument>.Filter.Eq("userID", currentUser.Id);
 
             //getting all documents in the collection 
             var documents = collection.Find(filter).ToList();
