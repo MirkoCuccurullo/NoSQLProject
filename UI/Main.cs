@@ -252,22 +252,7 @@ namespace DemoApp
                     Name name = BsonSerializer.Deserialize<Name>(user.Name);
                     li.SubItems.Add(name.First);
                     li.SubItems.Add(ticket.DateTime.ToString());
-
-                    switch (ticket.Status)
-                    {
-                        case TicketStatus.Open:
-                            li.SubItems.Add("Open");
-                            break;
-                        case TicketStatus.Escalated:
-                            li.SubItems.Add("Escalated");
-                            break;
-                        case TicketStatus.Closed:
-                            li.SubItems.Add("Close");
-                            break;
-                        default:
-                            li.SubItems.Add("NaN");
-                            break;
-                    }
+                    li.SubItems.Add(ticket.Status.ToString());
 
                     //adding item to the list
                     lvTicketOverview.Items.Add(li);
