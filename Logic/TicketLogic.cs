@@ -32,8 +32,9 @@ namespace Logic
 
         public void ArchiveTickets(List<Ticket> tickets) => td.ArchiveTickets(tickets);
 
-        //public void SortList(List<Ticket> tickets ) => td.SortList(tickets);
-
-
+        public List<Ticket> GetAllTicketOfCurrentUser(User currentUser)
+        {
+            return td.GetAllTicketOfCurrentUser(currentUser);
+        }
     }
 }

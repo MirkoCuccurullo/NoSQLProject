@@ -44,6 +44,7 @@
             this.btnCancelTicket = new System.Windows.Forms.Button();
             this.btnSubmitTicket = new System.Windows.Forms.Button();
             this.pnlCreateTicket = new System.Windows.Forms.Panel();
+            this.lblCreateTicketError = new System.Windows.Forms.Label();
             this.dtpTicketDate = new System.Windows.Forms.DateTimePicker();
             this.pnlAddUser = new System.Windows.Forms.Panel();
             this.btnCreateUser = new System.Windows.Forms.Button();
@@ -265,6 +266,7 @@
             // 
             // pnlCreateTicket
             // 
+            this.pnlCreateTicket.Controls.Add(this.lblCreateTicketError);
             this.pnlCreateTicket.Controls.Add(this.dtpTicketDate);
             this.pnlCreateTicket.Controls.Add(this.label1);
             this.pnlCreateTicket.Controls.Add(this.label2);
@@ -286,6 +288,15 @@
             this.pnlCreateTicket.Name = "pnlCreateTicket";
             this.pnlCreateTicket.Size = new System.Drawing.Size(1192, 1359);
             this.pnlCreateTicket.TabIndex = 16;
+            // 
+            // lblCreateTicketError
+            // 
+            this.lblCreateTicketError.AutoSize = true;
+            this.lblCreateTicketError.Location = new System.Drawing.Point(476, 1270);
+            this.lblCreateTicketError.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblCreateTicketError.Name = "lblCreateTicketError";
+            this.lblCreateTicketError.Size = new System.Drawing.Size(0, 25);
+            this.lblCreateTicketError.TabIndex = 18;
             // 
             // dtpTicketDate
             // 
@@ -571,7 +582,7 @@
             this.lblIncidentDeadlineTickets.AutoSize = true;
             this.lblIncidentDeadlineTickets.BackColor = System.Drawing.SystemColors.Window;
             this.lblIncidentDeadlineTickets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIncidentDeadlineTickets.Location = new System.Drawing.Point(645, 285);
+            this.lblIncidentDeadlineTickets.Location = new System.Drawing.Point(645, 284);
             this.lblIncidentDeadlineTickets.Name = "lblIncidentDeadlineTickets";
             this.lblIncidentDeadlineTickets.Size = new System.Drawing.Size(485, 29);
             this.lblIncidentDeadlineTickets.TabIndex = 1;
@@ -582,7 +593,7 @@
             this.lblOpenTickets.AutoSize = true;
             this.lblOpenTickets.BackColor = System.Drawing.SystemColors.Window;
             this.lblOpenTickets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOpenTickets.Location = new System.Drawing.Point(182, 285);
+            this.lblOpenTickets.Location = new System.Drawing.Point(182, 284);
             this.lblOpenTickets.Name = "lblOpenTickets";
             this.lblOpenTickets.Size = new System.Drawing.Size(272, 29);
             this.lblOpenTickets.TabIndex = 1;
@@ -593,7 +604,7 @@
             this.lblIncidentDeadline.AutoSize = true;
             this.lblIncidentDeadline.BackColor = System.Drawing.SystemColors.Window;
             this.lblIncidentDeadline.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIncidentDeadline.Location = new System.Drawing.Point(725, 235);
+            this.lblIncidentDeadline.Location = new System.Drawing.Point(724, 234);
             this.lblIncidentDeadline.Name = "lblIncidentDeadline";
             this.lblIncidentDeadline.Size = new System.Drawing.Size(343, 37);
             this.lblIncidentDeadline.TabIndex = 1;
@@ -604,7 +615,7 @@
             this.lblUnresolvedIncident.AutoSize = true;
             this.lblUnresolvedIncident.BackColor = System.Drawing.SystemColors.Window;
             this.lblUnresolvedIncident.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnresolvedIncident.Location = new System.Drawing.Point(160, 235);
+            this.lblUnresolvedIncident.Location = new System.Drawing.Point(160, 234);
             this.lblUnresolvedIncident.Name = "lblUnresolvedIncident";
             this.lblUnresolvedIncident.Size = new System.Drawing.Size(312, 37);
             this.lblUnresolvedIncident.TabIndex = 1;
@@ -614,7 +625,7 @@
             // 
             this.lblCurrentIncident.AutoSize = true;
             this.lblCurrentIncident.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCurrentIncident.Location = new System.Drawing.Point(60, 60);
+            this.lblCurrentIncident.Location = new System.Drawing.Point(60, 59);
             this.lblCurrentIncident.Name = "lblCurrentIncident";
             this.lblCurrentIncident.Size = new System.Drawing.Size(428, 61);
             this.lblCurrentIncident.TabIndex = 1;
@@ -623,8 +634,8 @@
             // pltUrgentIncident
             // 
             this.pltUrgentIncident.BackColor = System.Drawing.SystemColors.Window;
-            this.pltUrgentIncident.Location = new System.Drawing.Point(621, 335);
-            this.pltUrgentIncident.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
+            this.pltUrgentIncident.Location = new System.Drawing.Point(621, 334);
+            this.pltUrgentIncident.Margin = new System.Windows.Forms.Padding(8, 5, 8, 5);
             this.pltUrgentIncident.Name = "pltUrgentIncident";
             this.pltUrgentIncident.Size = new System.Drawing.Size(500, 500);
             this.pltUrgentIncident.TabIndex = 0;
@@ -632,8 +643,8 @@
             // pltIncident
             // 
             this.pltIncident.BackColor = System.Drawing.SystemColors.Window;
-            this.pltIncident.Location = new System.Drawing.Point(71, 335);
-            this.pltIncident.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
+            this.pltIncident.Location = new System.Drawing.Point(70, 334);
+            this.pltIncident.Margin = new System.Windows.Forms.Padding(8, 5, 8, 5);
             this.pltIncident.Name = "pltIncident";
             this.pltIncident.Size = new System.Drawing.Size(500, 500);
             this.pltIncident.TabIndex = 0;
@@ -675,7 +686,7 @@
             // 
             // btnArchive
             // 
-            this.btnArchive.Location = new System.Drawing.Point(117, 976);
+            this.btnArchive.Location = new System.Drawing.Point(117, 977);
             this.btnArchive.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnArchive.Name = "btnArchive";
             this.btnArchive.Size = new System.Drawing.Size(170, 36);
@@ -687,7 +698,7 @@
             // lbArchive
             // 
             this.lbArchive.AutoSize = true;
-            this.lbArchive.Location = new System.Drawing.Point(298, 982);
+            this.lbArchive.Location = new System.Drawing.Point(298, 981);
             this.lbArchive.Name = "lbArchive";
             this.lbArchive.Size = new System.Drawing.Size(174, 25);
             this.lbArchive.TabIndex = 24;
@@ -695,7 +706,7 @@
             // 
             // DTPArichive
             // 
-            this.DTPArichive.Location = new System.Drawing.Point(487, 981);
+            this.DTPArichive.Location = new System.Drawing.Point(488, 981);
             this.DTPArichive.Name = "DTPArichive";
             this.DTPArichive.Size = new System.Drawing.Size(400, 31);
             this.DTPArichive.TabIndex = 23;
@@ -724,7 +735,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(109, 33);
+            this.label8.Location = new System.Drawing.Point(110, 33);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(256, 37);
             this.label8.TabIndex = 21;
@@ -754,7 +765,6 @@
             // 
             // btnCloseTicket
             // 
-            this.btnCloseTicket.Enabled = false;
             this.btnCloseTicket.Location = new System.Drawing.Point(920, 89);
             this.btnCloseTicket.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnCloseTicket.Name = "btnCloseTicket";
@@ -788,7 +798,7 @@
             this.lvTicketOverview.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.lvTicketOverview.MultiSelect = false;
             this.lvTicketOverview.Name = "lvTicketOverview";
-            this.lvTicketOverview.Size = new System.Drawing.Size(972, 800);
+            this.lvTicketOverview.Size = new System.Drawing.Size(972, 799);
             this.lvTicketOverview.TabIndex = 0;
             this.lvTicketOverview.UseCompatibleStateImageBehavior = false;
             this.lvTicketOverview.View = System.Windows.Forms.View.Details;
@@ -871,7 +881,6 @@
             // 
             // btnAddUser
             // 
-            this.btnAddUser.Enabled = false;
             this.btnAddUser.Location = new System.Drawing.Point(920, 89);
             this.btnAddUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnAddUser.Name = "btnAddUser";
@@ -905,13 +914,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1200, 1278);
+            this.ClientSize = new System.Drawing.Size(1200, 1398);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pnlCreateTicket);
+            this.Controls.Add(this.pnlUserOverview);
             this.Controls.Add(this.pnlTicketOverview);
             this.Controls.Add(this.pnlAddUser);
             this.Controls.Add(this.pnlDashboard);
-            this.Controls.Add(this.pnlCreateTicket);
-            this.Controls.Add(this.pnlUserOverview);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Main";
@@ -1015,5 +1024,6 @@
         private ScottPlot.FormsPlot pltUrgentIncident;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private MaterialSkin.Controls.MaterialRaisedButton btnShowList;
+        private System.Windows.Forms.Label lblCreateTicketError;
     }
 }
