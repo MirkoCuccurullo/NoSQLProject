@@ -19,7 +19,7 @@ namespace Logic
             return dao.GetDatabases();
         }
 
-        public void AddDocumentToCollection(Database currentDatabase, BsonDocument document, Collection collectionName)
+        public void AddDocumentToCollection(Database currentDatabase, BsonDocument document, string collectionName)
         {
             dao.AddDocumentToCollection(currentDatabase, document, collectionName);
         }

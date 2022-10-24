@@ -48,12 +48,10 @@ namespace DemoApp
                 }
             }
             comboBoxUsers.SelectedIndex = 0; // making the first default selection
-
         }
 
         private void btnTransfer_Click(object sender, EventArgs e)
         {
-
             User transferringUser = comboBoxUsers.SelectedItem as User;
             Name transferringUserName= BsonSerializer.Deserialize<Name>(transferringUser.Name);
             tl.UpdateTicketUser(selectedTicket, transferringUser);
@@ -63,17 +61,6 @@ namespace DemoApp
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-
-            User user = comboBoxUsers.SelectedItem as User;
-            if (user != null)
-            {
-                tl.UpdateTicketUser(ticket, user);
-                main.PopulateTicketListView();
-            }
-            else
-                return;
-
-
             this.Close();
         }
     }

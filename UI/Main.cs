@@ -131,13 +131,15 @@ namespace DemoApp
 
             double[] values = { numberOfResolvedIncident, numberOfUnsolvedIncident };
             string centerText = $"{values[1]} / {tickets.Count}";
+            Color color1 = Color.DarkCyan;
+            Color color2 = Color.Gray;
 
             var pie = pltIncident.Plot.AddPie(values);
             pie.DonutSize = .5;
             pie.CenterFont.Size = 25;
             pie.DonutLabel = centerText;
-            pie.CenterFont.Color = Color.Gray;
-            pie.SliceFillColors = new Color[] { Color.DarkCyan, Color.Gray };
+            pie.CenterFont.Color = color2;
+            pie.SliceFillColors = new Color[] { color1, color2 };
             pltIncident.Refresh(true);
         }
 
@@ -153,7 +155,6 @@ namespace DemoApp
 
             double[] values = { tickets.Count,numberOfUrgentIncident };
             string centerText = $"{values[1]}";
-y
             Color color1 = Color.DarkRed;
             Color color2 = Color.Gray;
 
@@ -161,8 +162,8 @@ y
             pie.DonutSize = .5;
             pie.CenterFont.Size = 25;
             pie.DonutLabel = centerText;
-            pie.CenterFont.Color = Color.Gray;
-            pie.SliceFillColors = new Color[] { Color.Gray, Color.DarkRed };
+            pie.CenterFont.Color = color2;
+            pie.SliceFillColors = new Color[] { color1, color2 };
             pltUrgentIncident.Refresh(true);
         }
 
@@ -171,7 +172,6 @@ y
             DateTime deadline=new DateTime();
             switch (ticket.TicketDeadline)
             {
-
                 case TicketDeadline.Seven:
                     deadline = ticket.DateTime.AddDays(7);
                     break;
@@ -181,11 +181,6 @@ y
                 case TicketDeadline.Twentysix:
                     deadline = ticket.DateTime.AddDays(26);
                     break;
-
-                DateTime deadline = new DateTime();
-                deadline = ticket.DateTime.AddDays((double)ticket.TicketDeadline);
-
-                return DateTime.Now.CompareTo(deadline) > 0;
             }
             return DateTime.Now.CompareTo(deadline) > 0;
         }
@@ -211,7 +206,22 @@ y
                     Name name = BsonSerializer.Deserialize<Name>(user.Name);
                     li.SubItems.Add(name.First);
                     li.SubItems.Add(ticket.DateTime.ToString());
-                    li.SubItems.Add(ticket.Status.ToString());
+
+                    switch (ticket.Status)
+                    {
+                        case TicketStatus.Open:
+                            li.SubItems.Add("Open");
+                            break;
+                        case TicketStatus.Escalated:
+                            li.SubItems.Add("Escalated");
+                            break;
+                        case TicketStatus.Closed:
+                            li.SubItems.Add("Close");
+                            break;
+                        default:
+                            li.SubItems.Add("NaN");
+                            break;
+                    }
 
                     //adding item to the list
                     lvTicketOverview.Items.Add(li);
@@ -263,21 +273,6 @@ y
 
         private void btnSubmitTicket_Click(object sender, EventArgs e)
         {
-
-            if (rtbTicketDescription.Text == "" || tbIncidentSubject.Text == "")
-            {
-                lblCreateTicketError.ForeColor = Color.Red;
-                lblCreateTicketError.Text = "Subject and Description can not be empty";
-                return;
-            }
-
-            if (cbIncidentType.SelectedIndex == -1 || cbDeadline.SelectedIndex == -1 || cbPriority.SelectedIndex == -1 || cbReportUser.SelectedIndex == -1)
-            {
-                lblCreateTicketError.Text = "Fields can not be empty";
-                return;
-            }
-
-
             //creating new Ticket and assigning values to it
             Ticket ticket = new Ticket();
 
@@ -293,7 +288,7 @@ y
 
             //parsing ticket object to bson document sending it to db
             BsonDocument document = ticket.ToBsonDocument();
-            db.AddDocumentToCollection(Database.noSqlProject, document, Collection.Ticket);
+            db.AddDocumentToCollection(Database.noSqlProject, document, "Ticket");
 
             MessageBox.Show("The ticket has been submited", "Successful");
 
@@ -372,8 +367,7 @@ y
 
             //parsing ticket object to bson document sending it to  DAL and adding to Database
             BsonDocument document = createdUser.ToBsonDocument();
-
-            db.AddDocumentToCollection(Database.noSqlProject,document, Collection.Users);
+            db.AddDocumentToCollection(Database.noSqlProject, document, "Users");
 
         }
 
@@ -459,6 +453,5 @@ y
         {
             DisplayPanel(PanelName.TicketOverview);
         }
-
     }
 }

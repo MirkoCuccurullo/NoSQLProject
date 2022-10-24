@@ -26,19 +26,19 @@ namespace DAL
             return all_databases;
         }
 
-        protected IMongoCollection<BsonDocument> ReturnCollection(Database currentDatabase ,Collection collection)
+        protected IMongoCollection<BsonDocument> ReturnCollection(Database currentDatabase ,string collectionName)
         {
             var database = client.GetDatabase(currentDatabase.ToString());
-            return database.GetCollection<BsonDocument>(collection.ToString());
+            return database.GetCollection<BsonDocument>(collectionName);
         }
 
-        public void AddDocumentToCollection(Database currentDatabase,BsonDocument document, Collection collectionName)
+        public void AddDocumentToCollection(Database currentDatabase,BsonDocument document, string collectionName)
         {
             var collection = ReturnCollection(currentDatabase, collectionName);
             collection.InsertOne(document);
         }
 
-        public void AddManyDocumentToCollection(Database currentDatabase, List<BsonDocument> documents, Collection collectionName)
+        public void AddManyDocumentToCollection(Database currentDatabase, List<BsonDocument> documents, string collectionName)
         {
             var collection = ReturnCollection(currentDatabase, collectionName);
             collection.InsertMany(documents);
