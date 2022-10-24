@@ -32,6 +32,7 @@ namespace DAL
             return tickets;
         }
 
+
         public List<Ticket> GetAllTicketOfCurrentUser(User currentUser)
         {
             List<Ticket> tickets = new List<Ticket>();
@@ -68,8 +69,6 @@ namespace DAL
 
         public Ticket GetTicketByUser(User user)
         {
-
-            //to correct, should return a list not a single ticket
             Ticket ticket = new Ticket();
             var collection = ReturnCollection(Database.noSqlProject,Collection.Ticket);
             var builder = Builders<BsonDocument>.Filter;

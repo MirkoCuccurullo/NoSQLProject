@@ -18,7 +18,7 @@ namespace Logic
                 Credentials = new NetworkCredential("sapkotabijay1313@gmail.com", "vtcrandygtyvkvev"),
                 EnableSsl = true,
             };
-            smtpClient.Send("sapkotabijay1313@gmail.com", email, "YourLoginDetails", $"Here are your LoginDetails username: {userName} password: {password}");
+            smtpClient.Send("sapkotabijay1313@gmail.com", email, "YourLoginDetails", $"Here are your LoginDetails username:{userName} password:{password}");
             smtpClient.Dispose();
         }
     }

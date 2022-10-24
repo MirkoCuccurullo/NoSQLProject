@@ -37,30 +37,6 @@ namespace DemoApp
             users = userLogic.GetAllUsers();
             DisplayPanel(PanelName.Dashboard);
             InitComboBoxes();
-            SetRolePrivilege();
-        }
-
-        private void SetRolePrivilege()
-        {
-            if (currentUser.Role == UserRoles.Employee)
-            {
-                userManagementToolStripMenuItem.Visible = false;
-                createTicketToolStripMenuItem.Visible = false;
-                btnCreateTicket.Visible = false;
-                btnTicketArchive.Visible = false;
-                btnTransferTicket.Visible = false;
-                btnCloseTicket.Visible = false;
-                btnEscalateTicket.Visible = false;
-                btnTicketArchive.Visible = false;
-                btnArchive.Visible = false;
-                lbArchive.Visible = false;
-                DTPArichive.Visible = false;
-            }
-        }
-
-        protected override void OnClosed(EventArgs e)
-        {
-            Application.Exit();
         }
 
         private void DisplayPanel(PanelName panelName)
@@ -115,7 +91,7 @@ namespace DemoApp
             cbPriority.DataSource = Enum.GetValues(typeof(TicketPriority));
             cbDeadline.DataSource = Enum.GetValues(typeof(TicketDeadline));
             cbIncidentType.DataSource = Enum.GetValues(typeof(TicketType));
-            comboBoxTypeOfUser.DataSource= Enum.GetValues(typeof(UserRoles));
+            comboBoxTypeOfUser.DataSource = Enum.GetValues(typeof(UserRoles));
             comboBoxLocation.DataSource = Enum.GetValues(typeof(Branch));
 
 
@@ -134,16 +110,7 @@ namespace DemoApp
         private void InitDashboard()
         {
 
-            if (currentUser.Role == UserRoles.ServiceDeskEmployee)
-            {
-                tickets = ticketLogic.GetAllTicket();
-
-            }
-            else
-            {
-                tickets = ticketLogic.GetAllTicketOfCurrentUser(currentUser);
-            }
-
+            tickets = ticketLogic.GetAllTicket();
             DisplayUnresolvedIncidents(tickets);
             DisplayUrgentIncidents(tickets);
             
@@ -180,12 +147,15 @@ namespace DemoApp
             int numberOfUrgentIncident = 0;
             foreach (Ticket ticket in tickets)
             {
-                if (IsUrgentTicket(ticket))
+                if (UrgentIncident(ticket))
                     numberOfUrgentIncident++;
             }
 
             double[] values = { tickets.Count,numberOfUrgentIncident };
             string centerText = $"{values[1]}";
+y
+            Color color1 = Color.DarkRed;
+            Color color2 = Color.Gray;
 
             var pie = pltUrgentIncident.Plot.AddPie(values);
             pie.DonutSize = .5;
@@ -196,33 +166,36 @@ namespace DemoApp
             pltUrgentIncident.Refresh(true);
         }
 
-        private bool IsUrgentTicket(Ticket ticket)
+        private bool UrgentIncident(Ticket ticket)
         {
-            if (ticket.Status == TicketStatus.Open)
+            DateTime deadline=new DateTime();
+            switch (ticket.TicketDeadline)
             {
+
+                case TicketDeadline.Seven:
+                    deadline = ticket.DateTime.AddDays(7);
+                    break;
+                case TicketDeadline.Fourteen:
+                    deadline = ticket.DateTime.AddDays(14);
+                    break;
+                case TicketDeadline.Twentysix:
+                    deadline = ticket.DateTime.AddDays(26);
+                    break;
+
                 DateTime deadline = new DateTime();
                 deadline = ticket.DateTime.AddDays((double)ticket.TicketDeadline);
 
                 return DateTime.Now.CompareTo(deadline) > 0;
             }
-            return false;
+            return DateTime.Now.CompareTo(deadline) > 0;
         }
 
-        public void PopulateTicketListView()
+        private void PopulateTicketListView()
         {
             try
             {
-                if (currentUser.Role == UserRoles.ServiceDeskEmployee)
-                {
-                    //retrieveing all tickets 
-
-                    tickets = ticketLogic.GetAllTicket();
-
-                }
-                else
-                {
-                    tickets = ticketLogic.GetAllTicketOfCurrentUser(currentUser);
-                }
+                //retrieveing all ordered drinks
+                tickets = ticketLogic.GetAllTicket();
 
                 //clearing preavious items
                 lvTicketOverview.Items.Clear();
@@ -255,7 +228,7 @@ namespace DemoApp
         {
             try
             {
-                //tickets = ticketLogic.GetAllTicket();
+                tickets = ticketLogic.GetAllTicket();
                 users = userLogic.GetAllUsers();
                 lvUserOverview.Items.Clear();
 
@@ -303,6 +276,7 @@ namespace DemoApp
                 lblCreateTicketError.Text = "Fields can not be empty";
                 return;
             }
+
 
             //creating new Ticket and assigning values to it
             Ticket ticket = new Ticket();
@@ -361,23 +335,23 @@ namespace DemoApp
             user.PhoneNumber = txtBoxPhoneNumber.Text;
             user.Role = (UserRoles)comboBoxTypeOfUser.SelectedItem;
             user.Username = txtBoxFirstName.Text + "123"; // making username firstName+123
-            user.Location=(Branch)comboBoxLocation.SelectedItem;
-            password= passwordGenerator.RandomPasswordGenrator();  
-            
+            user.Location = (Branch)comboBoxLocation.SelectedItem;
+            password = passwordGenerator.RandomPasswordGenrator();
+
             // making the password hash using password generator class
             Dictionary<string, string> passwordDictionary = passwordGenerator.GenerateSaltedHash(password);
-            Password passwordObject= new Password();
+            Password passwordObject = new Password();
             passwordObject.Salt = passwordDictionary["Salt"];
-            passwordObject.Hash= passwordDictionary["HashedPassword"]; 
-            user.Password= passwordObject.ToBsonDocument();
+            passwordObject.Hash = passwordDictionary["HashedPassword"];
+            user.Password = passwordObject.ToBsonDocument();
             return user;
 
         }
 
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
-             User createdUser=CreateUser();
-           
+            User createdUser = CreateUser();
+
             // sending LoginDetails if user select CheckBox
             if (checkBoxSendpassword.Checked == true)
             {
@@ -386,14 +360,19 @@ namespace DemoApp
                     EmailServer.SendLoginDetailsThroughSMTP(createdUser.Email, createdUser.Username, password);
                     MessageBox.Show($"The login details have been send to this email:{createdUser.Email}", "Successful");
                 }
-                catch (Exception )
+                catch (Exception)
                 {
                     MessageBox.Show($"{createdUser.Email} does not exist");
                 }
-                
             }
+            else
+            {
+                MessageBox.Show($"User added succesfully", "Successful");
+            }
+
             //parsing ticket object to bson document sending it to  DAL and adding to Database
             BsonDocument document = createdUser.ToBsonDocument();
+
             db.AddDocumentToCollection(Database.noSqlProject,document, Collection.Users);
 
         }
@@ -413,13 +392,9 @@ namespace DemoApp
 
         private void btnCloseTicket_Click(object sender, EventArgs e)
         {
-            if (lvTicketOverview.SelectedItems.Count != 0)
-            {
-                Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
-                ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Closed);
-                PopulateTicketListView();
-            }
-
+            Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
+            ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Closed);
+            PopulateTicketListView();
         }
 
         private void userManagementToolStripMenuItem_Click(object sender, EventArgs e)
@@ -429,13 +404,9 @@ namespace DemoApp
 
         private void btnEscalateTicket_Click(object sender, EventArgs e)
         {
-            if (lvTicketOverview.SelectedItems.Count != 0)
-            {
-                Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
-                ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Escalated);
-                PopulateTicketListView();
-            }
-
+            Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
+            ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Escalated);
+            PopulateTicketListView();
 
         }
         private void btnCancel_Click(object sender, EventArgs e)
@@ -448,6 +419,7 @@ namespace DemoApp
             InitComboBoxes();
             txtBoxEmailAddress.Clear();
             txtBoxFirstName.Clear();
+            txtBoxLastName.Clear();
             txtBoxPhoneNumber.Clear();
             checkBoxSendpassword.Checked = false;
 
@@ -455,13 +427,10 @@ namespace DemoApp
 
         private void btnTransferTicket_Click(object sender, EventArgs e)
         {
-            if (lvTicketOverview.SelectedItems.Count != 0)
-            {
-                Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
-                TransferTicket tranferTicketForm = new TransferTicket(ticket, this);
-                tranferTicketForm.StartPosition = this.StartPosition;
-                tranferTicketForm.ShowDialog();
-            }
+            Ticket selectedTicket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
+            TransferTicket tranferTicketForm = new TransferTicket(selectedTicket);
+            tranferTicketForm.StartPosition = this.StartPosition;
+            tranferTicketForm.ShowDialog();
         }
         private void btnCreateTicket_Click(object sender, EventArgs e)
         {
@@ -480,13 +449,10 @@ namespace DemoApp
 
             foreach (Ticket ticket in tickets)
             {
-                if (ticket.DateTime.CompareTo(date)<=0) { expiredTickets.Add(ticket); }
+                if (ticket.DateTime.CompareTo(date) <= 0) { expiredTickets.Add(ticket); }
             }
             ticketLogic.ArchiveTickets(expiredTickets);
-
             MessageBox.Show("The tickets are stored in the archive database", "Successful");
-
-            PopulateTicketListView();
         }
 
         private void btnShowList_Click_1(object sender, EventArgs e)
