@@ -17,7 +17,7 @@ namespace DAL
             List<Ticket> tickets = new List<Ticket>();
 
             //getting user collection
-            var collection = ReturnCollection(Database.noSqlProject, "Ticket");
+            var collection = ReturnCollection(Database.noSqlProject, Collection.Ticket);
 
             //getting all documents in the collection 
             var documents = collection.Find(new BsonDocument()).ToList();
@@ -32,10 +32,33 @@ namespace DAL
             return tickets;
         }
 
+
+        public List<Ticket> GetAllTicketOfCurrentUser(User currentUser)
+        {
+            List<Ticket> tickets = new List<Ticket>();
+
+            //getting user collection
+            var collection = ReturnCollection(Database.noSqlProject, Collection.Ticket);
+
+            var filter = Builders<BsonDocument>.Filter.Eq("userID", currentUser.Id);
+
+            //getting all documents in the collection with filter
+            var documents = collection.Find(filter).ToList();
+
+            foreach (BsonDocument document in documents)
+            {
+                //deserealizing a Bdon document in a User object
+                Ticket ticket = BsonSerializer.Deserialize<Ticket>(document);
+                tickets.Add(ticket);
+            }
+
+            return tickets;
+        }
+
         public void UpdateTicketStatus(Ticket ticket, TicketStatus status)
         {
 
-            var collection = base.ReturnCollection(Database.noSqlProject,"Ticket");
+            var collection = base.ReturnCollection(Database.noSqlProject,Collection.Ticket);
 
             var filter = Builders<BsonDocument>.Filter.Eq("_id", ticket.ID);
 
@@ -47,7 +70,7 @@ namespace DAL
         public Ticket GetTicketByUser(User user)
         {
             Ticket ticket = new Ticket();
-            var collection = ReturnCollection(Database.noSqlProject,"Ticket");
+            var collection = ReturnCollection(Database.noSqlProject,Collection.Ticket);
             var builder = Builders<BsonDocument>.Filter;
             var baseFilter = builder.Eq("userID", user.Id) & builder.Eq("status", TicketStatus.Open);
             var documents = collection.Find(baseFilter, null).ToList();
@@ -62,7 +85,7 @@ namespace DAL
         public void UpdateTicketUser(Ticket ticket, User user)
         {
 
-            var collection = base.ReturnCollection(Database.noSqlProject, "Ticket");
+            var collection = base.ReturnCollection(Database.noSqlProject, Collection.Ticket);
 
 
             var filter = Builders<BsonDocument>.Filter.Eq("_id", ticket.ID);
@@ -83,7 +106,7 @@ namespace DAL
                 var documnent = te.ToBsonDocument();
                 documents.Add(documnent);
             }
-            AddManyDocumentToCollection(Database.Archive, documents, "Ticket");
+            AddManyDocumentToCollection(Database.Archive, documents, Collection.Ticket);
             RemoveTickets(tickets);
         }
 
@@ -91,7 +114,7 @@ namespace DAL
         {
             foreach (Ticket ticket in tickets)
             {
-                var collection = ReturnCollection(Database.noSqlProject, "Ticket");
+                var collection = ReturnCollection(Database.noSqlProject, Collection.Ticket);
                 var condition = Builders<BsonDocument>.Filter.Eq("_id", ticket.ID);
                 collection.DeleteOneAsync(condition);
             }
