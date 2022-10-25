@@ -5,6 +5,7 @@ using System.Net.Mail;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Extensions.Configuration;
 
 namespace Logic
 {
@@ -12,13 +13,19 @@ namespace Logic
     {
         public static void SendLoginDetailsThroughSMTP(string email, string userName, string password)
         {
-            var smtpClient = new SmtpClient("smtp.gmail.com")
+
+            var builder = new ConfigurationBuilder()
+                .AddJsonFile("emailConfig.json");
+            var config = builder.Build();
+
+            var smtpClient = new SmtpClient(config["Smtp:Host"])
             {
-                Port = 587,
-                Credentials = new NetworkCredential("sapkotabijay1313@gmail.com", "qawszsgiaeuejtda"),
+                Port = int.Parse(config["Smtp:Port"]),
+                Credentials = new NetworkCredential(config["Smtp:Email"], config["Smtp:Password"]),
                 EnableSsl = true,
             };
-            smtpClient.Send("sapkotabijay1313@gmail.com", email, "YourLoginDetails", $"Here are your LoginDetails username: {userName} password: {password}");
+
+            smtpClient.Send(config["Smtp:Email"], email, "YourLoginDetails", $"Here are your LoginDetails username: {userName} password: {password}");
             smtpClient.Dispose();
         }
     }
