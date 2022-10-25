@@ -15,7 +15,7 @@ namespace Logic
             var smtpClient = new SmtpClient("smtp.gmail.com")
             {
                 Port = 587,
-                Credentials = new NetworkCredential("sapkotabijay1313@gmail.com", "vtcrandygtyvkvev"),
+                Credentials = new NetworkCredential("sapkotabijay1313@gmail.com", "qawszsgiaeuejtda"),
                 EnableSsl = true,
             };
             smtpClient.Send("sapkotabijay1313@gmail.com", email, "YourLoginDetails", $"Here are your LoginDetails username: {userName} password: {password}");
