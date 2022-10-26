@@ -23,7 +23,12 @@ namespace DemoApp
             string username = tbUsername.Text;
             string EmailPassword = EmailPass.Text;
             string NewPassword = NewPass.Text;
-            
+            string confirmPass = confirmPasstb.Text;
+
+            if (NewPassword != confirmPass)
+            {
+                labelWarning3.Show();
+            }
 
         }
 
@@ -34,7 +39,13 @@ namespace DemoApp
 
         private void ForgotPassword_Load(object sender, EventArgs e)
         {
+            labelWarning1.Hide();
+            labelWarning2.Hide();
+            labelWarning3.Hide();
+
             tbUsername.Text = Login.username;
+
         }
+
     }
 }

@@ -69,12 +69,18 @@ namespace DemoApp
                     username = tbUsername.Text;
                     ForgotPassword forgotPassword = new ForgotPassword();
                     forgotPassword.Show();
+                    //send email with random password
+                    //EmailServer.SendLoginDetailsThroughSMTP(createdUser.Email, createdUser.Username, password);
                 }
                 else if (dialogResult == DialogResult.No)
                 {
                     //close
                 }
             }
+        }
+        private void RandomPasswordSend()
+        {
+            //password = passwordGenerator.RandomPasswordGenrator();
         }
     }
 }
