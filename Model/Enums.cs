@@ -17,6 +17,7 @@ namespace Model
     public enum PanelName { CreateTicket, Dashboard,CreateUser, TicketOverview, UserOverview}
 
     public enum TicketStatus { Open, Escalated, Closed}
+    public enum Collections { Ticket, Users}
 
 
 
