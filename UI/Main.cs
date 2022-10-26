@@ -168,6 +168,7 @@ namespace DemoApp
             var pie = pltIncident.Plot.AddPie(values);
             pie.DonutSize = .5;
             pie.CenterFont.Size = 25;
+            pie.OutlineSize = 1;
             pie.DonutLabel = centerText;
             pie.CenterFont.Color = Color.Gray;
             pie.SliceFillColors = new Color[] { Color.DarkCyan, Color.Gray };
@@ -189,7 +190,7 @@ namespace DemoApp
 
             var pie = pltUrgentIncident.Plot.AddPie(values);
             pie.DonutSize = .5;
-            pie.CenterFont.Size = 25;
+            pie.CenterFont.Size = 15;
             pie.DonutLabel = centerText;
             pie.CenterFont.Color = Color.Gray;
             pie.SliceFillColors = new Color[] { Color.Gray, Color.DarkRed };
