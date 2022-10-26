@@ -53,6 +53,7 @@ namespace DemoApp
             this.tbPassword.Location = new System.Drawing.Point(241, 218);
             this.tbPassword.Margin = new System.Windows.Forms.Padding(2);
             this.tbPassword.Name = "tbPassword";
+            this.tbPassword.PasswordChar = '*';
             this.tbPassword.Size = new System.Drawing.Size(177, 30);
             this.tbPassword.TabIndex = 1;
             // 

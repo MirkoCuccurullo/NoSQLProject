@@ -24,7 +24,15 @@ namespace Logic
             return userDAO.GetUserById(id);
 
         }
+        public User GetUserbyUsername(string username)
+        {
+            return userDAO.GetUserbyUsername(username);
+        }
+        public void UpdatePassword(User u, Password p)
+        {
+            userDAO.UpdatePassword(u,p);
+        }
     }
 
-    
+
 }

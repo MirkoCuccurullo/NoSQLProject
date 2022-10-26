@@ -15,11 +15,13 @@ namespace DemoApp
     {
         private UserLogic userLogic;
         private User currentUser;
+        private PasswordGenerator passwordGenerator;
         public static string username;
         public Login()
         {
             InitializeComponent();
             userLogic = new UserLogic();
+            passwordGenerator = new PasswordGenerator();
         }
 
 
@@ -67,20 +69,19 @@ namespace DemoApp
                 if (dialogResult == DialogResult.Yes)
                 {
                     username = tbUsername.Text;
-                    ForgotPassword forgotPassword = new ForgotPassword();
+                    User user=userLogic.GetUserbyUsername(username);
+                    string randomPasswordTemp = passwordGenerator.RandomPasswordGenrator();
+                    ForgotPassword forgotPassword = new ForgotPassword(randomPasswordTemp,user);
                     forgotPassword.Show();
                     //send email with random password
-                    //EmailServer.SendLoginDetailsThroughSMTP(createdUser.Email, createdUser.Username, password);
+                    EmailServer.SendLoginDetailsThroughSMTP(user.Email, username,randomPasswordTemp);
+
                 }
                 else if (dialogResult == DialogResult.No)
                 {
                     //close
                 }
             }
-        }
-        private void RandomPasswordSend()
-        {
-            //password = passwordGenerator.RandomPasswordGenrator();
         }
     }
 }
