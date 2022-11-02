@@ -13,7 +13,6 @@ namespace Model
         public string Hash { get; set; }
         [BsonElement("salt")]
         public string Salt { get; set; }
-
         [BsonElement("question")]
         public string Question { get; set; }
         [BsonElement("answer")]

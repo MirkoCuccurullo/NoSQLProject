@@ -109,6 +109,7 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.formsPlot1 = new ScottPlot.FormsPlot();
             this.pnlCreateTicket.SuspendLayout();
             this.pnlAddUser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -497,14 +498,14 @@
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1200, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1200, 40);
             this.menuStrip1.TabIndex = 17;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // dashboardToolStripMenuItem
             // 
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(149, 44);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(149, 36);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
@@ -513,7 +514,7 @@
             this.incidentManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createTicketToolStripMenuItem});
             this.incidentManagementToolStripMenuItem.Name = "incidentManagementToolStripMenuItem";
-            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(270, 44);
+            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(270, 36);
             this.incidentManagementToolStripMenuItem.Text = "Incident Management";
             this.incidentManagementToolStripMenuItem.Click += new System.EventHandler(this.incidentManagementToolStripMenuItem_Click);
             // 
@@ -529,7 +530,7 @@
             this.userManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createUserToolStripMenuItem});
             this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
-            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(231, 44);
+            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(231, 36);
             this.userManagementToolStripMenuItem.Text = "User Management";
             this.userManagementToolStripMenuItem.Click += new System.EventHandler(this.userManagementToolStripMenuItem_Click);
             // 
@@ -542,6 +543,7 @@
             // 
             // pnlDashboard
             // 
+            this.pnlDashboard.Controls.Add(this.formsPlot1);
             this.pnlDashboard.Controls.Add(this.btnShowList);
             this.pnlDashboard.Controls.Add(this.lblIncidentDeadlineTickets);
             this.pnlDashboard.Controls.Add(this.lblOpenTickets);
@@ -633,7 +635,9 @@
             // 
             // pltUrgentIncident
             // 
+            this.pltUrgentIncident.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pltUrgentIncident.BackColor = System.Drawing.SystemColors.Window;
+            this.pltUrgentIncident.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.pltUrgentIncident.Location = new System.Drawing.Point(621, 334);
             this.pltUrgentIncident.Margin = new System.Windows.Forms.Padding(8, 5, 8, 5);
             this.pltUrgentIncident.Name = "pltUrgentIncident";
@@ -706,7 +710,7 @@
             // 
             // DTPArichive
             // 
-            this.DTPArichive.Location = new System.Drawing.Point(488, 981);
+            this.DTPArichive.Location = new System.Drawing.Point(488, 979);
             this.DTPArichive.Name = "DTPArichive";
             this.DTPArichive.Size = new System.Drawing.Size(400, 31);
             this.DTPArichive.TabIndex = 23;
@@ -908,6 +912,14 @@
             this.columnHeader9.Text = "Status";
             this.columnHeader9.Width = 100;
             // 
+            // formsPlot1
+            // 
+            this.formsPlot1.Location = new System.Drawing.Point(1038, 363);
+            this.formsPlot1.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
+            this.formsPlot1.Name = "formsPlot1";
+            this.formsPlot1.Size = new System.Drawing.Size(8, 8);
+            this.formsPlot1.TabIndex = 5;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -915,11 +927,11 @@
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1200, 1398);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pnlDashboard);
             this.Controls.Add(this.pnlCreateTicket);
             this.Controls.Add(this.pnlUserOverview);
             this.Controls.Add(this.pnlTicketOverview);
             this.Controls.Add(this.pnlAddUser);
-            this.Controls.Add(this.pnlDashboard);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Main";
@@ -1024,5 +1036,6 @@
         private System.Windows.Forms.RichTextBox richTextBox2;
         private MaterialSkin.Controls.MaterialRaisedButton btnShowList;
         private System.Windows.Forms.Label lblCreateTicketError;
+        private ScottPlot.FormsPlot formsPlot1;
     }
 }
