@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using Logic;
 using Model;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
-using ScottPlot;
 
 namespace DemoApp
 {
@@ -451,7 +449,6 @@ namespace DemoApp
             txtBoxFirstName.Clear();
             txtBoxPhoneNumber.Clear();
             checkBoxSendpassword.Checked = false;
-
         }
 
         private void btnTransferTicket_Click(object sender, EventArgs e)
