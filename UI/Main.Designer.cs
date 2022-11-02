@@ -28,6 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -71,6 +76,7 @@
             this.userManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDashboard = new System.Windows.Forms.Panel();
+            this.formsPlot1 = new ScottPlot.FormsPlot();
             this.btnShowList = new MaterialSkin.Controls.MaterialRaisedButton();
             this.lblIncidentDeadlineTickets = new System.Windows.Forms.Label();
             this.lblOpenTickets = new System.Windows.Forms.Label();
@@ -109,13 +115,16 @@
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.formsPlot1 = new ScottPlot.FormsPlot();
+            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
+            this.chrtAcomplishment = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.lblIncidentMonitor = new System.Windows.Forms.Label();
             this.pnlCreateTicket.SuspendLayout();
             this.pnlAddUser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.pnlDashboard.SuspendLayout();
             this.pnlTicketOverview.SuspendLayout();
             this.pnlUserOverview.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chrtAcomplishment)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -543,6 +552,9 @@
             // 
             // pnlDashboard
             // 
+            this.pnlDashboard.Controls.Add(this.lblIncidentMonitor);
+            this.pnlDashboard.Controls.Add(this.chrtAcomplishment);
+            this.pnlDashboard.Controls.Add(this.richTextBox3);
             this.pnlDashboard.Controls.Add(this.formsPlot1);
             this.pnlDashboard.Controls.Add(this.btnShowList);
             this.pnlDashboard.Controls.Add(this.lblIncidentDeadlineTickets);
@@ -557,8 +569,16 @@
             this.pnlDashboard.Location = new System.Drawing.Point(2, 42);
             this.pnlDashboard.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.pnlDashboard.Name = "pnlDashboard";
-            this.pnlDashboard.Size = new System.Drawing.Size(1191, 998);
+            this.pnlDashboard.Size = new System.Drawing.Size(1191, 1300);
             this.pnlDashboard.TabIndex = 18;
+            // 
+            // formsPlot1
+            // 
+            this.formsPlot1.Location = new System.Drawing.Point(1038, 363);
+            this.formsPlot1.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
+            this.formsPlot1.Name = "formsPlot1";
+            this.formsPlot1.Size = new System.Drawing.Size(8, 8);
+            this.formsPlot1.TabIndex = 5;
             // 
             // btnShowList
             // 
@@ -635,29 +655,34 @@
             // 
             // pltUrgentIncident
             // 
+            this.pltUrgentIncident.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.pltUrgentIncident.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pltUrgentIncident.BackColor = System.Drawing.SystemColors.Window;
             this.pltUrgentIncident.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pltUrgentIncident.Location = new System.Drawing.Point(621, 334);
-            this.pltUrgentIncident.Margin = new System.Windows.Forms.Padding(8, 5, 8, 5);
+            this.pltUrgentIncident.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.pltUrgentIncident.Location = new System.Drawing.Point(650, 334);
+            this.pltUrgentIncident.Margin = new System.Windows.Forms.Padding(30);
             this.pltUrgentIncident.Name = "pltUrgentIncident";
-            this.pltUrgentIncident.Size = new System.Drawing.Size(500, 500);
+            this.pltUrgentIncident.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.pltUrgentIncident.Size = new System.Drawing.Size(450, 450);
             this.pltUrgentIncident.TabIndex = 0;
             // 
             // pltIncident
             // 
             this.pltIncident.BackColor = System.Drawing.SystemColors.Window;
-            this.pltIncident.Location = new System.Drawing.Point(70, 334);
+            this.pltIncident.Location = new System.Drawing.Point(96, 334);
             this.pltIncident.Margin = new System.Windows.Forms.Padding(8, 5, 8, 5);
             this.pltIncident.Name = "pltIncident";
-            this.pltIncident.Size = new System.Drawing.Size(500, 500);
+            this.pltIncident.Size = new System.Drawing.Size(450, 450);
             this.pltIncident.TabIndex = 0;
             // 
             // richTextBox2
             // 
             this.richTextBox2.Location = new System.Drawing.Point(610, 188);
             this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(540, 670);
+            this.richTextBox2.Size = new System.Drawing.Size(540, 600);
             this.richTextBox2.TabIndex = 2;
             this.richTextBox2.Text = "";
             // 
@@ -665,7 +690,7 @@
             // 
             this.richTextBox1.Location = new System.Drawing.Point(48, 188);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(540, 670);
+            this.richTextBox1.Size = new System.Drawing.Size(540, 600);
             this.richTextBox1.TabIndex = 2;
             this.richTextBox1.Text = "";
             // 
@@ -912,13 +937,49 @@
             this.columnHeader9.Text = "Status";
             this.columnHeader9.Width = 100;
             // 
-            // formsPlot1
+            // richTextBox3
             // 
-            this.formsPlot1.Location = new System.Drawing.Point(1038, 363);
-            this.formsPlot1.Margin = new System.Windows.Forms.Padding(7, 5, 7, 5);
-            this.formsPlot1.Name = "formsPlot1";
-            this.formsPlot1.Size = new System.Drawing.Size(8, 8);
-            this.formsPlot1.TabIndex = 5;
+            this.richTextBox3.Location = new System.Drawing.Point(48, 814);
+            this.richTextBox3.Name = "richTextBox3";
+            this.richTextBox3.Size = new System.Drawing.Size(1102, 451);
+            this.richTextBox3.TabIndex = 6;
+            this.richTextBox3.Text = "";
+            // 
+            // chrtAcomplishment
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chrtAcomplishment.ChartAreas.Add(chartArea1);
+            legend1.Name = "Legend1";
+            this.chrtAcomplishment.Legends.Add(legend1);
+            this.chrtAcomplishment.Location = new System.Drawing.Point(105, 841);
+            this.chrtAcomplishment.Name = "chrtAcomplishment";
+            this.chrtAcomplishment.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.SeaGreen;
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Number of Incident resolved";
+            series2.ChartArea = "ChartArea1";
+            series2.Legend = "Legend1";
+            series2.MarkerSize = 2;
+            series2.Name = "Subject1";
+            series3.ChartArea = "ChartArea1";
+            series3.Legend = "Legend1";
+            series3.MarkerSize = 2;
+            series3.Name = "Subject2";
+            this.chrtAcomplishment.Series.Add(series1);
+            this.chrtAcomplishment.Series.Add(series2);
+            this.chrtAcomplishment.Series.Add(series3);
+            this.chrtAcomplishment.Size = new System.Drawing.Size(995, 355);
+            this.chrtAcomplishment.TabIndex = 7;
+            this.chrtAcomplishment.Text = "chrt";
+            // 
+            // lblIncidentMonitor
+            // 
+            this.lblIncidentMonitor.BackColor = System.Drawing.SystemColors.Window;
+            this.lblIncidentMonitor.Location = new System.Drawing.Point(187, 1213);
+            this.lblIncidentMonitor.Name = "lblIncidentMonitor";
+            this.lblIncidentMonitor.Size = new System.Drawing.Size(725, 23);
+            this.lblIncidentMonitor.TabIndex = 8;
+            this.lblIncidentMonitor.Text = "the most frequent Incident: ";
             // 
             // Main
             // 
@@ -947,6 +1008,7 @@
             this.pnlTicketOverview.ResumeLayout(false);
             this.pnlTicketOverview.PerformLayout();
             this.pnlUserOverview.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chrtAcomplishment)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1037,5 +1099,8 @@
         private MaterialSkin.Controls.MaterialRaisedButton btnShowList;
         private System.Windows.Forms.Label lblCreateTicketError;
         private ScottPlot.FormsPlot formsPlot1;
+        private System.Windows.Forms.Label lblIncidentMonitor;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chrtAcomplishment;
+        private System.Windows.Forms.RichTextBox richTextBox3;
     }
 }
