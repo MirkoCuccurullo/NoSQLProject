@@ -20,22 +20,31 @@ namespace DemoApp
         public Login()
         {
             InitializeComponent();
-            userLogic = new UserLogic();
             passwordGenerator = new PasswordGenerator();
+            try
+            {
+                userLogic = new UserLogic();
+            }
+            catch (Exception e) 
+            { 
+                MessageBox.Show(e.Message,"Error");
+            }
+           
         }
-
-
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
             string username = tbUsername.Text;
             string password = tbPassword.Text;
 
-            if (CheckCredentials(username,password))
+            if (CheckCredentials(username, password))
             {
                 Main main = new Main(currentUser);
                 this.Hide();
-                main.ShowDialog();              
+                main.ShowDialog();
+            }
+            else {
+                MessageBox.Show("Wrong pass");
             }
         }
 

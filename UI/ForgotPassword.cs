@@ -17,14 +17,16 @@ namespace DemoApp
         private string tempPass;
         PasswordGenerator passwordGenerator;
         private User user;
-        public ForgotPassword( string tempPass,User user)
+        private UserLogic userLogic;
+        public ForgotPassword(string tempPass,User user)
         {
             this.tempPass = tempPass;
+            userLogic = new UserLogic();
             this.passwordGenerator = new PasswordGenerator();
             this.user = user;
             InitializeComponent();
         }
-        UserLogic userLogic = new UserLogic();
+        
         private void ChangePass_Click(object sender, EventArgs e)
         {
             string username = tbUsername.Text;
@@ -37,21 +39,20 @@ namespace DemoApp
             {
                 labelWarning3.Show();
             }
-            if (EmailPassword != tempPass)
+            else if  (EmailPassword != tempPass)
             {
+               
                 labelWarning2.Show();
             }
             else
             {
-                Dictionary<string, string> passwordDictionary = passwordGenerator.GenerateSaltedHash(tempPass);
+                Dictionary<string, string> passwordDictionary = passwordGenerator.GenerateSaltedHash(NewPassword);
                 Password passwordObject = new Password();
                 passwordObject.Salt = passwordDictionary["Salt"];
                 passwordObject.Hash = passwordDictionary["HashedPassword"];
                 userLogic.UpdatePassword(user,passwordObject);
+                this.Close();
             }
-            
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -64,7 +65,6 @@ namespace DemoApp
             labelWarning1.Hide();
             labelWarning2.Hide();
             labelWarning3.Hide();
-
             tbUsername.Text = Login.username;
 
         }

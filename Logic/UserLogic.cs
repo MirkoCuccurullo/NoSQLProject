@@ -11,7 +11,6 @@ namespace Logic
 {
     public class UserLogic
     {
-
         public UserDAO userDAO = new UserDAO();
         
         public List<User> GetAllUsers()
