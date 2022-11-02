@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 using Model;
 using MongoDB.Bson.Serialization;
+using Microsoft.Extensions.Configuration;
 
 namespace DAL
 {
@@ -12,7 +13,10 @@ namespace DAL
 
         public DAO()
         {
-            client = new MongoClient("mongodb+srv://projectUser:hyunwoo@nosqldb.yqlm6qi.mongodb.net/test");
+            var builder = new ConfigurationBuilder()
+                       .AddJsonFile("mongoConfig.json");
+            var config = builder.Build();
+            client = new MongoClient(config["Mongo:ConnString"]);
         }
 
         public List<Databases_Model> GetDatabases()
