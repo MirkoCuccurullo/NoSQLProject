@@ -45,6 +45,24 @@ namespace DAL
             return BsonSerializer.Deserialize<User>(document);
 
         }
+        public User GetUserbyUsername(string username)
+        {
+            var collection = base.ReturnCollection(Database.noSqlProject, Collection.Users);
+            var filter = Builders<BsonDocument>.Filter.Eq("username", username);
+            var document = collection.Find(filter).FirstOrDefault();
+
+            User user = BsonSerializer.Deserialize<User>(document);
+
+            return user;
+        }
+        public void UpdatePassword(User user, Password password)
+        {
+            var collection = base.ReturnCollection(Database.noSqlProject, Collection.Users);
+            var filter = Builders<BsonDocument>.Filter.Eq("_id", user.Id);
+            BsonDocument docu = password.ToBsonDocument();
+            var update = Builders<BsonDocument>.Update.Set("password", docu);
+            collection.UpdateOne(filter, update);
+        }
 
     }
 }

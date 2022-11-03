@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
+using System.IO;
 using System.Windows.Forms;
 using Logic;
 using Model;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
-using ScottPlot;
 
 namespace DemoApp
 {
@@ -168,6 +167,7 @@ namespace DemoApp
             var pie = pltIncident.Plot.AddPie(values);
             pie.DonutSize = .5;
             pie.CenterFont.Size = 25;
+            pie.OutlineSize = 1;
             pie.DonutLabel = centerText;
             pie.CenterFont.Color = Color.Gray;
             pie.SliceFillColors = new Color[] { Color.DarkCyan, Color.Gray };
@@ -189,7 +189,7 @@ namespace DemoApp
 
             var pie = pltUrgentIncident.Plot.AddPie(values);
             pie.DonutSize = .5;
-            pie.CenterFont.Size = 25;
+            pie.CenterFont.Size = 15;
             pie.DonutLabel = centerText;
             pie.CenterFont.Color = Color.Gray;
             pie.SliceFillColors = new Color[] { Color.Gray, Color.DarkRed };
@@ -377,24 +377,27 @@ namespace DemoApp
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
              User createdUser=CreateUser();
-           
+            string outputMessage = "User has been created Suceessfully";
             // sending LoginDetails if user select CheckBox
             if (checkBoxSendpassword.Checked == true)
             {
                 try
                 {
                     EmailServer.SendLoginDetailsThroughSMTP(createdUser.Email, createdUser.Username, password);
-                    MessageBox.Show($"The login details have been send to this email:{createdUser.Email}", "Successful");
+                    outputMessage = $"The login details have been send to this email:{createdUser.Email}";
                 }
-                catch (Exception )
+                catch (Exception ex )
                 {
-                    MessageBox.Show($"{createdUser.Email} does not exist");
+                    MessageBox.Show(ex.Message);
                 }
                 
             }
+            MessageBox.Show(outputMessage, "SucessFull");
+            RefreshCreateUser();
             //parsing ticket object to bson document sending it to  DAL and adding to Database
             BsonDocument document = createdUser.ToBsonDocument();
             db.AddDocumentToCollection(Database.noSqlProject,document, Collection.Users);
+            DisplayPanel(PanelName.UserOverview);
 
         }
 
@@ -449,8 +452,9 @@ namespace DemoApp
             txtBoxEmailAddress.Clear();
             txtBoxFirstName.Clear();
             txtBoxPhoneNumber.Clear();
+            txtBoxLastName.Clear();
             checkBoxSendpassword.Checked = false;
-
+           
         }
 
         private void btnTransferTicket_Click(object sender, EventArgs e)
@@ -493,34 +497,9 @@ namespace DemoApp
         {
             DisplayPanel(PanelName.TicketOverview);
         }
-
-        private void lvTicketOverview_ColumnClick(object sender, ColumnClickEventArgs e)
+        private void btnAddUser_Click(object sender, EventArgs e)
         {
-            //Ticket ticket = new Ticket();
-
-            //Incident incident = BsonSerializer.Deserialize<Incident>(ticket.IncidentDocument);
-
-            // User user = userLogic.GetUserById(ticket.UserID);
-            //Name name = BsonSerializer.Deserialize<Name>(user.Name);
-
-            //if (e.Column == 3)
-            //{
-            //    ticketLogic.SortListAscending(tickets, "status");
-            //}
-            //else if (e.Column == 1)
-            //{
-
-            //}
-            //else if (e.Column == 2)
-            //{
-            //    ticketLogic.SortListAscending(tickets, "DateReport");
-            //}
-            //else if (e.Column == 0)
-            //{
-
-            //}
-            //else
-            //    MessageBox.Show("dupaaa");
+            DisplayPanel(PanelName.CreateUser);
         }
     }
 }

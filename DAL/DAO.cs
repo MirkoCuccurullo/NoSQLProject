@@ -3,6 +3,8 @@ using MongoDB.Driver;
 using System.Collections.Generic;
 using Model;
 using MongoDB.Bson.Serialization;
+using Microsoft.Extensions.Configuration;
+using System.IO;
 
 namespace DAL
 {
@@ -12,7 +14,22 @@ namespace DAL
 
         public DAO()
         {
-            client = new MongoClient("mongodb+srv://projectUser:hyunwoo@nosqldb.yqlm6qi.mongodb.net/test");
+            try
+            {
+                var builder = new ConfigurationBuilder()
+                          .AddJsonFile("mongoConfig.json");
+                var config = builder.Build();
+                client = new MongoClient(config["Mongo:ConnString"]);
+            }
+            catch (FileNotFoundException)
+            {
+                throw new FileNotFoundException("Unable to find the mongo Conifg file");
+            }
+            catch ( MongoClientException) 
+            {
+                throw new MongoClientException("connection failed connecting to Mongo Database");
+            }
+           
         }
 
         public List<Databases_Model> GetDatabases()
