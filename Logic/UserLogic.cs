@@ -31,6 +31,10 @@ namespace Logic
         {
             userDAO.UpdatePassword(u,p);
         }
+        public bool CheckExistenceOfUserName(string username) 
+        {
+           return userDAO.CheckExistenceOfUserName(username);
+        }
     }
 
 

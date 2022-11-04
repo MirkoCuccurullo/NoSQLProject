@@ -36,9 +36,9 @@ namespace Logic
             {
                 throw new SmtpFailedRecipientsException($"Unable to send email to {email}");
             }
-            catch(Exception exp )
+            catch(Exception )
             {
-
+                throw new Exception("Something went wrong");
             }
         }
     }

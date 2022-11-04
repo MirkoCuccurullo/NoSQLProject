@@ -1,4 +1,5 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -105,6 +106,19 @@ namespace DAL
             {
                 throw new MongoException("something went wrong while changing the password");
             }
+        }
+        public bool CheckExistenceOfUserName(string username)
+        {
+            try {
+                var collection = base.ReturnCollection(Database.noSqlProject, Collection.Users);
+                var filter = Builders<BsonDocument>.Filter.Eq("username", username);
+                return collection.CountDocuments(filter) > 0;
+            }
+            catch (MongoException)
+            {
+                throw new Exception(" Unable to Connect to Mongo Db");
+            }
+            
         }
 
     }

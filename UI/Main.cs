@@ -360,7 +360,7 @@ namespace DemoApp
             user.Email = txtBoxEmailAddress.Text;
             user.PhoneNumber = txtBoxPhoneNumber.Text;
             user.Role = (UserRoles)comboBoxTypeOfUser.SelectedItem;
-            user.Username = txtBoxFirstName.Text + "123"; // making username firstName+123
+            user.Username = txtBoxUserName.Text;
             user.Location=(Branch)comboBoxLocation.SelectedItem;
             password= passwordGenerator.RandomPasswordGenrator();  
             
@@ -500,6 +500,21 @@ namespace DemoApp
         private void btnAddUser_Click(object sender, EventArgs e)
         {
             DisplayPanel(PanelName.CreateUser);
+        }
+
+        private void txtBoxUserName_TextChanged(object sender, EventArgs e)
+        {
+            if (userLogic.CheckExistenceOfUserName(txtBoxUserName.Text))
+            {
+                lblUserNameExistence.Show();
+                lblUserNameExistence.Text = $"{txtBoxUserName.Text} user name already exist";
+                lblUserNameExistence.ForeColor = Color.Red;
+                btnCreateUser.Enabled = false;
+            }
+            else {
+                btnCreateUser.Enabled = true;
+                lblUserNameExistence.Hide();
+            }
         }
     }
 }
