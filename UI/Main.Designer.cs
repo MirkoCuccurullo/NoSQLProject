@@ -1,4 +1,6 @@
-﻿namespace DemoApp
+﻿using System.Windows.Forms;
+
+namespace DemoApp
 {
     partial class Main
     {
@@ -717,7 +719,6 @@
             title2.Name = "Title1";
             title2.Text = "Frequancy of Incident(monthly)";
             this.chrtFrequancyOfIncidents.Titles.Add(title2);
-            this.chrtFrequancyOfIncidents.Click += new System.EventHandler(this.chrtAcomplishment_Click);
             // 
             // richTextBox3
             // 
@@ -1229,6 +1230,9 @@
         private System.Windows.Forms.Panel pnlDashboard;
         private System.Windows.Forms.DateTimePicker dtpTicketDate;
         private System.Windows.Forms.Panel pnlAddUser;
+        private Label lblUserNameExistence;
+        private Label lblUsername;
+        private TextBox txtBoxUserName;
         private System.Windows.Forms.Label lblFirstName;
         private System.Windows.Forms.Label lblDisplay;
         private System.Windows.Forms.TextBox txtBoxFirstName;
