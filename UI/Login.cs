@@ -77,13 +77,20 @@ namespace DemoApp
                 DialogResult dialogResult = MessageBox.Show("An Email will be send with a new password", "Forgot Password", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    username = tbUsername.Text;
-                    User user=userLogic.GetUserbyUsername(username);
-                    string randomPasswordTemp = passwordGenerator.RandomPasswordGenrator();
-                    ForgotPassword forgotPassword = new ForgotPassword(randomPasswordTemp,user);
-                    forgotPassword.Show();
-                    //send email with random password
-                    EmailServer.SendLoginDetailsThroughSMTP(user.Email, username,randomPasswordTemp);
+                    try
+                    {
+                        username = tbUsername.Text;
+                        User user = userLogic.GetUserbyUsername(username);
+                  
+                        string randomPasswordTemp = passwordGenerator.RandomPasswordGenrator();
+                        ForgotPassword forgotPassword = new ForgotPassword(randomPasswordTemp, user);
+                        forgotPassword.Show();
+                        //send email with random password
+                        EmailServer.SendLoginDetailsThroughSMTP(user.Email, username, randomPasswordTemp);
+                  
+                    }
+                    catch(Exception exp)
+                    { MessageBox.Show(exp.Message); }
 
                 }
                 else if (dialogResult == DialogResult.No)

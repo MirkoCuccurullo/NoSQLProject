@@ -16,17 +16,25 @@ namespace DAL
         {
             List<User> users = new List<User>();
 
-            //getting user collection
-            var collection = base.ReturnCollection(Database.noSqlProject, Collection.Users);
-
-            //getting all documents in the collection 
-            var documents = collection.Find(new BsonDocument()).ToList();
-
-            foreach (BsonDocument document in documents)
+            try
             {
-                //deserealizing a Bdon document in a User object
-                User user = BsonSerializer.Deserialize<User>(document);
-                users.Add(user);
+
+                //getting user collection
+                var collection = base.ReturnCollection(Database.noSqlProject, Collection.Users);
+
+                //getting all documents in the collection 
+                var documents = collection.Find(new BsonDocument()).ToList();
+
+                foreach (BsonDocument document in documents)
+                {
+                    //deserealizing a Bdon document in a User object
+                    User user = BsonSerializer.Deserialize<User>(document);
+                    users.Add(user);
+                }
+            }
+            catch (MongoException)
+            {
+                throw new MongoException("something went wrong while loading users");
             }
 
             return users;
@@ -34,34 +42,69 @@ namespace DAL
 
         public User GetUserById(BsonObjectId id)
         {
-            var collection = base.ReturnCollection(Database.noSqlProject,Collection.Users);
+          
+            try
+            {
+                var collection = base.ReturnCollection(Database.noSqlProject, Collection.Users);
 
-            var filter = Builders<BsonDocument>.Filter.Eq("_id", id);
+                var filter = Builders<BsonDocument>.Filter.Eq("_id", id);
 
-            var document = collection.Find(filter).FirstOrDefault();
+                var document = collection.Find(filter).FirstOrDefault();
 
+                if (document != null)
+                {
+                    return BsonSerializer.Deserialize<User>(document);
+                }
+                else
+                {
+                    throw new Exception("the user does not exist");
+                }
 
-            //deserealizing a Bdon document in a User object
-            return BsonSerializer.Deserialize<User>(document);
+            }
+            catch (MongoException)
+            {
+                throw new MongoException("something went wrong while getting the user");
+            }
 
         }
         public User GetUserbyUsername(string username)
         {
-            var collection = base.ReturnCollection(Database.noSqlProject, Collection.Users);
-            var filter = Builders<BsonDocument>.Filter.Eq("username", username);
-            var document = collection.Find(filter).FirstOrDefault();
+            try
+            {
+                var collection = base.ReturnCollection(Database.noSqlProject, Collection.Users);
+                var filter = Builders<BsonDocument>.Filter.Eq("username", username);
+                var document = collection.Find(filter).FirstOrDefault();
 
-            User user = BsonSerializer.Deserialize<User>(document);
+                if (document != null)
+                {
+                    return BsonSerializer.Deserialize<User>(document);
+                }
+                else
+                {
+                    throw new Exception("Username is wrong");
+                }
 
-            return user;
+            }
+            catch (MongoException)
+            {
+                throw new MongoException("something went wrong with loasing user");
+            }
+
         }
         public void UpdatePassword(User user, Password password)
         {
-            var collection = base.ReturnCollection(Database.noSqlProject, Collection.Users);
-            var filter = Builders<BsonDocument>.Filter.Eq("_id", user.Id);
-            BsonDocument docu = password.ToBsonDocument();
-            var update = Builders<BsonDocument>.Update.Set("password", docu);
-            collection.UpdateOne(filter, update);
+            try
+            {
+                var collection = base.ReturnCollection(Database.noSqlProject, Collection.Users);
+                var filter = Builders<BsonDocument>.Filter.Eq("_id", user.Id);
+                BsonDocument docu = password.ToBsonDocument();
+                var update = Builders<BsonDocument>.Update.Set("password", docu);
+                collection.UpdateOne(filter, update);
+            }
+            catch (MongoException)
+            {
+                throw new MongoException("something went wrong while changing the password");
+            }
         }
 
     }

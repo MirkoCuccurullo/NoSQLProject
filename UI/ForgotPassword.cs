@@ -35,23 +35,29 @@ namespace DemoApp
             string confirmPass = confirmPasstb.Text;
             User user = userLogic.GetUserbyUsername(username);
 
-            if (NewPassword != confirmPass)
+            try
             {
-                labelWarning3.Show();
-            }
-            else if  (EmailPassword != tempPass)
+                if (NewPassword != confirmPass)
+                {
+                    labelWarning3.Show();
+                }
+                else if (EmailPassword != tempPass)
+                {
+
+                    labelWarning2.Show();
+                }
+                else
+                {
+                    Dictionary<string, string> passwordDictionary = passwordGenerator.GenerateSaltedHash(NewPassword);
+                    Password passwordObject = new Password();
+                    passwordObject.Salt = passwordDictionary["Salt"];
+                    passwordObject.Hash = passwordDictionary["HashedPassword"];
+                    userLogic.UpdatePassword(user, passwordObject);
+                    this.Close();
+                }
+            }catch(Exception expe)
             {
-               
-                labelWarning2.Show();
-            }
-            else
-            {
-                Dictionary<string, string> passwordDictionary = passwordGenerator.GenerateSaltedHash(NewPassword);
-                Password passwordObject = new Password();
-                passwordObject.Salt = passwordDictionary["Salt"];
-                passwordObject.Hash = passwordDictionary["HashedPassword"];
-                userLogic.UpdatePassword(user,passwordObject);
-                this.Close();
+                MessageBox.Show(expe.Message);
             }
         }
 
