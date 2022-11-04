@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 using System.Windows.Forms;
+using LiveCharts.Wpf;
 using Logic;
 using Model;
 using MongoDB.Bson;
@@ -18,7 +20,6 @@ namespace DemoApp
         TicketLogic ticketLogic;
         List<User> users;
         List<Ticket> tickets;
-
         private PasswordGenerator passwordGenerator;
         private string password;
 
@@ -136,47 +137,45 @@ namespace DemoApp
             if (currentUser.Role == UserRoles.ServiceDeskEmployee)
             {
                 tickets = ticketLogic.GetAllTicket();
-
             }
             else
             {
                 tickets = ticketLogic.GetAllTicketOfCurrentUser(currentUser);
             }
-
-            DisplayUnresolvedIncidents(tickets);
-            DisplayUrgentIncidents(tickets);
-            
+            DisplayUnresolvedIncidents();
+            DisplayUrgentIncidents();
+            DisplayFrequanciesOfIncidents();
         }
 
-        public void DisplayUnresolvedIncidents(List<Ticket> tickets)
+        public void DisplayUnresolvedIncidents()
         {
             pltIncident.Plot.Clear();
             int numberOfResolvedIncident = 0;
-            int numberOfUnsolvedIncident = 0;
+            int numberOfUnresolvedIncident = 0;
             foreach (Ticket ticket in tickets)
             {
                 if (ticket.Status == TicketStatus.Open)
-                    numberOfUnsolvedIncident++;
+                    numberOfUnresolvedIncident++;
                 else
                     numberOfResolvedIncident++;
             }
 
-            double[] values = { numberOfResolvedIncident, numberOfUnsolvedIncident };
+            double[] values = { numberOfResolvedIncident, numberOfUnresolvedIncident };
             string centerText = $"{values[1]} / {tickets.Count}";
 
             var pie = pltIncident.Plot.AddPie(values);
             pie.DonutSize = .5;
             pie.CenterFont.Size = 25;
-            pie.OutlineSize = 1;
             pie.DonutLabel = centerText;
             pie.CenterFont.Color = Color.Gray;
             pie.SliceFillColors = new Color[] { Color.DarkCyan, Color.Gray };
             pltIncident.Refresh(true);
         }
 
-        public void DisplayUrgentIncidents(List<Ticket> tickets)
+        public void DisplayUrgentIncidents()
         {
-            pltUrgentIncident.Plot.Clear();
+            chrtUrgentIncident.Series[0].Points.Clear();
+
             int numberOfUrgentIncident = 0;
             foreach (Ticket ticket in tickets)
             {
@@ -186,14 +185,10 @@ namespace DemoApp
 
             double[] values = { tickets.Count,numberOfUrgentIncident };
             string centerText = $"{values[1]}";
+            lblNumberOfUrgentTicket.Text =centerText;
+            chrtUrgentIncident.Series["urgentIncident"].Points.AddXY("Total Incident", values[0]);
+            chrtUrgentIncident.Series["urgentIncident"].Points.AddXY("Urgent Incident", values[1]);
 
-            var pie = pltUrgentIncident.Plot.AddPie(values);
-            pie.DonutSize = .5;
-            pie.CenterFont.Size = 15;
-            pie.DonutLabel = centerText;
-            pie.CenterFont.Color = Color.Gray;
-            pie.SliceFillColors = new Color[] { Color.Gray, Color.DarkRed };
-            pltUrgentIncident.Refresh(true);
         }
 
         private bool IsUrgentTicket(Ticket ticket)
@@ -208,6 +203,54 @@ namespace DemoApp
             return false;
         }
 
+        public void DisplayFrequanciesOfIncidents()
+        {
+            try
+            {
+                ClearIncidentFrequancyChart();
+                string mostFrequantIncident;
+                int[] serviceIncident = GetNumberOfIncidentByType(TicketType.Service);
+                int[] softwareIncident = GetNumberOfIncidentByType(TicketType.Software);
+                int[] hardwareIncident = GetNumberOfIncidentByType(TicketType.Hardware);
+                int[] incidentsType = new int[] { serviceIncident[0], softwareIncident[0], hardwareIncident[0] };
+
+                mostFrequantIncident = incidentsType.Max().ToString();
+                lblIncidentMonitor.Text = string.Format($"The most frequant incident type: {mostFrequantIncident}");
+                chrtFrequancyOfIncidents.Series["Number of Incident"].Points.AddXY("Service", serviceIncident[0]);
+                chrtFrequancyOfIncidents.Series["Number of Incident"].Points.AddXY("Software", softwareIncident[0]);
+                chrtFrequancyOfIncidents.Series["Number of Incident"].Points.AddXY("Hardware", hardwareIncident[0]);
+                chrtFrequancyOfIncidents.Series["unresolved Incident(%)"].Points.AddXY("Incident4", serviceIncident[1] / serviceIncident[0]);
+                chrtFrequancyOfIncidents.Series["unresolved Incident(%)"].Points.AddXY("Incident5", softwareIncident[1] / softwareIncident[0]);
+                chrtFrequancyOfIncidents.Series["unresolved Incident(%)"].Points.AddXY("Incident6", hardwareIncident[1] / hardwareIncident[0]);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private int[] GetNumberOfIncidentByType(TicketType ticketType)
+        {
+            int numberOfIncident = 0;
+            int unresolvedIncident = 0;
+
+            foreach(Ticket ti in tickets)
+            {
+                if (ti.DateTime.CompareTo(DateTime.Now.AddMonths(-1)) >= 0 && ticketType == ti.TicketType)
+                {
+                    numberOfIncident++;
+                    if (ti.Status.Equals(TicketStatus.Open))
+                        unresolvedIncident++;
+                }
+            }
+            return new int[] { numberOfIncident, unresolvedIncident };
+        }
+
+        private void ClearIncidentFrequancyChart() 
+        {
+            for(int i=0; i<chrtFrequancyOfIncidents.Series.Count; i++)
+                chrtFrequancyOfIncidents.Series[i].Points.Clear();
+        }
+
         public void PopulateTicketListView()
         {
             try
@@ -215,9 +258,7 @@ namespace DemoApp
                 if (currentUser.Role == UserRoles.ServiceDeskEmployee)
                 {
                     //retrieveing all tickets 
-
                     tickets = ticketLogic.GetAllTicket();
-
                 }
                 else
                 {
@@ -502,6 +543,7 @@ namespace DemoApp
             DisplayPanel(PanelName.CreateUser);
         }
 
+
         private void txtBoxUserName_TextChanged(object sender, EventArgs e)
         {
             if (userLogic.CheckExistenceOfUserName(txtBoxUserName.Text))
@@ -515,6 +557,7 @@ namespace DemoApp
                 btnCreateUser.Enabled = true;
                 lblUserNameExistence.Hide();
             }
+
         }
     }
 }
