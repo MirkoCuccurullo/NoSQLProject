@@ -121,34 +121,26 @@ namespace DAL
                 collection.DeleteOneAsync(condition);
             }
         }
-        public void SortList(Ticket ticket)
+        public void SortList()
         {
-            var collection = base.ReturnCollection(Database.noSqlProject, "Ticket");
+            var collection = ReturnCollection(Database.noSqlProject, Collection.Ticket);
 
-            //var filter = Builders<Ticket>.Filter.Eq(x => x.Status, client)
-            //            & Builders<Ticket>.Filter.Eq(x => x.TP_PESSOA, 3)
-            //            & Builders<Ticket>.Filter.Gte(x => x.FG_ATIVO, true);
+            BsonDocument pipelineStage = new BsonDocument
+            {
+                {
+                    "$sort", new BsonDocument
+                    {
+                        {"priority", 1}
+                    }
+                }
+            };
 
-            //var result = collection.Aggregate().Match(filter)
-            //            .Project(p => new Ticket { CD_CLIENTE = p.CD_CLIENTE, ID_CENTRAL = p.ID_CENTRAL, FANTASIA = p.FANTASIA })
-            //            .SortBy(p => p.).ToList();
+            BsonDocument[] pipeline = new BsonDocument[] {pipelineStage };
 
-            // var baseFilter = builder.Eq("userID", user.Id) & builder.Eq("status", TicketStatus.Open);
+            List<BsonDocument> pResult = collection.Aggregate<BsonDocument>(pipeline).ToList();
 
-            //foreach (Ticket ticket in tickets)
-            //{
-            //    var collection = ReturnCollection(Database.noSqlProject, "Ticket");
-            //    var condition = Builders<BsonDocument>.Filter.Eq("_id", ticket.ID);
-            //    collection.DeleteOneAsync(condition);
-            //}
-            //    var collection = ReturnCollection(Database.noSqlProject, "Ticket");
-            //    var filter = Builders<BsonDocument>.Filter.Empty;
-            //    var sort = Builders<BsonDocument>.Sort.Descending("userID", user.Id);
-            //collection.FindAsync(filter, new FindOptions<BsonDocument, BsonDocument>()
-            //    {
-            //        Sort = sort
-            //    });
 
+                    
 
         }
  

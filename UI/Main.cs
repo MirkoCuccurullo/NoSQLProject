@@ -501,5 +501,10 @@ namespace DemoApp
         {
             DisplayPanel(PanelName.CreateUser);
         }
+
+        private void btnSort_Click(object sender, EventArgs e)
+        {
+            ticketLogic.SortList();
+        }
     }
 }
