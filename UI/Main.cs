@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Linq;
 using System.Windows.Forms;
-using LiveCharts.Wpf;
 using Logic;
 using Model;
 using MongoDB.Bson;
@@ -14,7 +12,6 @@ namespace DemoApp
 {
     public partial class Main : Form
     {
-
         Databases db;
         UserLogic userLogic;
         TicketLogic ticketLogic;
@@ -108,7 +105,6 @@ namespace DemoApp
 
         private void InitComboBoxes()
         {
-
             cbReportUser.Items.Clear();
 
             //assignign values to comboBoxes from enumerations
@@ -127,13 +123,10 @@ namespace DemoApp
             }
 
             cbReportUser.SelectedIndex = 0;
-
-
         }
 
         private void InitDashboard()
         {
-
             if (currentUser.Role == UserRoles.ServiceDeskEmployee)
             {
                 tickets = ticketLogic.GetAllTicket();
@@ -417,28 +410,38 @@ namespace DemoApp
 
         private void btnCreateUser_Click(object sender, EventArgs e)
         {
-             User createdUser=CreateUser();
-            string outputMessage = "User has been created Suceessfully";
-            // sending LoginDetails if user select CheckBox
-            if (checkBoxSendpassword.Checked == true)
+             
+            if (string.IsNullOrWhiteSpace(txtBoxFirstName.Text) || string.IsNullOrWhiteSpace(txtBoxLastName.Text) || string.IsNullOrWhiteSpace(txtBoxEmailAddress.Text)
+               || string.IsNullOrWhiteSpace(txtBoxPhoneNumber.Text) || string.IsNullOrWhiteSpace(txtBoxUserName.Text))
             {
-                try
-                {
-                    EmailServer.SendLoginDetailsThroughSMTP(createdUser.Email, createdUser.Username, password);
-                    outputMessage = $"The login details have been send to this email:{createdUser.Email}";
-                }
-                catch (Exception ex )
-                {
-                    MessageBox.Show(ex.Message);
-                }
-                
+                lblCreatingUserErrorMessage.Text = " Fields cannot be left empty in order to create user ";
             }
-            MessageBox.Show(outputMessage, "SucessFull");
-            RefreshCreateUser();
-            //parsing ticket object to bson document sending it to  DAL and adding to Database
-            BsonDocument document = createdUser.ToBsonDocument();
-            db.AddDocumentToCollection(Database.noSqlProject,document, Collection.Users);
-            DisplayPanel(PanelName.UserOverview);
+            else 
+            {
+                User createdUser = CreateUser();
+                string messageBoxMessage = "User has been created Suceessfully";
+                // sending LoginDetails if user select CheckBox
+                if (checkBoxSendpassword.Checked == true)
+                {
+                    try
+                    {
+                        EmailServer.SendLoginDetailsThroughSMTP(createdUser.Email, createdUser.Username, password);
+                        messageBoxMessage = $"The login details have been sent to this email:{createdUser.Email}";
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                }
+                MessageBox.Show(messageBoxMessage, "SucessFull");
+                RefreshCreateUser();
+                //parsing ticket object to bson document sending it to  DAL and adding to Database
+                BsonDocument document = createdUser.ToBsonDocument();
+                db.AddDocumentToCollection(Database.noSqlProject, document, Collection.Users);
+                DisplayPanel(PanelName.UserOverview);
+            }
+           
 
         }
 
@@ -452,6 +455,7 @@ namespace DemoApp
             if (lvTicketOverview.SelectedItems.Count != 0)
             {
                 btnCloseTicket.Enabled = true;
+                btnTransferTicket.Enabled = true;
             }
         }
 
@@ -479,8 +483,6 @@ namespace DemoApp
                 ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Escalated);
                 PopulateTicketListView();
             }
-
-
         }
         private void btnCancel_Click(object sender, EventArgs e)
         {
@@ -494,6 +496,9 @@ namespace DemoApp
             txtBoxFirstName.Clear();
             txtBoxPhoneNumber.Clear();
             txtBoxLastName.Clear();
+            txtBoxUserName.Clear();
+            lblUserNameExistence.Hide();
+            lblCreatingUserErrorMessage.Hide();
             checkBoxSendpassword.Checked = false;
            
         }
@@ -503,7 +508,7 @@ namespace DemoApp
             if (lvTicketOverview.SelectedItems.Count != 0)
             {
                 Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
-                TransferTicket tranferTicketForm = new TransferTicket(ticket, this);
+                TransferTicket tranferTicketForm = new TransferTicket(ticket,this);
                 tranferTicketForm.StartPosition = this.StartPosition;
                 tranferTicketForm.ShowDialog();
             }
@@ -557,7 +562,6 @@ namespace DemoApp
                 btnCreateUser.Enabled = true;
                 lblUserNameExistence.Hide();
             }
-
         }
     }
 }

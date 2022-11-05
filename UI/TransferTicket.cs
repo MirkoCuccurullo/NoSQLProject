@@ -1,62 +1,62 @@
 ﻿using Logic;
 using Model;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DemoApp
 {
     public partial class TransferTicket : Form
     {
-
-        UserLogic ul = new UserLogic();
-        TicketLogic tl = new TicketLogic();
-        Ticket ticket;
-        Main main;
-        public TransferTicket(Ticket selectedTicket, Main main)
+        private UserLogic userLogic;
+        private TicketLogic ticketLogic;
+        private Ticket selectedTicket;
+        private User currentTicketOwner;
+        private Main main;
+        public TransferTicket(Ticket selectedTicket,Main main)
         {
 
             InitializeComponent();
+            userLogic = new UserLogic();
+            ticketLogic = new TicketLogic();
+            this.selectedTicket = selectedTicket;
+            this.main = main;
+            currentTicketOwner = userLogic.GetUserById(selectedTicket.UserID);
+            Name ticketOwnerName = BsonSerializer.Deserialize<Name>(currentTicketOwner.Name);// must deserialize before could be used
+            lblCurrentTicketUser.Text = "Current Ticket Owner: " + ticketOwnerName.First;
             InitComboBox();
 
-            ticket = selectedTicket;
-            this.main = main;
-            
         }
 
         private void InitComboBox()
         {
             comboBoxUsers.Items.Clear();
 
-            List<User> users = ul.GetAllUsers();
-
-            foreach (User u in users)
+            foreach (User user in userLogic.GetAllUsers())
             {
-                comboBoxUsers.Items.Add(u);
-                comboBoxUsers.Tag = u;
+                //cannot be compared with c# object because of name object on it  
+                if (user.ToBsonDocument() != currentTicketOwner.ToBsonDocument()) // not adding the user to combobox  when the current user 
+                {
+                    comboBoxUsers.Items.Add(user);
+                    comboBoxUsers.Tag = user;
+                }
             }
-
-            comboBoxUsers.SelectedIndex = 0;
         }
 
         private void btnTransfer_Click(object sender, EventArgs e)
         {
-            User user = comboBoxUsers.SelectedItem as User;
-            if (user != null)
-            {
-                tl.UpdateTicketUser(ticket, user);
-                main.PopulateTicketListView();
-            }
-            else
-                return;
-
+            User transferringUser = comboBoxUsers.SelectedItem as User;
+            Name transferringUserName = BsonSerializer.Deserialize<Name>(transferringUser.Name);
+            ticketLogic.UpdateTicketUser(selectedTicket, transferringUser);
+            MessageBox.Show($"The  Ticket has been transferred from {BsonSerializer.Deserialize<Name>(currentTicketOwner.Name).First} to {transferringUserName.First}.", "Successful");
+            main.PopulateTicketListView();  // refreshing the view 
             this.Close();
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();   
         }
     }
 }
