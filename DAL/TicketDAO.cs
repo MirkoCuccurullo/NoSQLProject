@@ -121,8 +121,10 @@ namespace DAL
                 collection.DeleteOneAsync(condition);
             }
         }
-        public void SortList()
+        public List<Ticket> SortList()
         {
+            List<Ticket> list = new List<Ticket>();
+
             var collection = ReturnCollection(Database.noSqlProject, Collection.Ticket);
 
             BsonDocument pipelineStage = new BsonDocument
@@ -135,14 +137,25 @@ namespace DAL
                 }
             };
 
-            BsonDocument[] pipeline = new BsonDocument[] {pipelineStage };
+            BsonDocument[] pipeline = new BsonDocument[] {pipelineStage};
 
-            List<BsonDocument> pResult = collection.Aggregate<BsonDocument>(pipeline).ToList();
+            List<BsonDocument> pResults = collection.Aggregate<BsonDocument>(pipeline).ToList();
+
+            foreach (BsonDocument pResult in pResults)
+            {
+                
+                Ticket ticket = BsonSerializer.Deserialize<Ticket>(pResult);
+                list.Add(ticket);
+            }
 
 
-                    
+            return list;
+
+
 
         }
- 
+                    
     }
+ 
 }
+

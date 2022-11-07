@@ -36,6 +36,9 @@ namespace Logic
         {
             return td.GetAllTicketOfCurrentUser(currentUser);
         }
-        public void SortList() { td.SortList(); }  
+        public List<Ticket> SortList()
+        {
+            return td.SortList();
+        }
     }
 }

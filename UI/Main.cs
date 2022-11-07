@@ -505,6 +505,14 @@ namespace DemoApp
         private void btnSort_Click(object sender, EventArgs e)
         {
             ticketLogic.SortList();
+
+            PopulateTicketListView();
         }
+        //private void txtBox_FilterBy(object sender, EventArgs e)
+        //{
+        //    lvTicketOverview.Items.Clear();
+
+        //    foreach(DataRow row in )
+        //}
     }
 }
