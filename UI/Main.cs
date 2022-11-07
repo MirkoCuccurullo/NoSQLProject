@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Linq;
 using System.Windows.Forms;
 using Logic;
 using Model;
@@ -12,15 +11,16 @@ namespace DemoApp
 {
     public partial class Main : Form
     {
-        Databases db;
-        UserLogic userLogic;
-        TicketLogic ticketLogic;
-        List<User> users;
-        List<Ticket> tickets;
+        private Databases db;
+        private UserLogic userLogic;
+        private TicketLogic ticketLogic;
+        private List<User> users;
+        private List<Ticket> tickets;
+        private List<IncidentStatistics> incidentStatistics;
         private PasswordGenerator passwordGenerator;
         private string password;
 
-        User currentUser;
+        private User currentUser;
 
 
         public Main(User currentUser)
@@ -31,6 +31,7 @@ namespace DemoApp
             userLogic = new UserLogic();
             ticketLogic = new TicketLogic();
             passwordGenerator = new PasswordGenerator();
+            incidentStatistics = new List<IncidentStatistics>();
             users = userLogic.GetAllUsers();
             DisplayPanel(PanelName.Dashboard);
             InitComboBoxes();
@@ -135,40 +136,76 @@ namespace DemoApp
             {
                 tickets = ticketLogic.GetAllTicketOfCurrentUser(currentUser);
             }
+            PopulateIncidentStatistics();
             DisplayUnresolvedIncidents();
             DisplayUrgentIncidents();
             DisplayFrequanciesOfIncidents();
         }
 
-        public void DisplayUnresolvedIncidents()
+        private void PopulateIncidentStatistics()//Create incident statistic according to the type of incident
         {
-            pltIncident.Plot.Clear();
-            int numberOfResolvedIncident = 0;
-            int numberOfUnresolvedIncident = 0;
+            incidentStatistics.Clear();
+            int[] serviceIncident = new int[] { 0, 0, 0 };
+            int[] softwareIncident = new int[] { 0, 0, 0 };
+            int[] hardwareIncident = new int[] { 0, 0, 0 };
             foreach (Ticket ticket in tickets)
             {
-                if (ticket.Status == TicketStatus.Open)
-                    numberOfUnresolvedIncident++;
-                else
-                    numberOfResolvedIncident++;
+                switch (ticket.TicketType)//filter the tickets with the incident type(ticket type)
+                {
+                    case TicketType.Service:
+                        serviceIncident[0]++;
+                        if(ticket.Status.Equals(TicketStatus.Open))
+                            serviceIncident[1]++;
+                        if (ticket.Status.Equals(TicketStatus.Closed))
+                            serviceIncident[2]++;
+                        break;
+                    case TicketType.Software:
+                        softwareIncident[0]++;
+                        if (ticket.Status.Equals(TicketStatus.Open))
+                            softwareIncident[1]++;
+                        if(ticket.Status.Equals(TicketStatus.Closed))
+                            softwareIncident[2]++;
+                        break;
+                    case TicketType.Hardware:
+                        hardwareIncident[0]++;
+                        if(ticket.Status.Equals(TicketStatus.Open))
+                            hardwareIncident[1]++;
+                        if(ticket.Status.Equals(TicketStatus.Closed))
+                            hardwareIncident[2]++;
+                        break;
+                    default:
+                        break;
+                }
+            }
+            incidentStatistics.Add(new IncidentStatistics(TicketType.Service, serviceIncident[0], serviceIncident[1], serviceIncident[2]));
+            incidentStatistics.Add(new IncidentStatistics(TicketType.Software, softwareIncident[0], softwareIncident[1], softwareIncident[2]));
+            incidentStatistics.Add(new IncidentStatistics(TicketType.Hardware, hardwareIncident[0], hardwareIncident[1], hardwareIncident[2]));
+        }
+
+
+        public void DisplayUnresolvedIncidents()
+        {
+            chrtUnresolvedIncident.Series[0].Points.Clear();
+            if (tickets.Count.Equals(0))
+                return;
+            int numberOfUnresoledIncident = 0;
+            foreach (IncidentStatistics inc in incidentStatistics)
+            {
+                numberOfUnresoledIncident += inc.OpenIncident;
             }
 
-            double[] values = { numberOfResolvedIncident, numberOfUnresolvedIncident };
-            string centerText = $"{values[1]} / {tickets.Count}";
-
-            var pie = pltIncident.Plot.AddPie(values);
-            pie.DonutSize = .5;
-            pie.CenterFont.Size = 25;
-            pie.DonutLabel = centerText;
-            pie.CenterFont.Color = Color.Gray;
-            pie.SliceFillColors = new Color[] { Color.DarkCyan, Color.Gray };
-            pltIncident.Refresh(true);
+            double[] values = { tickets.Count, numberOfUnresoledIncident };
+            string centerText = $"{values[1]}/{tickets.Count}";
+            lblNumberOfUnresolvedTicket.Text = centerText;
+            chrtUnresolvedIncident.Series["unreslovedIncident"].Points.AddXY("", values[0]);
+            chrtUnresolvedIncident.Series["unreslovedIncident"].Points.AddXY("", values[1]);
         }
 
         public void DisplayUrgentIncidents()
         {
             chrtUrgentIncident.Series[0].Points.Clear();
-
+            if (tickets.Count.Equals(0))
+                return;
             int numberOfUrgentIncident = 0;
             foreach (Ticket ticket in tickets)
             {
@@ -179,9 +216,8 @@ namespace DemoApp
             double[] values = { tickets.Count,numberOfUrgentIncident };
             string centerText = $"{values[1]}";
             lblNumberOfUrgentTicket.Text =centerText;
-            chrtUrgentIncident.Series["urgentIncident"].Points.AddXY("Total Incident", values[0]);
-            chrtUrgentIncident.Series["urgentIncident"].Points.AddXY("Urgent Incident", values[1]);
-
+            chrtUrgentIncident.Series["urgentIncident"].Points.AddXY("", values[0]);
+            chrtUrgentIncident.Series["urgentIncident"].Points.AddXY("", values[1]);
         }
 
         private bool IsUrgentTicket(Ticket ticket)
@@ -196,46 +232,38 @@ namespace DemoApp
             return false;
         }
 
-        public void DisplayFrequanciesOfIncidents()
+        private void DisplayFrequanciesOfIncidents()
         {
             try
             {
                 ClearIncidentFrequancyChart();
-                string mostFrequantIncident;
-                int[] serviceIncident = GetNumberOfIncidentByType(TicketType.Service);
-                int[] softwareIncident = GetNumberOfIncidentByType(TicketType.Software);
-                int[] hardwareIncident = GetNumberOfIncidentByType(TicketType.Hardware);
-                int[] incidentsType = new int[] { serviceIncident[0], softwareIncident[0], hardwareIncident[0] };
 
-                mostFrequantIncident = incidentsType.Max().ToString();
-                lblIncidentMonitor.Text = string.Format($"The most frequant incident type: {mostFrequantIncident}");
-                chrtFrequancyOfIncidents.Series["Number of Incident"].Points.AddXY("Service", serviceIncident[0]);
-                chrtFrequancyOfIncidents.Series["Number of Incident"].Points.AddXY("Software", softwareIncident[0]);
-                chrtFrequancyOfIncidents.Series["Number of Incident"].Points.AddXY("Hardware", hardwareIncident[0]);
-                chrtFrequancyOfIncidents.Series["unresolved Incident(%)"].Points.AddXY("Incident4", serviceIncident[1] / serviceIncident[0]);
-                chrtFrequancyOfIncidents.Series["unresolved Incident(%)"].Points.AddXY("Incident5", softwareIncident[1] / softwareIncident[0]);
-                chrtFrequancyOfIncidents.Series["unresolved Incident(%)"].Points.AddXY("Incident6", hardwareIncident[1] / hardwareIncident[0]);
+                lblIncidentMonitor.Text = string.Format($"The most frequant incident type: {mostFrequantIncidentType()}");
+                chrtFrequancyOfIncidents.Series["Number of Incident"].Points.AddXY("Service", incidentStatistics[0].NumberOfIncident);
+                chrtFrequancyOfIncidents.Series["Number of Incident"].Points.AddXY("Software", incidentStatistics[1].NumberOfIncident);
+                chrtFrequancyOfIncidents.Series["Number of Incident"].Points.AddXY("Hardware", incidentStatistics[2].NumberOfIncident);
+                chrtFrequancyOfIncidents.Series["unresolved Incident"].Points.AddXY("Service", incidentStatistics[0].OpenIncident);
+                chrtFrequancyOfIncidents.Series["unresolved Incident"].Points.AddXY("Software", incidentStatistics[1].OpenIncident);
+                chrtFrequancyOfIncidents.Series["unresolved Incident"].Points.AddXY("Hardware", incidentStatistics[2].OpenIncident);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-        private int[] GetNumberOfIncidentByType(TicketType ticketType)
-        {
-            int numberOfIncident = 0;
-            int unresolvedIncident = 0;
 
-            foreach(Ticket ti in tickets)
+        private TicketType mostFrequantIncidentType()
+        {
+            int max = 0;
+            TicketType ticketType=0;
+            foreach(IncidentStatistics incidentType in incidentStatistics)
             {
-                if (ti.DateTime.CompareTo(DateTime.Now.AddMonths(-1)) >= 0 && ticketType == ti.TicketType)
-                {
-                    numberOfIncident++;
-                    if (ti.Status.Equals(TicketStatus.Open))
-                        unresolvedIncident++;
+                if (max < incidentType.NumberOfIncident) {
+                    max = incidentType.NumberOfIncident;
+                    ticketType = incidentType.TicketType;
                 }
             }
-            return new int[] { numberOfIncident, unresolvedIncident };
+            return ticketType;
         }
 
         private void ClearIncidentFrequancyChart() 
