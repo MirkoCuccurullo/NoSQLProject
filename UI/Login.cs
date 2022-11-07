@@ -32,21 +32,6 @@ namespace DemoApp
            
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            string username = tbUsername.Text;
-            string password = tbPassword.Text;
-
-            if (CheckCredentials(username, password))
-            {
-                Main main = new Main(currentUser);
-                this.Hide();
-                main.ShowDialog();
-            }
-            else {
-                MessageBox.Show("Wrong pass");
-            }
-        }
 
         private bool CheckCredentials(string username, string password)
         {
@@ -97,6 +82,23 @@ namespace DemoApp
                 {
                     //close
                 }
+            }
+        }
+
+        private void btnLogin_Click_1(object sender, EventArgs e)
+        {
+            string username = tbUsername.Text;
+            string password = tbPassword.Text;
+
+            if (CheckCredentials(username, password))
+            {
+                Main main = new Main(currentUser);
+                this.Hide();
+                main.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Wrong pass");
             }
         }
     }

@@ -27,7 +27,23 @@ namespace DemoApp
             InitializeComponent();
         }
         
-        private void ChangePass_Click(object sender, EventArgs e)
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void ForgotPassword_Load(object sender, EventArgs e)
+        {
+            labelWarning1.Hide();
+            labelWarning2.Hide();
+            labelWarning3.Hide();
+            tbUsername.Text = Login.username;
+
+        }
+
+        private void btnChange_Click(object sender, EventArgs e)
         {
             string username = tbUsername.Text;
             string EmailPassword = EmailPass.Text;
@@ -55,25 +71,11 @@ namespace DemoApp
                     userLogic.UpdatePassword(user, passwordObject);
                     this.Close();
                 }
-            }catch(Exception expe)
+            }
+            catch (Exception expe)
             {
                 MessageBox.Show(expe.Message);
             }
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        private void ForgotPassword_Load(object sender, EventArgs e)
-        {
-            labelWarning1.Hide();
-            labelWarning2.Hide();
-            labelWarning3.Hide();
-            tbUsername.Text = Login.username;
-
-        }
-
     }
 }

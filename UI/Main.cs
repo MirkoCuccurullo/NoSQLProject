@@ -350,49 +350,7 @@ namespace DemoApp
             tbIncidentSubject.Clear();
         }
 
-        private void btnSubmitTicket_Click(object sender, EventArgs e)
-        {
 
-            if (rtbTicketDescription.Text == "" || tbIncidentSubject.Text == "")
-            {
-                lblCreateTicketError.ForeColor = Color.Red;
-                lblCreateTicketError.Text = "Subject and Description can not be empty";
-                return;
-            }
-
-            if (cbIncidentType.SelectedIndex == -1 || cbDeadline.SelectedIndex == -1 || cbPriority.SelectedIndex == -1 || cbReportUser.SelectedIndex == -1)
-            {
-                lblCreateTicketError.Text = "Fields can not be empty";
-                return;
-            }
-
-            //creating new Ticket and assigning values to it
-            Ticket ticket = new Ticket();
-
-            ticket.ID = new BsonObjectId(ObjectId.GenerateNewId());
-            ticket.TicketDeadline = (TicketDeadline)cbDeadline.SelectedItem;
-            ticket.IncidentDocument.Add(new BsonElement("description", rtbTicketDescription.Text));
-            ticket.TicketPriority = (TicketPriority)cbPriority.SelectedItem;
-            ticket.TicketType = (TicketType)cbIncidentType.SelectedItem;
-            ticket.DateTime = dtpTicketDate.Value;
-            ticket.IncidentDocument.Add(new BsonElement("subject", tbIncidentSubject.Text));
-            ticket.UserID = ((User)cbReportUser.SelectedItem).Id;
-            ticket.Status = TicketStatus.Open;
-
-            //parsing ticket object to bson document sending it to db
-            BsonDocument document = ticket.ToBsonDocument();
-            db.AddDocumentToCollection(Database.noSqlProject, document, Collection.Ticket);
-
-            MessageBox.Show("The ticket has been submited", "Successful");
-
-            refreshCreateTicket();
-
-        }
-
-        private void btnCancelTicket_Click(object sender, EventArgs e)
-        {
-            refreshCreateTicket();
-        }
 
         private void createTicketToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -590,6 +548,48 @@ namespace DemoApp
                 btnCreateUser.Enabled = true;
                 lblUserNameExistence.Hide();
             }
+        }
+
+        private void btnSubmitTicket_Click_1(object sender, EventArgs e)
+        {
+            if (rtbTicketDescription.Text == "" || tbIncidentSubject.Text == "")
+            {
+                lblCreateTicketError.ForeColor = Color.Red;
+                lblCreateTicketError.Text = "Subject and Description can not be empty";
+                return;
+            }
+
+            if (cbIncidentType.SelectedIndex == -1 || cbDeadline.SelectedIndex == -1 || cbPriority.SelectedIndex == -1 || cbReportUser.SelectedIndex == -1)
+            {
+                lblCreateTicketError.Text = "Fields can not be empty";
+                return;
+            }
+
+            //creating new Ticket and assigning values to it
+            Ticket ticket = new Ticket();
+
+            ticket.ID = new BsonObjectId(ObjectId.GenerateNewId());
+            ticket.TicketDeadline = (TicketDeadline)cbDeadline.SelectedItem;
+            ticket.IncidentDocument.Add(new BsonElement("description", rtbTicketDescription.Text));
+            ticket.TicketPriority = (TicketPriority)cbPriority.SelectedItem;
+            ticket.TicketType = (TicketType)cbIncidentType.SelectedItem;
+            ticket.DateTime = dtpTicketDate.Value;
+            ticket.IncidentDocument.Add(new BsonElement("subject", tbIncidentSubject.Text));
+            ticket.UserID = ((User)cbReportUser.SelectedItem).Id;
+            ticket.Status = TicketStatus.Open;
+
+            //parsing ticket object to bson document sending it to db
+            BsonDocument document = ticket.ToBsonDocument();
+            db.AddDocumentToCollection(Database.noSqlProject, document, Collection.Ticket);
+
+            MessageBox.Show("The ticket has been submited", "Successful");
+
+            refreshCreateTicket();
+        }
+
+        private void btnCancelTicket_Click(object sender, EventArgs e)
+        {
+            refreshCreateTicket();
         }
     }
 }
