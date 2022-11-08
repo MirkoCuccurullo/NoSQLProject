@@ -45,11 +45,9 @@ namespace DemoApp
                 userManagementToolStripMenuItem.Visible = false;
                 createTicketToolStripMenuItem.Visible = false;
                 btnCreateTicket.Visible = false;
-                btnTicketArchive.Visible = false;
                 btnTransferTicket.Visible = false;
                 btnCloseTicket.Visible = false;
                 btnEscalateTicket.Visible = false;
-                btnTicketArchive.Visible = false;
                 btnArchive.Visible = false;
                 lbArchive.Visible = false;
                 DTPArichive.Visible = false;
@@ -461,15 +459,6 @@ namespace DemoApp
             DisplayPanel(PanelName.UserOverview);
         }
 
-        private void btnEscalateTicket_Click(object sender, EventArgs e)
-        {
-            if (lvTicketOverview.SelectedItems.Count != 0)
-            {
-                Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
-                ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Escalated);
-                PopulateTicketListView();
-            }
-        }
         private void btnCancel_Click(object sender, EventArgs e)
         {
             RefreshCreateUser();
@@ -498,10 +487,6 @@ namespace DemoApp
                 tranferTicketForm.StartPosition = this.StartPosition;
                 tranferTicketForm.ShowDialog();
             }
-        }
-        private void btnCreateTicket_Click(object sender, EventArgs e)
-        {
-            DisplayPanel(PanelName.CreateTicket);
         }
 
         private void txtBox_FilterBy_Click(object sender, EventArgs e)
@@ -591,5 +576,21 @@ namespace DemoApp
         {
             refreshCreateTicket();
         }
+
+        private void btnCreateTicket_Click_1(object sender, EventArgs e)
+        {
+            DisplayPanel(PanelName.CreateTicket);
+        }
+
+        private void btnEscalateTicket_Click_1(object sender, EventArgs e)
+        {
+            if (lvTicketOverview.SelectedItems.Count != 0)
+            {
+                Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
+                ticketLogic.UpdateTicketStatus(ticket, TicketStatus.Escalated);
+                PopulateTicketListView();
+            }
+        }
+
     }
 }
