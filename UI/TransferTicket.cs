@@ -3,6 +3,7 @@ using Model;
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using System;
+using System.Runtime.ConstrainedExecution;
 using System.Windows.Forms;
 
 namespace DemoApp
@@ -56,7 +57,7 @@ namespace DemoApp
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            this.Close();   
+            this.Close();
         }
     }
 }

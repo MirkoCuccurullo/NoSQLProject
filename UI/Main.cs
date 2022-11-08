@@ -392,42 +392,7 @@ namespace DemoApp
 
         }
 
-        private void btnCreateUser_Click(object sender, EventArgs e)
-        {
-             
-            if (string.IsNullOrWhiteSpace(txtBoxFirstName.Text) || string.IsNullOrWhiteSpace(txtBoxLastName.Text) || string.IsNullOrWhiteSpace(txtBoxEmailAddress.Text)
-               || string.IsNullOrWhiteSpace(txtBoxPhoneNumber.Text) || string.IsNullOrWhiteSpace(txtBoxUserName.Text))
-            {
-                lblCreatingUserErrorMessage.Text = " Fields cannot be left empty in order to create user ";
-            }
-            else 
-            {
-                User createdUser = CreateUser();
-                string messageBoxMessage = "User has been created Suceessfully";
-                // sending LoginDetails if user select CheckBox
-                if (checkBoxSendpassword.Checked == true)
-                {
-                    try
-                    {
-                        EmailServer.SendLoginDetailsThroughSMTP(createdUser.Email, createdUser.Username, password);
-                        messageBoxMessage = $"The login details have been sent to this email:{createdUser.Email}";
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
-
-                }
-                MessageBox.Show(messageBoxMessage, "SucessFull");
-                RefreshCreateUser();
-                //parsing ticket object to bson document sending it to  DAL and adding to Database
-                BsonDocument document = createdUser.ToBsonDocument();
-                db.AddDocumentToCollection(Database.noSqlProject, document, Collection.Users);
-                DisplayPanel(PanelName.UserOverview);
-            }
-           
-
-        }
+    
 
         private void incidentManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -459,10 +424,6 @@ namespace DemoApp
             DisplayPanel(PanelName.UserOverview);
         }
 
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            RefreshCreateUser();
-        }
         private void RefreshCreateUser()
         {
             //refreshing every element of panel Create user
@@ -592,5 +553,49 @@ namespace DemoApp
             }
         }
 
+        private void btnCreateUser_Click(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtBoxFirstName.Text) || string.IsNullOrWhiteSpace(txtBoxLastName.Text) || string.IsNullOrWhiteSpace(txtBoxEmailAddress.Text)
+               || string.IsNullOrWhiteSpace(txtBoxPhoneNumber.Text) || string.IsNullOrWhiteSpace(txtBoxUserName.Text))
+            {
+                lblCreatingUserErrorMessage.Text = " Fields cannot be left empty in order to create user ";
+            }
+            else
+            {
+                User createdUser = CreateUser();
+                string messageBoxMessage = "User has been created Suceessfully";
+                // sending LoginDetails if user select CheckBox
+                if (checkBoxSendpassword.Checked == true)
+                {
+                    try
+                    {
+                        EmailServer.SendLoginDetailsThroughSMTP(createdUser.Email, createdUser.Username, password);
+                        messageBoxMessage = $"The login details have been sent to this email:{createdUser.Email}";
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+
+                }
+                MessageBox.Show(messageBoxMessage, "SucessFull");
+                RefreshCreateUser();
+                //parsing ticket object to bson document sending it to  DAL and adding to Database
+                BsonDocument document = createdUser.ToBsonDocument();
+                db.AddDocumentToCollection(Database.noSqlProject, document, Collection.Users);
+                DisplayPanel(PanelName.UserOverview);
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            RefreshCreateUser();
+        }
+
+        private void txtBoxPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // only taking no as input 
+            e.Handled = !char.IsDigit(e.KeyChar);
+        }
     }
 }
