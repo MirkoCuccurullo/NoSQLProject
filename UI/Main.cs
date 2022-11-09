@@ -240,9 +240,9 @@ namespace DemoApp
                 chrtFrequancyOfIncidents.Series["Number of Incident"].Points.AddXY("Service", incidentStatistics[0].NumberOfIncident);
                 chrtFrequancyOfIncidents.Series["Number of Incident"].Points.AddXY("Software", incidentStatistics[1].NumberOfIncident);
                 chrtFrequancyOfIncidents.Series["Number of Incident"].Points.AddXY("Hardware", incidentStatistics[2].NumberOfIncident);
-                chrtFrequancyOfIncidents.Series["unresolved Incident"].Points.AddXY("Service", incidentStatistics[0].OpenIncident);
-                chrtFrequancyOfIncidents.Series["unresolved Incident"].Points.AddXY("Software", incidentStatistics[1].OpenIncident);
-                chrtFrequancyOfIncidents.Series["unresolved Incident"].Points.AddXY("Hardware", incidentStatistics[2].OpenIncident);
+                chrtFrequancyOfIncidents.Series["Unresolved Incident"].Points.AddXY("Service", incidentStatistics[0].OpenIncident);
+                chrtFrequancyOfIncidents.Series["Unresolved Incident"].Points.AddXY("Software", incidentStatistics[1].OpenIncident);
+                chrtFrequancyOfIncidents.Series["Unresolved Incident"].Points.AddXY("Hardware", incidentStatistics[2].OpenIncident);
             }
             catch (Exception ex)
             {
