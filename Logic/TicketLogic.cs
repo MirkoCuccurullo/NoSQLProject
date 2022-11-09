@@ -30,8 +30,6 @@ namespace Logic
 
         public Ticket GetTicketByUser(User user)=>td.GetTicketByUser(user);
 
-        public void ArchiveTickets(List<Ticket> tickets) => td.ArchiveTickets(tickets);
-
         public List<Ticket> GetAllTicketOfCurrentUser(User currentUser)
         {
             return td.GetAllTicketOfCurrentUser(currentUser);
