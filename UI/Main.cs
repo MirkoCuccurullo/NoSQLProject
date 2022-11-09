@@ -14,6 +14,7 @@ namespace DemoApp
         private Databases db;
         private UserLogic userLogic;
         private TicketLogic ticketLogic;
+        private ArchiveLogic archiveLogic;
         private List<User> users;
         private List<Ticket> tickets;
         private List<IncidentStatistics> incidentStatistics;
@@ -30,6 +31,7 @@ namespace DemoApp
             db = new Databases();
             userLogic = new UserLogic();
             ticketLogic = new TicketLogic();
+            archiveLogic = new ArchiveLogic();
             passwordGenerator = new PasswordGenerator();
             incidentStatistics = new List<IncidentStatistics>();
             users = userLogic.GetAllUsers();
@@ -315,7 +317,6 @@ namespace DemoApp
         {
             try
             {
-                //tickets = ticketLogic.GetAllTicket();
                 users = userLogic.GetAllUsers();
                 lvUserOverview.Items.Clear();
 
@@ -464,7 +465,7 @@ namespace DemoApp
             {
                 if (ticket.DateTime.CompareTo(date)<=0) { expiredTickets.Add(ticket); }
             }
-            ticketLogic.ArchiveTickets(expiredTickets);
+            archiveLogic.ArchiveTickets(expiredTickets);
 
             MessageBox.Show("The tickets are stored in the archive database", "Successful");
 
@@ -596,6 +597,11 @@ namespace DemoApp
         {
             // only taking no as input 
             e.Handled = !char.IsDigit(e.KeyChar);
+        }
+
+        private void btnOpenCreateUser_Click(object sender, EventArgs e)
+        {
+            DisplayPanel(PanelName.CreateTicket);
         }
     }
 }
