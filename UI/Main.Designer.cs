@@ -30,15 +30,15 @@ namespace DemoApp
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -87,13 +87,13 @@ namespace DemoApp
             this.userManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDashboard = new System.Windows.Forms.Panel();
+            this.mdvUrgentTicket = new MaterialSkin.Controls.MaterialDivider();
             this.lblNumberOfUnresolvedTicket = new System.Windows.Forms.Label();
             this.chrtUnresolvedIncident = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblNumberOfUrgentTicket = new System.Windows.Forms.Label();
             this.chrtUrgentIncident = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblIncidentMonitor = new MaterialSkin.Controls.MaterialLabel();
             this.chrtFrequancyOfIncidents = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.richTextBox3 = new System.Windows.Forms.RichTextBox();
             this.formsPlot1 = new ScottPlot.FormsPlot();
             this.btnShowList = new MaterialSkin.Controls.MaterialRaisedButton();
             this.lblIncidentDeadlineTickets = new System.Windows.Forms.Label();
@@ -101,8 +101,6 @@ namespace DemoApp
             this.lblIncidentDeadline = new System.Windows.Forms.Label();
             this.lblUnresolvedIncident = new System.Windows.Forms.Label();
             this.lblCurrentIncident = new System.Windows.Forms.Label();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.pnlTicketOverview = new System.Windows.Forms.Panel();
             this.btnArchive = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnCloseTicket = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -131,6 +129,8 @@ namespace DemoApp
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
+            this.materialDivider2 = new MaterialSkin.Controls.MaterialDivider();
             this.pnlCreateTicket.SuspendLayout();
             this.pnlAddUser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -690,7 +690,6 @@ namespace DemoApp
             this.pnlDashboard.Controls.Add(this.chrtUrgentIncident);
             this.pnlDashboard.Controls.Add(this.lblIncidentMonitor);
             this.pnlDashboard.Controls.Add(this.chrtFrequancyOfIncidents);
-            this.pnlDashboard.Controls.Add(this.richTextBox3);
             this.pnlDashboard.Controls.Add(this.formsPlot1);
             this.pnlDashboard.Controls.Add(this.btnShowList);
             this.pnlDashboard.Controls.Add(this.lblIncidentDeadlineTickets);
@@ -698,13 +697,26 @@ namespace DemoApp
             this.pnlDashboard.Controls.Add(this.lblIncidentDeadline);
             this.pnlDashboard.Controls.Add(this.lblUnresolvedIncident);
             this.pnlDashboard.Controls.Add(this.lblCurrentIncident);
-            this.pnlDashboard.Controls.Add(this.richTextBox2);
-            this.pnlDashboard.Controls.Add(this.richTextBox1);
+            this.pnlDashboard.Controls.Add(this.mdvUrgentTicket);
+            this.pnlDashboard.Controls.Add(this.materialDivider1);
+            this.pnlDashboard.Controls.Add(this.materialDivider2);
             this.pnlDashboard.Location = new System.Drawing.Point(0, 50);
             this.pnlDashboard.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.pnlDashboard.Name = "pnlDashboard";
             this.pnlDashboard.Size = new System.Drawing.Size(1192, 1300);
             this.pnlDashboard.TabIndex = 18;
+            // 
+            // mdvUrgentTicket
+            // 
+            this.mdvUrgentTicket.BackColor = System.Drawing.Color.White;
+            this.mdvUrgentTicket.Depth = 0;
+            this.mdvUrgentTicket.ForeColor = System.Drawing.SystemColors.Window;
+            this.mdvUrgentTicket.Location = new System.Drawing.Point(612, 189);
+            this.mdvUrgentTicket.MouseState = MaterialSkin.MouseState.HOVER;
+            this.mdvUrgentTicket.Name = "mdvUrgentTicket";
+            this.mdvUrgentTicket.Size = new System.Drawing.Size(510, 598);
+            this.mdvUrgentTicket.TabIndex = 15;
+            this.mdvUrgentTicket.Text = "materialDivider1";
             // 
             // lblNumberOfUnresolvedTicket
             // 
@@ -723,8 +735,8 @@ namespace DemoApp
             // 
             // chrtUnresolvedIncident
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chrtUnresolvedIncident.ChartAreas.Add(chartArea1);
+            chartArea7.Name = "ChartArea1";
+            this.chrtUnresolvedIncident.ChartAreas.Add(chartArea7);
             this.chrtUnresolvedIncident.Location = new System.Drawing.Point(121, 360);
             this.chrtUnresolvedIncident.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.chrtUnresolvedIncident.Name = "chrtUnresolvedIncident";
@@ -732,10 +744,10 @@ namespace DemoApp
             this.chrtUnresolvedIncident.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0))))),
         System.Drawing.Color.Yellow};
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series1.Name = "unreslovedIncident";
-            this.chrtUnresolvedIncident.Series.Add(series1);
+            series9.ChartArea = "ChartArea1";
+            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series9.Name = "unreslovedIncident";
+            this.chrtUnresolvedIncident.Series.Add(series9);
             this.chrtUnresolvedIncident.Size = new System.Drawing.Size(451, 400);
             this.chrtUnresolvedIncident.TabIndex = 12;
             this.chrtUnresolvedIncident.Text = "chart1";
@@ -744,7 +756,7 @@ namespace DemoApp
             // 
             this.lblNumberOfUrgentTicket.BackColor = System.Drawing.SystemColors.Window;
             this.lblNumberOfUrgentTicket.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumberOfUrgentTicket.Location = new System.Drawing.Point(863, 533);
+            this.lblNumberOfUrgentTicket.Location = new System.Drawing.Point(855, 546);
             this.lblNumberOfUrgentTicket.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNumberOfUrgentTicket.Name = "lblNumberOfUrgentTicket";
             this.lblNumberOfUrgentTicket.Size = new System.Drawing.Size(60, 60);
@@ -754,19 +766,19 @@ namespace DemoApp
             // 
             // chrtUrgentIncident
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chrtUrgentIncident.ChartAreas.Add(chartArea2);
-            this.chrtUrgentIncident.Location = new System.Drawing.Point(664, 360);
+            chartArea8.Name = "ChartArea1";
+            this.chrtUrgentIncident.ChartAreas.Add(chartArea8);
+            this.chrtUrgentIncident.Location = new System.Drawing.Point(656, 373);
             this.chrtUrgentIncident.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.chrtUrgentIncident.Name = "chrtUrgentIncident";
             this.chrtUrgentIncident.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
             this.chrtUrgentIncident.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0))))),
         System.Drawing.Color.Yellow};
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series2.Name = "urgentIncident";
-            this.chrtUrgentIncident.Series.Add(series2);
+            series10.ChartArea = "ChartArea1";
+            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series10.Name = "urgentIncident";
+            this.chrtUrgentIncident.Series.Add(series10);
             this.chrtUrgentIncident.Size = new System.Drawing.Size(451, 400);
             this.chrtUrgentIncident.TabIndex = 10;
             this.chrtUrgentIncident.Text = "chart1";
@@ -788,40 +800,31 @@ namespace DemoApp
             // 
             // chrtFrequancyOfIncidents
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chrtFrequancyOfIncidents.ChartAreas.Add(chartArea3);
-            legend1.Name = "Legend1";
-            this.chrtFrequancyOfIncidents.Legends.Add(legend1);
+            chartArea9.Name = "ChartArea1";
+            this.chrtFrequancyOfIncidents.ChartAreas.Add(chartArea9);
+            legend3.Name = "Legend1";
+            this.chrtFrequancyOfIncidents.Legends.Add(legend3);
             this.chrtFrequancyOfIncidents.Location = new System.Drawing.Point(104, 840);
             this.chrtFrequancyOfIncidents.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.chrtFrequancyOfIncidents.Name = "chrtFrequancyOfIncidents";
             this.chrtFrequancyOfIncidents.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series3.ChartArea = "ChartArea1";
-            series3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series3.Legend = "Legend1";
-            series3.Name = "Number of Incident";
-            series4.ChartArea = "ChartArea1";
-            series4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series4.Legend = "Legend1";
-            series4.Name = "Unresolved Incident";
-            this.chrtFrequancyOfIncidents.Series.Add(series3);
-            this.chrtFrequancyOfIncidents.Series.Add(series4);
+            series11.ChartArea = "ChartArea1";
+            series11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series11.Legend = "Legend1";
+            series11.Name = "Number of Incident";
+            series12.ChartArea = "ChartArea1";
+            series12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series12.Legend = "Legend1";
+            series12.Name = "Unresolved Incident";
+            this.chrtFrequancyOfIncidents.Series.Add(series11);
+            this.chrtFrequancyOfIncidents.Series.Add(series12);
             this.chrtFrequancyOfIncidents.Size = new System.Drawing.Size(995, 356);
             this.chrtFrequancyOfIncidents.TabIndex = 7;
             this.chrtFrequancyOfIncidents.Text = "frequancy";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Title1";
-            title1.Text = "Frequancy of Incident";
-            this.chrtFrequancyOfIncidents.Titles.Add(title1);
-            // 
-            // richTextBox3
-            // 
-            this.richTextBox3.Location = new System.Drawing.Point(77, 814);
-            this.richTextBox3.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.richTextBox3.Name = "richTextBox3";
-            this.richTextBox3.Size = new System.Drawing.Size(1045, 452);
-            this.richTextBox3.TabIndex = 6;
-            this.richTextBox3.Text = "";
+            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title3.Name = "Title1";
+            title3.Text = "Frequancy of Incident";
+            this.chrtFrequancyOfIncidents.Titles.Add(title3);
             // 
             // formsPlot1
             // 
@@ -856,7 +859,7 @@ namespace DemoApp
             this.lblIncidentDeadlineTickets.AutoSize = true;
             this.lblIncidentDeadlineTickets.BackColor = System.Drawing.SystemColors.Window;
             this.lblIncidentDeadlineTickets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIncidentDeadlineTickets.Location = new System.Drawing.Point(623, 285);
+            this.lblIncidentDeadlineTickets.Location = new System.Drawing.Point(624, 292);
             this.lblIncidentDeadlineTickets.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIncidentDeadlineTickets.Name = "lblIncidentDeadlineTickets";
             this.lblIncidentDeadlineTickets.Size = new System.Drawing.Size(485, 29);
@@ -868,7 +871,7 @@ namespace DemoApp
             this.lblOpenTickets.AutoSize = true;
             this.lblOpenTickets.BackColor = System.Drawing.SystemColors.Window;
             this.lblOpenTickets.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOpenTickets.Location = new System.Drawing.Point(170, 285);
+            this.lblOpenTickets.Location = new System.Drawing.Point(216, 292);
             this.lblOpenTickets.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblOpenTickets.Name = "lblOpenTickets";
             this.lblOpenTickets.Size = new System.Drawing.Size(272, 29);
@@ -880,7 +883,7 @@ namespace DemoApp
             this.lblIncidentDeadline.AutoSize = true;
             this.lblIncidentDeadline.BackColor = System.Drawing.SystemColors.Window;
             this.lblIncidentDeadline.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIncidentDeadline.Location = new System.Drawing.Point(695, 235);
+            this.lblIncidentDeadline.Location = new System.Drawing.Point(696, 242);
             this.lblIncidentDeadline.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblIncidentDeadline.Name = "lblIncidentDeadline";
             this.lblIncidentDeadline.Size = new System.Drawing.Size(366, 37);
@@ -892,7 +895,7 @@ namespace DemoApp
             this.lblUnresolvedIncident.AutoSize = true;
             this.lblUnresolvedIncident.BackColor = System.Drawing.SystemColors.Window;
             this.lblUnresolvedIncident.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUnresolvedIncident.Location = new System.Drawing.Point(149, 235);
+            this.lblUnresolvedIncident.Location = new System.Drawing.Point(182, 242);
             this.lblUnresolvedIncident.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUnresolvedIncident.Name = "lblUnresolvedIncident";
             this.lblUnresolvedIncident.Size = new System.Drawing.Size(332, 37);
@@ -909,24 +912,6 @@ namespace DemoApp
             this.lblCurrentIncident.Size = new System.Drawing.Size(615, 74);
             this.lblCurrentIncident.TabIndex = 1;
             this.lblCurrentIncident.Text = "Current incidents";
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Location = new System.Drawing.Point(613, 189);
-            this.richTextBox2.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(510, 598);
-            this.richTextBox2.TabIndex = 2;
-            this.richTextBox2.Text = "";
-            // 
-            // richTextBox1
-            // 
-            this.richTextBox1.Location = new System.Drawing.Point(77, 189);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(510, 598);
-            this.richTextBox1.TabIndex = 2;
-            this.richTextBox1.Text = "";
             // 
             // pnlTicketOverview
             // 
@@ -1229,6 +1214,30 @@ namespace DemoApp
             this.columnHeader9.Text = "Status";
             this.columnHeader9.Width = 100;
             // 
+            // materialDivider1
+            // 
+            this.materialDivider1.BackColor = System.Drawing.Color.White;
+            this.materialDivider1.Depth = 0;
+            this.materialDivider1.ForeColor = System.Drawing.SystemColors.Window;
+            this.materialDivider1.Location = new System.Drawing.Point(77, 189);
+            this.materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDivider1.Name = "materialDivider1";
+            this.materialDivider1.Size = new System.Drawing.Size(510, 598);
+            this.materialDivider1.TabIndex = 17;
+            this.materialDivider1.Text = "materialDivider1";
+            // 
+            // materialDivider2
+            // 
+            this.materialDivider2.BackColor = System.Drawing.Color.White;
+            this.materialDivider2.Depth = 0;
+            this.materialDivider2.ForeColor = System.Drawing.SystemColors.Window;
+            this.materialDivider2.Location = new System.Drawing.Point(77, 802);
+            this.materialDivider2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDivider2.Name = "materialDivider2";
+            this.materialDivider2.Size = new System.Drawing.Size(1045, 452);
+            this.materialDivider2.TabIndex = 18;
+            this.materialDivider2.Text = "materialDivider2";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1236,11 +1245,11 @@ namespace DemoApp
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1200, 1448);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pnlDashboard);
+            this.Controls.Add(this.pnlCreateTicket);
             this.Controls.Add(this.pnlUserOverview);
             this.Controls.Add(this.pnlTicketOverview);
             this.Controls.Add(this.pnlAddUser);
-            this.Controls.Add(this.pnlDashboard);
-            this.Controls.Add(this.pnlCreateTicket);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Name = "Main";
@@ -1331,17 +1340,13 @@ namespace DemoApp
         private System.Windows.Forms.Label lblOpenTickets;
         private System.Windows.Forms.Label lblUnresolvedIncident;
         private System.Windows.Forms.Label lblCurrentIncident;
-        private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label lblIncidentDeadlineTickets;
         private System.Windows.Forms.Label lblIncidentDeadline;
-        private System.Windows.Forms.RichTextBox richTextBox2;
         private MaterialSkin.Controls.MaterialRaisedButton btnShowList;
         private System.Windows.Forms.Label lblCreateTicketError;
         private ScottPlot.FormsPlot formsPlot1;
         private System.Windows.Forms.DataVisualization.Charting.Chart chrtFrequancyOfIncidents;
-        private System.Windows.Forms.RichTextBox richTextBox3;
         private MaterialSkin.Controls.MaterialLabel lblIncidentMonitor;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chrtUrgentIncident;
         private System.Windows.Forms.Label lblNumberOfUrgentTicket;
         private Label lblCreatingUserErrorMessage;
         private Label lblNumberOfUnresolvedTicket;
@@ -1359,5 +1364,9 @@ namespace DemoApp
         private MaterialSkin.Controls.MaterialFlatButton btnCancel;
         private MaterialSkin.Controls.MaterialRaisedButton btnCreateUser;
         private MaterialSkin.Controls.MaterialRaisedButton btnOpenCreateUser;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chrtUrgentIncident;
+        private MaterialSkin.Controls.MaterialDivider mdvUrgentTicket;
+        private MaterialSkin.Controls.MaterialDivider materialDivider1;
+        private MaterialSkin.Controls.MaterialDivider materialDivider2;
     }
 }

@@ -130,19 +130,19 @@ namespace DemoApp
         {
             if (currentUser.Role == UserRoles.ServiceDeskEmployee)
             {
-                tickets = ticketLogic.GetAllTicket();
+                tickets = ticketLogic.GetAllTicket();// get all ticket instance
             }
             else
             {
-                tickets = ticketLogic.GetAllTicketOfCurrentUser(currentUser);
+                tickets = ticketLogic.GetAllTicketOfCurrentUser(currentUser);// get all tickets that belongs to current user
             }
-            PopulateIncidentStatistics();
+            CreateIncidentStatistics();
             DisplayUnresolvedIncidents();
             DisplayUrgentIncidents();
             DisplayFrequanciesOfIncidents();
         }
 
-        private void PopulateIncidentStatistics()//Create incident statistic according to the type of incident
+        private void CreateIncidentStatistics()//Create incident statistic according to the type of incident
         {
             incidentStatistics.Clear();
             int[] serviceIncident = new int[] { 0, 0, 0 };
@@ -150,7 +150,7 @@ namespace DemoApp
             int[] hardwareIncident = new int[] { 0, 0, 0 };
             foreach (Ticket ticket in tickets)
             {
-                switch (ticket.TicketType)//filter the tickets with the incident type(ticket type)
+                switch (ticket.TicketType)//sort the tickets according to the incident type(ticket status)
                 {
                     case TicketType.Service:
                         serviceIncident[0]++;
@@ -195,9 +195,9 @@ namespace DemoApp
             }
 
             double[] values = { tickets.Count, numberOfUnresoledIncident };
-            string centerText = $"{values[1]}/{tickets.Count}";
+            string centerText = $"{values[1]}/{values[0]}";
             lblNumberOfUnresolvedTicket.Text = centerText;
-            chrtUnresolvedIncident.Series["unreslovedIncident"].Points.AddXY("", values[0]);
+            chrtUnresolvedIncident.Series["unreslovedIncident"].Points.AddXY("", values[0] - values[1]);
             chrtUnresolvedIncident.Series["unreslovedIncident"].Points.AddXY("", values[1]);
         }
 
@@ -213,10 +213,10 @@ namespace DemoApp
                     numberOfUrgentIncident++;
             }
 
-            double[] values = { tickets.Count,numberOfUrgentIncident };
+            double[] values = { tickets.Count, numberOfUrgentIncident };
             string centerText = $"{values[1]}";
             lblNumberOfUrgentTicket.Text =centerText;
-            chrtUrgentIncident.Series["urgentIncident"].Points.AddXY("", values[0]);
+            chrtUrgentIncident.Series["urgentIncident"].Points.AddXY("", values[0] - values[1]);
             chrtUrgentIncident.Series["urgentIncident"].Points.AddXY("", values[1]);
         }
 
@@ -224,8 +224,7 @@ namespace DemoApp
         {
             if (ticket.Status == TicketStatus.Open)
             {
-                DateTime deadline = new DateTime();
-                deadline = ticket.DateTime.AddDays((double)ticket.TicketDeadline);
+                DateTime deadline =  ticket.DateTime.AddDays((double)ticket.TicketDeadline);
 
                 return DateTime.Now.CompareTo(deadline) > 0;
             }
@@ -233,6 +232,12 @@ namespace DemoApp
         }
 
         private void DisplayFrequanciesOfIncidents()
+/*       populate the chart that shows the frequancy of incident regarding the incident type,
+         Reason : 
+            1. Frequant incident type should be solved sooner.
+            2. If there is a common reason underneath the incident, the service desk has to hand over this to a problem management group
+            3. The company(Garden Group) keep maintaing the record from frequant incidents to inform the service staffs and normal users(Q&A page)
+*/
         {
             try
             {

@@ -2,7 +2,7 @@
 
 namespace Model
 {
-    public class IncidentStatistics
+    public class IncidentStatistics//statistic data that are used for populating the dashboard
     {
         public TicketType TicketType { get; set; }
         public int NumberOfIncident { get; set; }
