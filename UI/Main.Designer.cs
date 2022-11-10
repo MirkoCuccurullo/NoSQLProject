@@ -30,15 +30,15 @@ namespace DemoApp
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea10 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series13 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea11 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series14 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea12 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series15 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series16 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title4 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -130,6 +130,7 @@ namespace DemoApp
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnOpenCreateUser = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pnlCreateTicket.SuspendLayout();
             this.pnlAddUser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -700,20 +701,20 @@ namespace DemoApp
             // 
             // chrtUnresolvedIncident
             // 
-            chartArea10.Name = "ChartArea1";
-            this.chrtUnresolvedIncident.ChartAreas.Add(chartArea10);
-            this.chrtUnresolvedIncident.Location = new System.Drawing.Point(81, 230);
-            this.chrtUnresolvedIncident.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            chartArea1.Name = "ChartArea1";
+            this.chrtUnresolvedIncident.ChartAreas.Add(chartArea1);
+            this.chrtUnresolvedIncident.Location = new System.Drawing.Point(121, 360);
+            this.chrtUnresolvedIncident.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.chrtUnresolvedIncident.Name = "chrtUnresolvedIncident";
             this.chrtUnresolvedIncident.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
             this.chrtUnresolvedIncident.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0))))),
         System.Drawing.Color.Yellow};
-            series13.ChartArea = "ChartArea1";
-            series13.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series13.Name = "unreslovedIncident";
-            this.chrtUnresolvedIncident.Series.Add(series13);
-            this.chrtUnresolvedIncident.Size = new System.Drawing.Size(301, 256);
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series1.Name = "unreslovedIncident";
+            this.chrtUnresolvedIncident.Series.Add(series1);
+            this.chrtUnresolvedIncident.Size = new System.Drawing.Size(451, 400);
             this.chrtUnresolvedIncident.TabIndex = 12;
             this.chrtUnresolvedIncident.Text = "chart1";
             // 
@@ -730,20 +731,20 @@ namespace DemoApp
             // 
             // chrtUrgentIncident
             // 
-            chartArea11.Name = "ChartArea1";
-            this.chrtUrgentIncident.ChartAreas.Add(chartArea11);
-            this.chrtUrgentIncident.Location = new System.Drawing.Point(443, 230);
-            this.chrtUrgentIncident.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            chartArea2.Name = "ChartArea1";
+            this.chrtUrgentIncident.ChartAreas.Add(chartArea2);
+            this.chrtUrgentIncident.Location = new System.Drawing.Point(664, 360);
+            this.chrtUrgentIncident.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.chrtUrgentIncident.Name = "chrtUrgentIncident";
             this.chrtUrgentIncident.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
             this.chrtUrgentIncident.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0))))),
         System.Drawing.Color.Yellow};
-            series14.ChartArea = "ChartArea1";
-            series14.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series14.Name = "urgentIncident";
-            this.chrtUrgentIncident.Series.Add(series14);
-            this.chrtUrgentIncident.Size = new System.Drawing.Size(301, 256);
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series2.Name = "urgentIncident";
+            this.chrtUrgentIncident.Series.Add(series2);
+            this.chrtUrgentIncident.Size = new System.Drawing.Size(451, 400);
             this.chrtUrgentIncident.TabIndex = 10;
             this.chrtUrgentIncident.Text = "chart1";
             // 
@@ -763,31 +764,31 @@ namespace DemoApp
             // 
             // chrtFrequancyOfIncidents
             // 
-            chartArea12.Name = "ChartArea1";
-            this.chrtFrequancyOfIncidents.ChartAreas.Add(chartArea12);
-            legend4.Name = "Legend1";
-            this.chrtFrequancyOfIncidents.Legends.Add(legend4);
-            this.chrtFrequancyOfIncidents.Location = new System.Drawing.Point(69, 538);
-            this.chrtFrequancyOfIncidents.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            chartArea3.Name = "ChartArea1";
+            this.chrtFrequancyOfIncidents.ChartAreas.Add(chartArea3);
+            legend1.Name = "Legend1";
+            this.chrtFrequancyOfIncidents.Legends.Add(legend1);
+            this.chrtFrequancyOfIncidents.Location = new System.Drawing.Point(104, 840);
+            this.chrtFrequancyOfIncidents.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.chrtFrequancyOfIncidents.Name = "chrtFrequancyOfIncidents";
             this.chrtFrequancyOfIncidents.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series15.ChartArea = "ChartArea1";
-            series15.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series15.Legend = "Legend1";
-            series15.Name = "Number of Incident";
-            series16.ChartArea = "ChartArea1";
-            series16.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series16.Legend = "Legend1";
-            series16.Name = "Unresolved Incident";
-            this.chrtFrequancyOfIncidents.Series.Add(series15);
-            this.chrtFrequancyOfIncidents.Series.Add(series16);
-            this.chrtFrequancyOfIncidents.Size = new System.Drawing.Size(663, 228);
+            series3.ChartArea = "ChartArea1";
+            series3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series3.Legend = "Legend1";
+            series3.Name = "Number of Incident";
+            series4.ChartArea = "ChartArea1";
+            series4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series4.Legend = "Legend1";
+            series4.Name = "Unresolved Incident";
+            this.chrtFrequancyOfIncidents.Series.Add(series3);
+            this.chrtFrequancyOfIncidents.Series.Add(series4);
+            this.chrtFrequancyOfIncidents.Size = new System.Drawing.Size(995, 356);
             this.chrtFrequancyOfIncidents.TabIndex = 7;
             this.chrtFrequancyOfIncidents.Text = "frequancy";
-            title4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title4.Name = "Title1";
-            title4.Text = "Frequancy of Incident";
-            this.chrtFrequancyOfIncidents.Titles.Add(title4);
+            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title1.Name = "Title1";
+            title1.Text = "Frequancy of Incident";
+            this.chrtFrequancyOfIncidents.Titles.Add(title1);
             // 
             // richTextBox3
             // 
@@ -923,8 +924,9 @@ namespace DemoApp
             this.btnArchive.Depth = 0;
             this.btnArchive.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnArchive.Icon = null;
-            this.btnArchive.Location = new System.Drawing.Point(87, 756);
-            this.btnArchive.MinimumSize = new System.Drawing.Size(147, 36);
+            this.btnArchive.Location = new System.Drawing.Point(77, 1182);
+            this.btnArchive.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnArchive.MinimumSize = new System.Drawing.Size(220, 56);
             this.btnArchive.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnArchive.Name = "btnArchive";
             this.btnArchive.Primary = true;
@@ -1010,7 +1012,8 @@ namespace DemoApp
             // 
             this.lbArchive.AutoSize = true;
             this.lbArchive.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbArchive.Location = new System.Drawing.Point(241, 764);
+            this.lbArchive.Location = new System.Drawing.Point(340, 1194);
+            this.lbArchive.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lbArchive.Name = "lbArchive";
             this.lbArchive.Size = new System.Drawing.Size(171, 18);
             this.lbArchive.TabIndex = 24;
@@ -1029,8 +1032,8 @@ namespace DemoApp
             // 
             this.txtBox_FilterBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBox_FilterBy.ForeColor = System.Drawing.Color.Gray;
-            this.txtBox_FilterBy.Location = new System.Drawing.Point(87, 186);
-            this.txtBox_FilterBy.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
+            this.txtBox_FilterBy.Location = new System.Drawing.Point(77, 290);
+            this.txtBox_FilterBy.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.txtBox_FilterBy.Name = "txtBox_FilterBy";
             this.txtBox_FilterBy.Size = new System.Drawing.Size(239, 24);
             this.txtBox_FilterBy.TabIndex = 22;
@@ -1042,6 +1045,7 @@ namespace DemoApp
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Cooper Black", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.Location = new System.Drawing.Point(77, 60);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(360, 46);
             this.label8.TabIndex = 21;
@@ -1057,11 +1061,11 @@ namespace DemoApp
             this.lvTicketOverview.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lvTicketOverview.FullRowSelect = true;
             this.lvTicketOverview.HideSelection = false;
-            this.lvTicketOverview.Location = new System.Drawing.Point(87, 225);
-            this.lvTicketOverview.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.lvTicketOverview.Location = new System.Drawing.Point(77, 360);
+            this.lvTicketOverview.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.lvTicketOverview.MultiSelect = false;
             this.lvTicketOverview.Name = "lvTicketOverview";
-            this.lvTicketOverview.Size = new System.Drawing.Size(609, 512);
+            this.lvTicketOverview.Size = new System.Drawing.Size(1030, 800);
             this.lvTicketOverview.TabIndex = 0;
             this.lvTicketOverview.UseCompatibleStateImageBehavior = false;
             this.lvTicketOverview.View = System.Windows.Forms.View.Details;
@@ -1101,7 +1105,7 @@ namespace DemoApp
             this.lvUserOverview.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.lvUserOverview.MultiSelect = false;
             this.lvUserOverview.Name = "lvUserOverview";
-            this.lvUserOverview.Size = new System.Drawing.Size(688, 669);
+            this.lvUserOverview.Size = new System.Drawing.Size(1030, 960);
             this.lvUserOverview.TabIndex = 2;
             this.lvUserOverview.UseCompatibleStateImageBehavior = false;
             this.lvUserOverview.View = System.Windows.Forms.View.Details;
@@ -1133,6 +1137,7 @@ namespace DemoApp
             // 
             // pnlUserOverview
             // 
+            this.pnlUserOverview.Controls.Add(this.btnOpenCreateUser);
             this.pnlUserOverview.Controls.Add(this.lblUserOverview);
             this.pnlUserOverview.Controls.Add(this.lvUserOverview);
             this.pnlUserOverview.Location = new System.Drawing.Point(0, 32);
@@ -1171,6 +1176,24 @@ namespace DemoApp
             this.columnHeader9.Text = "Status";
             this.columnHeader9.Width = 100;
             // 
+            // btnOpenCreateUser
+            // 
+            this.btnOpenCreateUser.AutoSize = true;
+            this.btnOpenCreateUser.Depth = 0;
+            this.btnOpenCreateUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenCreateUser.Icon = null;
+            this.btnOpenCreateUser.Location = new System.Drawing.Point(864, 134);
+            this.btnOpenCreateUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnOpenCreateUser.MinimumSize = new System.Drawing.Size(220, 56);
+            this.btnOpenCreateUser.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnOpenCreateUser.Name = "btnOpenCreateUser";
+            this.btnOpenCreateUser.Primary = true;
+            this.btnOpenCreateUser.Size = new System.Drawing.Size(220, 56);
+            this.btnOpenCreateUser.TabIndex = 27;
+            this.btnOpenCreateUser.Text = "Create User";
+            this.btnOpenCreateUser.UseVisualStyleBackColor = true;
+            this.btnOpenCreateUser.Click += new System.EventHandler(this.btnOpenCreateUser_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1178,11 +1201,11 @@ namespace DemoApp
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(800, 675);
             this.Controls.Add(this.menuStrip1);
+            this.Controls.Add(this.pnlUserOverview);
             this.Controls.Add(this.pnlTicketOverview);
             this.Controls.Add(this.pnlAddUser);
             this.Controls.Add(this.pnlDashboard);
             this.Controls.Add(this.pnlCreateTicket);
-            this.Controls.Add(this.pnlUserOverview);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Main";
@@ -1300,5 +1323,6 @@ namespace DemoApp
         private Label lblDisplay;
         private MaterialSkin.Controls.MaterialFlatButton btnCancel;
         private MaterialSkin.Controls.MaterialRaisedButton btnCreateUser;
+        private MaterialSkin.Controls.MaterialRaisedButton btnOpenCreateUser;
     }
 }
