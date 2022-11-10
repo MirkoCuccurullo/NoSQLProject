@@ -280,6 +280,7 @@ namespace DemoApp
                 {
                     //retrieveing all tickets 
                     tickets = ticketLogic.GetAllTicket();
+                    tickets = ticketLogic.SortList();
                 }
                 else
                 {
