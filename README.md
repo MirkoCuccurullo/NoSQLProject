@@ -1,5 +1,5 @@
 # NoSQLProject
 
-Service desk user: username: Vedat123 password: Ayp*2!*G
+Service desk user: username: Bijay123 password: 1234
 
- Regular user: username: testt123  password: 1234
+ Regular user: username: Mirko123  password: 1234
