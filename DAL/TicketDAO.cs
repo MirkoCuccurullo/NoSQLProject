@@ -135,39 +135,7 @@ namespace DAL
                 throw new MongoException("something went wrong while updating user in the tiket");
             }
         }
-        public List<Ticket> SortList()
-        {
-            List<Ticket> list = new List<Ticket>();
-
-            var collection = ReturnCollection(Database.noSqlProject, Collection.Ticket);
-
-            BsonDocument pipelineStage = new BsonDocument
-            {
-                {
-                    "$sort", new BsonDocument
-                    {
-                        {"priority", 1}
-                    }
-                }
-            };
-
-            BsonDocument[] pipeline = new BsonDocument[] {pipelineStage};
-
-            List<BsonDocument> pResults = collection.Aggregate<BsonDocument>(pipeline).ToList();
-
-            foreach (BsonDocument pResult in pResults)
-            {
-                
-                Ticket ticket = BsonSerializer.Deserialize<Ticket>(pResult);
-                list.Add(ticket);
-            }
-
-
-            return list;
-
-
-
-        }
+       
                     
     }
  

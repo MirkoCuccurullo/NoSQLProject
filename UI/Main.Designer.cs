@@ -30,15 +30,15 @@ namespace DemoApp
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea2 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series3 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series4 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title1 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea5 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea6 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend2 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title2 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -111,7 +111,6 @@ namespace DemoApp
             this.btnCreateTicket = new MaterialSkin.Controls.MaterialRaisedButton();
             this.lbArchive = new System.Windows.Forms.Label();
             this.DTPArichive = new System.Windows.Forms.DateTimePicker();
-            this.txtBox_FilterBy = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.lvTicketOverview = new System.Windows.Forms.ListView();
             this.clSubject = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -131,6 +130,7 @@ namespace DemoApp
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cBoxPriorityLvl = new System.Windows.Forms.ComboBox();
             this.pnlCreateTicket.SuspendLayout();
             this.pnlAddUser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -617,7 +617,7 @@ namespace DemoApp
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(1200, 38);
+            this.menuStrip1.Size = new System.Drawing.Size(1200, 48);
             this.menuStrip1.TabIndex = 17;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -626,7 +626,7 @@ namespace DemoApp
             this.dashboardToolStripMenuItem.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.dashboardToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(149, 36);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(149, 46);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
@@ -635,7 +635,7 @@ namespace DemoApp
             this.incidentManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createTicketToolStripMenuItem});
             this.incidentManagementToolStripMenuItem.Name = "incidentManagementToolStripMenuItem";
-            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(270, 36);
+            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(270, 46);
             this.incidentManagementToolStripMenuItem.Text = "Incident Management";
             this.incidentManagementToolStripMenuItem.Click += new System.EventHandler(this.incidentManagementToolStripMenuItem_Click);
             // 
@@ -651,7 +651,7 @@ namespace DemoApp
             this.userManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createUserToolStripMenuItem});
             this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
-            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(231, 36);
+            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(231, 46);
             this.userManagementToolStripMenuItem.Text = "User Management";
             this.userManagementToolStripMenuItem.Click += new System.EventHandler(this.userManagementToolStripMenuItem_Click);
             // 
@@ -702,8 +702,8 @@ namespace DemoApp
             // 
             // chrtUnresolvedIncident
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chrtUnresolvedIncident.ChartAreas.Add(chartArea1);
+            chartArea4.Name = "ChartArea1";
+            this.chrtUnresolvedIncident.ChartAreas.Add(chartArea4);
             this.chrtUnresolvedIncident.Location = new System.Drawing.Point(81, 230);
             this.chrtUnresolvedIncident.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.chrtUnresolvedIncident.Name = "chrtUnresolvedIncident";
@@ -711,10 +711,10 @@ namespace DemoApp
             this.chrtUnresolvedIncident.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0))))),
         System.Drawing.Color.Yellow};
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series1.Name = "unreslovedIncident";
-            this.chrtUnresolvedIncident.Series.Add(series1);
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series5.Name = "unreslovedIncident";
+            this.chrtUnresolvedIncident.Series.Add(series5);
             this.chrtUnresolvedIncident.Size = new System.Drawing.Size(301, 256);
             this.chrtUnresolvedIncident.TabIndex = 12;
             this.chrtUnresolvedIncident.Text = "chart1";
@@ -732,8 +732,8 @@ namespace DemoApp
             // 
             // chrtUrgentIncident
             // 
-            chartArea2.Name = "ChartArea1";
-            this.chrtUrgentIncident.ChartAreas.Add(chartArea2);
+            chartArea5.Name = "ChartArea1";
+            this.chrtUrgentIncident.ChartAreas.Add(chartArea5);
             this.chrtUrgentIncident.Location = new System.Drawing.Point(443, 230);
             this.chrtUrgentIncident.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.chrtUrgentIncident.Name = "chrtUrgentIncident";
@@ -741,10 +741,10 @@ namespace DemoApp
             this.chrtUrgentIncident.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0))))),
         System.Drawing.Color.Yellow};
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series2.Name = "urgentIncident";
-            this.chrtUrgentIncident.Series.Add(series2);
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series6.Name = "urgentIncident";
+            this.chrtUrgentIncident.Series.Add(series6);
             this.chrtUrgentIncident.Size = new System.Drawing.Size(301, 256);
             this.chrtUrgentIncident.TabIndex = 10;
             this.chrtUrgentIncident.Text = "chart1";
@@ -765,31 +765,31 @@ namespace DemoApp
             // 
             // chrtFrequancyOfIncidents
             // 
-            chartArea3.Name = "ChartArea1";
-            this.chrtFrequancyOfIncidents.ChartAreas.Add(chartArea3);
-            legend1.Name = "Legend1";
-            this.chrtFrequancyOfIncidents.Legends.Add(legend1);
+            chartArea6.Name = "ChartArea1";
+            this.chrtFrequancyOfIncidents.ChartAreas.Add(chartArea6);
+            legend2.Name = "Legend1";
+            this.chrtFrequancyOfIncidents.Legends.Add(legend2);
             this.chrtFrequancyOfIncidents.Location = new System.Drawing.Point(69, 538);
             this.chrtFrequancyOfIncidents.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.chrtFrequancyOfIncidents.Name = "chrtFrequancyOfIncidents";
             this.chrtFrequancyOfIncidents.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series3.ChartArea = "ChartArea1";
-            series3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series3.Legend = "Legend1";
-            series3.Name = "Number of Incident";
-            series4.ChartArea = "ChartArea1";
-            series4.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series4.Legend = "Legend1";
-            series4.Name = "Unresolved Incident";
-            this.chrtFrequancyOfIncidents.Series.Add(series3);
-            this.chrtFrequancyOfIncidents.Series.Add(series4);
+            series7.ChartArea = "ChartArea1";
+            series7.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series7.Legend = "Legend1";
+            series7.Name = "Number of Incident";
+            series8.ChartArea = "ChartArea1";
+            series8.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series8.Legend = "Legend1";
+            series8.Name = "Unresolved Incident";
+            this.chrtFrequancyOfIncidents.Series.Add(series7);
+            this.chrtFrequancyOfIncidents.Series.Add(series8);
             this.chrtFrequancyOfIncidents.Size = new System.Drawing.Size(663, 228);
             this.chrtFrequancyOfIncidents.TabIndex = 7;
             this.chrtFrequancyOfIncidents.Text = "frequancy";
-            title1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title1.Name = "Title1";
-            title1.Text = "Frequancy of Incident";
-            this.chrtFrequancyOfIncidents.Titles.Add(title1);
+            title2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title2.Name = "Title1";
+            title2.Text = "Frequancy of Incident";
+            this.chrtFrequancyOfIncidents.Titles.Add(title2);
             // 
             // richTextBox3
             // 
@@ -902,6 +902,7 @@ namespace DemoApp
             // 
             // pnlTicketOverview
             // 
+            this.pnlTicketOverview.Controls.Add(this.cBoxPriorityLvl);
             this.pnlTicketOverview.Controls.Add(this.btnArchive);
             this.pnlTicketOverview.Controls.Add(this.btnCloseTicket);
             this.pnlTicketOverview.Controls.Add(this.btnEscalateTicket);
@@ -909,7 +910,6 @@ namespace DemoApp
             this.pnlTicketOverview.Controls.Add(this.btnCreateTicket);
             this.pnlTicketOverview.Controls.Add(this.lbArchive);
             this.pnlTicketOverview.Controls.Add(this.DTPArichive);
-            this.pnlTicketOverview.Controls.Add(this.txtBox_FilterBy);
             this.pnlTicketOverview.Controls.Add(this.label8);
             this.pnlTicketOverview.Controls.Add(this.lvTicketOverview);
             this.pnlTicketOverview.Location = new System.Drawing.Point(0, 32);
@@ -925,7 +925,7 @@ namespace DemoApp
             this.btnArchive.Depth = 0;
             this.btnArchive.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnArchive.Icon = null;
-            this.btnArchive.Location = new System.Drawing.Point(87, 756);
+            this.btnArchive.Location = new System.Drawing.Point(86, 764);
             this.btnArchive.MinimumSize = new System.Drawing.Size(147, 36);
             this.btnArchive.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnArchive.Name = "btnArchive";
@@ -1012,7 +1012,7 @@ namespace DemoApp
             // 
             this.lbArchive.AutoSize = true;
             this.lbArchive.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbArchive.Location = new System.Drawing.Point(241, 764);
+            this.lbArchive.Location = new System.Drawing.Point(240, 772);
             this.lbArchive.Name = "lbArchive";
             this.lbArchive.Size = new System.Drawing.Size(278, 29);
             this.lbArchive.TabIndex = 24;
@@ -1021,23 +1021,11 @@ namespace DemoApp
             // DTPArichive
             // 
             this.DTPArichive.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DTPArichive.Location = new System.Drawing.Point(429, 764);
+            this.DTPArichive.Location = new System.Drawing.Point(428, 772);
             this.DTPArichive.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.DTPArichive.Name = "DTPArichive";
             this.DTPArichive.Size = new System.Drawing.Size(268, 35);
             this.DTPArichive.TabIndex = 23;
-            // 
-            // txtBox_FilterBy
-            // 
-            this.txtBox_FilterBy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBox_FilterBy.ForeColor = System.Drawing.Color.Gray;
-            this.txtBox_FilterBy.Location = new System.Drawing.Point(87, 186);
-            this.txtBox_FilterBy.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
-            this.txtBox_FilterBy.Name = "txtBox_FilterBy";
-            this.txtBox_FilterBy.Size = new System.Drawing.Size(239, 35);
-            this.txtBox_FilterBy.TabIndex = 22;
-            this.txtBox_FilterBy.Text = "Filter by subject...";
-            this.txtBox_FilterBy.Click += new System.EventHandler(this.txtBox_FilterBy_Click);
             // 
             // label8
             // 
@@ -1193,6 +1181,18 @@ namespace DemoApp
             this.columnHeader9.Text = "Status";
             this.columnHeader9.Width = 100;
             // 
+            // cBoxPriorityLvl
+            // 
+            this.cBoxPriorityLvl.FormattingEnabled = true;
+            this.cBoxPriorityLvl.Items.AddRange(new object[] {
+            "High to Low",
+            "Low to High"});
+            this.cBoxPriorityLvl.Location = new System.Drawing.Point(88, 180);
+            this.cBoxPriorityLvl.Name = "cBoxPriorityLvl";
+            this.cBoxPriorityLvl.Size = new System.Drawing.Size(178, 33);
+            this.cBoxPriorityLvl.TabIndex = 33;
+            this.cBoxPriorityLvl.Text = "Priority level";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1201,10 +1201,10 @@ namespace DemoApp
             this.ClientSize = new System.Drawing.Size(1200, 1055);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.pnlTicketOverview);
+            this.Controls.Add(this.pnlUserOverview);
             this.Controls.Add(this.pnlAddUser);
             this.Controls.Add(this.pnlDashboard);
             this.Controls.Add(this.pnlCreateTicket);
-            this.Controls.Add(this.pnlUserOverview);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Main";
@@ -1288,7 +1288,6 @@ namespace DemoApp
         private System.Windows.Forms.ColumnHeader firstName;
         private System.Windows.Forms.ColumnHeader lastName;
         private System.Windows.Forms.ColumnHeader ticket;
-        private System.Windows.Forms.TextBox txtBox_FilterBy;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label lbArchive;
         private System.Windows.Forms.DateTimePicker DTPArichive;
@@ -1323,5 +1322,6 @@ namespace DemoApp
         private MaterialSkin.Controls.MaterialFlatButton btnCancel;
         private MaterialSkin.Controls.MaterialRaisedButton btnCreateUser;
         private MaterialSkin.Controls.MaterialRaisedButton btnOpenCreateUser;
+        private ComboBox cBoxPriorityLvl;
     }
 }

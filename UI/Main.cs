@@ -11,10 +11,12 @@ namespace DemoApp
 {
     public partial class Main : Form
     {
+
         private Databases db;
         private UserLogic userLogic;
         private TicketLogic ticketLogic;
         private ArchiveLogic archiveLogic;
+        private SortLogic sortLogic;
         private List<User> users;
         private List<Ticket> tickets;
         private List<IncidentStatistics> incidentStatistics;
@@ -32,6 +34,7 @@ namespace DemoApp
             userLogic = new UserLogic();
             ticketLogic = new TicketLogic();
             archiveLogic = new ArchiveLogic();
+            sortLogic = new SortLogic();
             passwordGenerator = new PasswordGenerator();
             incidentStatistics = new List<IncidentStatistics>();
             users = userLogic.GetAllUsers();
@@ -82,8 +85,8 @@ namespace DemoApp
                 case PanelName.TicketOverview:
                     HideAllPanels();
                     pnlTicketOverview.Show();
-                    PopulateTicketListView();
-                    InitComboBoxes();
+                    PickPriorityLevel();
+                    InitComboBoxes();                  
                     break;
                 case PanelName.UserOverview:
                     HideAllPanels();
@@ -112,7 +115,7 @@ namespace DemoApp
             cbPriority.DataSource = Enum.GetValues(typeof(TicketPriority));
             cbDeadline.DataSource = Enum.GetValues(typeof(TicketDeadline));
             cbIncidentType.DataSource = Enum.GetValues(typeof(TicketType));
-            comboBoxTypeOfUser.DataSource= Enum.GetValues(typeof(UserRoles));
+            comboBoxTypeOfUser.DataSource = Enum.GetValues(typeof(UserRoles));
             comboBoxLocation.DataSource = Enum.GetValues(typeof(Branch));
 
 
@@ -154,7 +157,7 @@ namespace DemoApp
                 {
                     case TicketType.Service:
                         serviceIncident[0]++;
-                        if(ticket.Status.Equals(TicketStatus.Open))
+                        if (ticket.Status.Equals(TicketStatus.Open))
                             serviceIncident[1]++;
                         if (ticket.Status.Equals(TicketStatus.Closed))
                             serviceIncident[2]++;
@@ -163,14 +166,14 @@ namespace DemoApp
                         softwareIncident[0]++;
                         if (ticket.Status.Equals(TicketStatus.Open))
                             softwareIncident[1]++;
-                        if(ticket.Status.Equals(TicketStatus.Closed))
+                        if (ticket.Status.Equals(TicketStatus.Closed))
                             softwareIncident[2]++;
                         break;
                     case TicketType.Hardware:
                         hardwareIncident[0]++;
-                        if(ticket.Status.Equals(TicketStatus.Open))
+                        if (ticket.Status.Equals(TicketStatus.Open))
                             hardwareIncident[1]++;
-                        if(ticket.Status.Equals(TicketStatus.Closed))
+                        if (ticket.Status.Equals(TicketStatus.Closed))
                             hardwareIncident[2]++;
                         break;
                     default:
@@ -213,9 +216,9 @@ namespace DemoApp
                     numberOfUrgentIncident++;
             }
 
-            double[] values = { tickets.Count,numberOfUrgentIncident };
+            double[] values = { tickets.Count, numberOfUrgentIncident };
             string centerText = $"{values[1]}";
-            lblNumberOfUrgentTicket.Text =centerText;
+            lblNumberOfUrgentTicket.Text = centerText;
             chrtUrgentIncident.Series["urgentIncident"].Points.AddXY("", values[0]);
             chrtUrgentIncident.Series["urgentIncident"].Points.AddXY("", values[1]);
         }
@@ -255,10 +258,11 @@ namespace DemoApp
         private TicketType mostFrequantIncidentType()
         {
             int max = 0;
-            TicketType ticketType=0;
-            foreach(IncidentStatistics incidentType in incidentStatistics)
+            TicketType ticketType = 0;
+            foreach (IncidentStatistics incidentType in incidentStatistics)
             {
-                if (max < incidentType.NumberOfIncident) {
+                if (max < incidentType.NumberOfIncident)
+                {
                     max = incidentType.NumberOfIncident;
                     ticketType = incidentType.TicketType;
                 }
@@ -266,26 +270,49 @@ namespace DemoApp
             return ticketType;
         }
 
-        private void ClearIncidentFrequancyChart() 
+        private void ClearIncidentFrequancyChart()
         {
-            for(int i=0; i<chrtFrequancyOfIncidents.Series.Count; i++)
+            for (int i = 0; i < chrtFrequancyOfIncidents.Series.Count; i++)
                 chrtFrequancyOfIncidents.Series[i].Points.Clear();
         }
+       
+        private void PickPriorityLevel()
+        {
+            if (currentUser.Role == UserRoles.ServiceDeskEmployee)
+            {
 
+                if (cBoxPriorityLvl.SelectedIndex == 0)
+                {
+                    tickets = sortLogic.SortList(1);
+                }
+                else if (cBoxPriorityLvl.SelectedIndex == 1)
+                {
+                    tickets = sortLogic.SortList(-1);
+                }
+                else
+                {
+                    tickets = ticketLogic.GetAllTicket();
+
+                }
+
+            }
+            else
+            {
+                tickets = ticketLogic.GetAllTicketOfCurrentUser(currentUser);
+            }
+
+
+            DisplayPanel(PanelName.TicketOverview);
+            PopulateTicketListView();
+           
+        }
+        
         public void PopulateTicketListView()
         {
             try
             {
-                if (currentUser.Role == UserRoles.ServiceDeskEmployee)
-                {
-                    //retrieveing all tickets 
-                    tickets = ticketLogic.GetAllTicket();
-                    tickets = ticketLogic.SortList();
-                }
-                else
-                {
-                    tickets = ticketLogic.GetAllTicketOfCurrentUser(currentUser);
-                }
+                
+
 
                 //clearing preavious items
                 lvTicketOverview.Items.Clear();
@@ -324,13 +351,13 @@ namespace DemoApp
                 foreach (User user in users)
                 {
                     Name name = BsonSerializer.Deserialize<Name>(user.Name);
-                    Ticket userTicket=ticketLogic.GetTicketByUser(user);
+                    Ticket userTicket = ticketLogic.GetTicketByUser(user);
                     Incident incident = BsonSerializer.Deserialize<Incident>(userTicket.IncidentDocument);
                     ListViewItem li = new ListViewItem(user.Id.ToString());
                     li.SubItems.Add(user.Email);
                     li.SubItems.Add(name.First);
                     li.SubItems.Add(name.Last);
-                    if(userTicket.ID!=null)
+                    if (userTicket.ID != null)
                         li.SubItems.Add(incident.Subject);
                     lvUserOverview.Items.Add(li);
                     li.Tag = user;
@@ -381,20 +408,20 @@ namespace DemoApp
             user.PhoneNumber = txtBoxPhoneNumber.Text;
             user.Role = (UserRoles)comboBoxTypeOfUser.SelectedItem;
             user.Username = txtBoxUserName.Text;
-            user.Location=(Branch)comboBoxLocation.SelectedItem;
-            password= passwordGenerator.RandomPasswordGenrator();  
-            
+            user.Location = (Branch)comboBoxLocation.SelectedItem;
+            password = passwordGenerator.RandomPasswordGenrator();
+
             // making the password hash using password generator class
             Dictionary<string, string> passwordDictionary = passwordGenerator.GenerateSaltedHash(password);
-            Password passwordObject= new Password();
+            Password passwordObject = new Password();
             passwordObject.Salt = passwordDictionary["Salt"];
-            passwordObject.Hash= passwordDictionary["HashedPassword"]; 
-            user.Password= passwordObject.ToBsonDocument();
+            passwordObject.Hash = passwordDictionary["HashedPassword"];
+            user.Password = passwordObject.ToBsonDocument();
             return user;
 
         }
 
-    
+
 
         private void incidentManagementToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -438,7 +465,7 @@ namespace DemoApp
             lblUserNameExistence.Hide();
             lblCreatingUserErrorMessage.Hide();
             checkBoxSendpassword.Checked = false;
-           
+
         }
 
         private void btnTransferTicket_Click(object sender, EventArgs e)
@@ -446,15 +473,10 @@ namespace DemoApp
             if (lvTicketOverview.SelectedItems.Count != 0)
             {
                 Ticket ticket = lvTicketOverview.SelectedItems[0].Tag as Ticket;
-                TransferTicket tranferTicketForm = new TransferTicket(ticket,this);
+                TransferTicket tranferTicketForm = new TransferTicket(ticket, this);
                 tranferTicketForm.StartPosition = this.StartPosition;
                 tranferTicketForm.ShowDialog();
             }
-        }
-
-        private void txtBox_FilterBy_Click(object sender, EventArgs e)
-        {
-            txtBox_FilterBy.Clear();
         }
 
         private void btnArchive_Click(object sender, EventArgs e)
@@ -464,7 +486,7 @@ namespace DemoApp
 
             foreach (Ticket ticket in tickets)
             {
-                if (ticket.DateTime.CompareTo(date)<=0) { expiredTickets.Add(ticket); }
+                if (ticket.DateTime.CompareTo(date) <= 0) { expiredTickets.Add(ticket); }
             }
             archiveLogic.ArchiveTickets(expiredTickets);
 
@@ -492,7 +514,8 @@ namespace DemoApp
                 lblUserNameExistence.ForeColor = Color.Red;
                 btnCreateUser.Enabled = false;
             }
-            else {
+            else
+            {
                 btnCreateUser.Enabled = true;
                 lblUserNameExistence.Hide();
             }
@@ -603,6 +626,23 @@ namespace DemoApp
         private void btnOpenCreateUser_Click(object sender, EventArgs e)
         {
             DisplayPanel(PanelName.CreateTicket);
+        }
+
+        private void txtBox_FilterBy_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+        private void filter(string input)
+        {
+     
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+           
+            
+        
+
         }
     }
 }

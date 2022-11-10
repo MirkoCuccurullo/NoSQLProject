@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DAL;
 using Model;
+using MongoDB.Bson;
 
 namespace Logic
 {
@@ -34,9 +35,8 @@ namespace Logic
         {
             return td.GetAllTicketOfCurrentUser(currentUser);
         }
-        public List<Ticket> SortList()
-        {
-            return td.SortList();
-        }
+     
+    
+
     }
 }
