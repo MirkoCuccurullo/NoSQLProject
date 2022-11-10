@@ -131,6 +131,7 @@ namespace DemoApp
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.buttonCreateUser = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pnlCreateTicket.SuspendLayout();
             this.pnlAddUser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -616,7 +617,7 @@ namespace DemoApp
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(800, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(800, 30);
             this.menuStrip1.TabIndex = 17;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -625,7 +626,7 @@ namespace DemoApp
             this.dashboardToolStripMenuItem.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.dashboardToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(96, 28);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
@@ -634,7 +635,7 @@ namespace DemoApp
             this.incidentManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createTicketToolStripMenuItem});
             this.incidentManagementToolStripMenuItem.Name = "incidentManagementToolStripMenuItem";
-            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(168, 24);
+            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(168, 28);
             this.incidentManagementToolStripMenuItem.Text = "Incident Management";
             this.incidentManagementToolStripMenuItem.Click += new System.EventHandler(this.incidentManagementToolStripMenuItem_Click);
             // 
@@ -650,7 +651,7 @@ namespace DemoApp
             this.userManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createUserToolStripMenuItem});
             this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
-            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(144, 24);
+            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(144, 28);
             this.userManagementToolStripMenuItem.Text = "User Management";
             this.userManagementToolStripMenuItem.Click += new System.EventHandler(this.userManagementToolStripMenuItem_Click);
             // 
@@ -1115,25 +1116,26 @@ namespace DemoApp
             // email
             // 
             this.email.Text = "Email";
-            this.email.Width = 350;
+            this.email.Width = 190;
             // 
             // firstName
             // 
             this.firstName.Text = "First Name";
-            this.firstName.Width = 150;
+            this.firstName.Width = 100;
             // 
             // lastName
             // 
             this.lastName.Text = "Last Name";
-            this.lastName.Width = 150;
+            this.lastName.Width = 100;
             // 
             // ticket
             // 
             this.ticket.Text = "Subject";
-            this.ticket.Width = 300;
+            this.ticket.Width = 200;
             // 
             // pnlUserOverview
             // 
+            this.pnlUserOverview.Controls.Add(this.buttonCreateUser);
             this.pnlUserOverview.Controls.Add(this.btnOpenCreateUser);
             this.pnlUserOverview.Controls.Add(this.lblUserOverview);
             this.pnlUserOverview.Controls.Add(this.lvUserOverview);
@@ -1191,6 +1193,22 @@ namespace DemoApp
             // 
             this.columnHeader9.Text = "Status";
             this.columnHeader9.Width = 100;
+            // 
+            // buttonCreateUser
+            // 
+            this.buttonCreateUser.AutoSize = true;
+            this.buttonCreateUser.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.buttonCreateUser.Depth = 0;
+            this.buttonCreateUser.Icon = null;
+            this.buttonCreateUser.Location = new System.Drawing.Point(608, 52);
+            this.buttonCreateUser.MouseState = MaterialSkin.MouseState.HOVER;
+            this.buttonCreateUser.Name = "buttonCreateUser";
+            this.buttonCreateUser.Primary = true;
+            this.buttonCreateUser.Size = new System.Drawing.Size(131, 36);
+            this.buttonCreateUser.TabIndex = 28;
+            this.buttonCreateUser.Text = "Create User";
+            this.buttonCreateUser.UseVisualStyleBackColor = true;
+            this.buttonCreateUser.Click += new System.EventHandler(this.buttonCreateUser_Click);
             // 
             // Main
             // 
@@ -1322,5 +1340,6 @@ namespace DemoApp
         private MaterialSkin.Controls.MaterialFlatButton btnCancel;
         private MaterialSkin.Controls.MaterialRaisedButton btnCreateUser;
         private MaterialSkin.Controls.MaterialRaisedButton btnOpenCreateUser;
+        private MaterialSkin.Controls.MaterialRaisedButton buttonCreateUser;
     }
 }

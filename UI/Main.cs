@@ -603,5 +603,10 @@ namespace DemoApp
         {
             DisplayPanel(PanelName.CreateTicket);
         }
+
+        private void buttonCreateUser_Click(object sender, EventArgs e)
+        {
+            DisplayPanel(PanelName.CreateUser);
+        }
     }
 }
