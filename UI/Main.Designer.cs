@@ -125,12 +125,12 @@ namespace DemoApp
             this.lastName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.ticket = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.pnlUserOverview = new System.Windows.Forms.Panel();
+            this.btnOpenCreateUser = new MaterialSkin.Controls.MaterialRaisedButton();
             this.lblUserOverview = new System.Windows.Forms.Label();
             this.columnHeader6 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.btnOpenCreateUser = new MaterialSkin.Controls.MaterialRaisedButton();
             this.pnlCreateTicket.SuspendLayout();
             this.pnlAddUser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -637,7 +637,7 @@ namespace DemoApp
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1200, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1200, 40);
             this.menuStrip1.TabIndex = 17;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -646,7 +646,7 @@ namespace DemoApp
             this.dashboardToolStripMenuItem.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.dashboardToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(149, 44);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(149, 36);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
@@ -655,7 +655,7 @@ namespace DemoApp
             this.incidentManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createTicketToolStripMenuItem});
             this.incidentManagementToolStripMenuItem.Name = "incidentManagementToolStripMenuItem";
-            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(270, 44);
+            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(270, 36);
             this.incidentManagementToolStripMenuItem.Text = "Incident Management";
             this.incidentManagementToolStripMenuItem.Click += new System.EventHandler(this.incidentManagementToolStripMenuItem_Click);
             // 
@@ -671,7 +671,7 @@ namespace DemoApp
             this.userManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createUserToolStripMenuItem});
             this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
-            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(231, 44);
+            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(231, 36);
             this.userManagementToolStripMenuItem.Text = "User Management";
             this.userManagementToolStripMenuItem.Click += new System.EventHandler(this.userManagementToolStripMenuItem_Click);
             // 
@@ -1179,6 +1179,25 @@ namespace DemoApp
             this.pnlUserOverview.Size = new System.Drawing.Size(1200, 1339);
             this.pnlUserOverview.TabIndex = 18;
             // 
+            // btnOpenCreateUser
+            // 
+            this.btnOpenCreateUser.AutoSize = true;
+            this.btnOpenCreateUser.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnOpenCreateUser.Depth = 0;
+            this.btnOpenCreateUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpenCreateUser.Icon = null;
+            this.btnOpenCreateUser.Location = new System.Drawing.Point(864, 134);
+            this.btnOpenCreateUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.btnOpenCreateUser.MinimumSize = new System.Drawing.Size(220, 56);
+            this.btnOpenCreateUser.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnOpenCreateUser.Name = "btnOpenCreateUser";
+            this.btnOpenCreateUser.Primary = true;
+            this.btnOpenCreateUser.Size = new System.Drawing.Size(220, 56);
+            this.btnOpenCreateUser.TabIndex = 27;
+            this.btnOpenCreateUser.Text = "Create User";
+            this.btnOpenCreateUser.UseVisualStyleBackColor = true;
+            this.btnOpenCreateUser.Click += new System.EventHandler(this.btnOpenCreateUser_Click);
+            // 
             // lblUserOverview
             // 
             this.lblUserOverview.AutoSize = true;
@@ -1209,24 +1228,6 @@ namespace DemoApp
             // 
             this.columnHeader9.Text = "Status";
             this.columnHeader9.Width = 100;
-            // 
-            // btnOpenCreateUser
-            // 
-            this.btnOpenCreateUser.AutoSize = true;
-            this.btnOpenCreateUser.Depth = 0;
-            this.btnOpenCreateUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpenCreateUser.Icon = null;
-            this.btnOpenCreateUser.Location = new System.Drawing.Point(864, 134);
-            this.btnOpenCreateUser.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.btnOpenCreateUser.MinimumSize = new System.Drawing.Size(220, 56);
-            this.btnOpenCreateUser.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnOpenCreateUser.Name = "btnOpenCreateUser";
-            this.btnOpenCreateUser.Primary = true;
-            this.btnOpenCreateUser.Size = new System.Drawing.Size(220, 56);
-            this.btnOpenCreateUser.TabIndex = 27;
-            this.btnOpenCreateUser.Text = "Create User";
-            this.btnOpenCreateUser.UseVisualStyleBackColor = true;
-            this.btnOpenCreateUser.Click += new System.EventHandler(this.btnOpenCreateUser_Click);
             // 
             // Main
             // 
