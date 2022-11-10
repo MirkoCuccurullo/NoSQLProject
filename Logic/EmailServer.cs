@@ -3,6 +3,7 @@ using System.Net.Mail;
 using System.Net;
 using Microsoft.Extensions.Configuration;
 using System.IO;
+using System;
 
 namespace Logic
 {
@@ -34,6 +35,10 @@ namespace Logic
             catch (SmtpFailedRecipientsException ) 
             {
                 throw new SmtpFailedRecipientsException($"Unable to send email to {email}");
+            }
+            catch(Exception )
+            {
+                throw new Exception("Something went wrong");
             }
         }
     }

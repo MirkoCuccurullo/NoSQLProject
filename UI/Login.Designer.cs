@@ -33,9 +33,9 @@ namespace DemoApp
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.lblUsername = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
-            this.btnLogin = new System.Windows.Forms.Button();
             this.ForgotPass = new System.Windows.Forms.LinkLabel();
             this.labelLogin = new System.Windows.Forms.Label();
+            this.btnLogin = new MaterialSkin.Controls.MaterialRaisedButton();
             this.SuspendLayout();
             // 
             // tbUsername
@@ -79,18 +79,6 @@ namespace DemoApp
             this.lblPassword.TabIndex = 3;
             this.lblPassword.Text = "Password:";
             // 
-            // btnLogin
-            // 
-            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLogin.Location = new System.Drawing.Point(200, 354);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(2);
-            this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(97, 41);
-            this.btnLogin.TabIndex = 4;
-            this.btnLogin.Text = "Login";
-            this.btnLogin.UseVisualStyleBackColor = true;
-            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            // 
             // ForgotPass
             // 
             this.ForgotPass.AutoSize = true;
@@ -108,20 +96,37 @@ namespace DemoApp
             this.labelLogin.AutoSize = true;
             this.labelLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 30F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelLogin.ForeColor = System.Drawing.SystemColors.AppWorkspace;
-            this.labelLogin.Location = new System.Drawing.Point(202, 23);
+            this.labelLogin.Location = new System.Drawing.Point(171, 23);
             this.labelLogin.Name = "labelLogin";
             this.labelLogin.Size = new System.Drawing.Size(118, 46);
             this.labelLogin.TabIndex = 6;
             this.labelLogin.Text = "Login";
             // 
+            // btnLogin
+            // 
+            this.btnLogin.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnLogin.Depth = 0;
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Icon = null;
+            this.btnLogin.Location = new System.Drawing.Point(179, 341);
+            this.btnLogin.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Primary = true;
+            this.btnLogin.Size = new System.Drawing.Size(99, 36);
+            this.btnLogin.TabIndex = 7;
+            this.btnLogin.Text = "Login";
+            this.btnLogin.UseVisualStyleBackColor = true;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click_1);
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(600, 727);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(489, 428);
+            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.labelLogin);
             this.Controls.Add(this.ForgotPass);
-            this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblUsername);
             this.Controls.Add(this.tbPassword);
@@ -138,9 +143,9 @@ namespace DemoApp
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.LinkLabel ForgotPass;
         private System.Windows.Forms.Label labelLogin;
+        private MaterialSkin.Controls.MaterialRaisedButton btnLogin;
     }
 }
 

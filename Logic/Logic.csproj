@@ -166,6 +166,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ArchiveLogic.cs" />
     <Compile Include="Databases.cs" />
     <Compile Include="EmailServer.cs" />
     <Compile Include="PasswordGenerator.cs" />

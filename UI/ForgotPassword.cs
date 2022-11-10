@@ -27,33 +27,7 @@ namespace DemoApp
             InitializeComponent();
         }
         
-        private void ChangePass_Click(object sender, EventArgs e)
-        {
-            string username = tbUsername.Text;
-            string EmailPassword = EmailPass.Text;
-            string NewPassword = NewPass.Text;
-            string confirmPass = confirmPasstb.Text;
-            User user = userLogic.GetUserbyUsername(username);
 
-            if (NewPassword != confirmPass)
-            {
-                labelWarning3.Show();
-            }
-            else if  (EmailPassword != tempPass)
-            {
-               
-                labelWarning2.Show();
-            }
-            else
-            {
-                Dictionary<string, string> passwordDictionary = passwordGenerator.GenerateSaltedHash(NewPassword);
-                Password passwordObject = new Password();
-                passwordObject.Salt = passwordDictionary["Salt"];
-                passwordObject.Hash = passwordDictionary["HashedPassword"];
-                userLogic.UpdatePassword(user,passwordObject);
-                this.Close();
-            }
-        }
 
         private void button1_Click(object sender, EventArgs e)
         {
@@ -69,5 +43,39 @@ namespace DemoApp
 
         }
 
+        private void btnChange_Click(object sender, EventArgs e)
+        {
+            string username = tbUsername.Text;
+            string EmailPassword = EmailPass.Text;
+            string NewPassword = NewPass.Text;
+            string confirmPass = confirmPasstb.Text;
+            User user = userLogic.GetUserbyUsername(username);
+
+            try
+            {
+                if (NewPassword != confirmPass)
+                {
+                    labelWarning3.Show();
+                }
+                else if (EmailPassword != tempPass)
+                {
+
+                    labelWarning2.Show();
+                }
+                else
+                {
+                    Dictionary<string, string> passwordDictionary = passwordGenerator.GenerateSaltedHash(NewPassword);
+                    Password passwordObject = new Password();
+                    passwordObject.Salt = passwordDictionary["Salt"];
+                    passwordObject.Hash = passwordDictionary["HashedPassword"];
+                    userLogic.UpdatePassword(user, passwordObject);
+                    this.Close();
+                }
+            }
+            catch (Exception expe)
+            {
+                MessageBox.Show(expe.Message);
+            }
+        }
     }
 }

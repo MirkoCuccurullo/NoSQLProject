@@ -32,21 +32,6 @@ namespace DemoApp
            
         }
 
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            string username = tbUsername.Text;
-            string password = tbPassword.Text;
-
-            if (CheckCredentials(username, password))
-            {
-                Main main = new Main(currentUser);
-                this.Hide();
-                main.ShowDialog();
-            }
-            else {
-                MessageBox.Show("Wrong pass");
-            }
-        }
 
         private bool CheckCredentials(string username, string password)
         {
@@ -77,19 +62,43 @@ namespace DemoApp
                 DialogResult dialogResult = MessageBox.Show("An Email will be send with a new password", "Forgot Password", MessageBoxButtons.YesNo);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    username = tbUsername.Text;
-                    User user=userLogic.GetUserbyUsername(username);
-                    string randomPasswordTemp = passwordGenerator.RandomPasswordGenrator();
-                    ForgotPassword forgotPassword = new ForgotPassword(randomPasswordTemp,user);
-                    forgotPassword.Show();
-                    //send email with random password
-                    EmailServer.SendLoginDetailsThroughSMTP(user.Email, username,randomPasswordTemp);
+                    try
+                    {
+                        username = tbUsername.Text;
+                        User user = userLogic.GetUserbyUsername(username);
+                  
+                        string randomPasswordTemp = passwordGenerator.RandomPasswordGenrator();
+                        ForgotPassword forgotPassword = new ForgotPassword(randomPasswordTemp, user);
+                        forgotPassword.Show();
+                        //send email with random password
+                        EmailServer.SendLoginDetailsThroughSMTP(user.Email, username, randomPasswordTemp);
+                  
+                    }
+                    catch(Exception exp)
+                    { MessageBox.Show(exp.Message); }
 
                 }
                 else if (dialogResult == DialogResult.No)
                 {
                     //close
                 }
+            }
+        }
+
+        private void btnLogin_Click_1(object sender, EventArgs e)
+        {
+            string username = tbUsername.Text;
+            string password = tbPassword.Text;
+
+            if (CheckCredentials(username, password))
+            {
+                Main main = new Main(currentUser);
+                this.Hide();
+                main.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Wrong pass");
             }
         }
     }

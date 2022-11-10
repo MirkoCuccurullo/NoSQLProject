@@ -35,10 +35,18 @@ namespace DAL
         public List<Databases_Model> GetDatabases()
         {
             List<Databases_Model> all_databases = new List<Databases_Model>();
-            
-            foreach (BsonDocument db in client.ListDatabases().ToList())
+
+            try
             {
-                all_databases.Add(BsonSerializer.Deserialize<Databases_Model>(db));
+
+                foreach (BsonDocument db in client.ListDatabases().ToList())
+                {
+                    all_databases.Add(BsonSerializer.Deserialize<Databases_Model>(db));
+                }
+            }
+            catch(MongoException)
+            {
+                throw new MongoException("database not found");
             }
             return all_databases;
         }

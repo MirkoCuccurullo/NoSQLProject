@@ -34,7 +34,6 @@
             this.tbUsername = new System.Windows.Forms.TextBox();
             this.EmailPass = new System.Windows.Forms.TextBox();
             this.NewPass = new System.Windows.Forms.TextBox();
-            this.ChangePass = new System.Windows.Forms.Button();
             this.BackBtn = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.confirmPasstb = new System.Windows.Forms.TextBox();
@@ -42,6 +41,7 @@
             this.labelWarning2 = new System.Windows.Forms.Label();
             this.labelWarning1 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
+            this.btnChange = new MaterialSkin.Controls.MaterialRaisedButton();
             this.SuspendLayout();
             // 
             // label1
@@ -97,17 +97,6 @@
             this.NewPass.Name = "NewPass";
             this.NewPass.Size = new System.Drawing.Size(267, 30);
             this.NewPass.TabIndex = 5;
-            // 
-            // ChangePass
-            // 
-            this.ChangePass.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ChangePass.Location = new System.Drawing.Point(158, 473);
-            this.ChangePass.Name = "ChangePass";
-            this.ChangePass.Size = new System.Drawing.Size(232, 43);
-            this.ChangePass.TabIndex = 6;
-            this.ChangePass.Text = "Change Password";
-            this.ChangePass.UseVisualStyleBackColor = true;
-            this.ChangePass.Click += new System.EventHandler(this.ChangePass_Click);
             // 
             // BackBtn
             // 
@@ -181,11 +170,28 @@
             this.label5.TabIndex = 13;
             this.label5.Text = "Change Password";
             // 
+            // btnChange
+            // 
+            this.btnChange.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnChange.Depth = 0;
+            this.btnChange.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnChange.Icon = null;
+            this.btnChange.Location = new System.Drawing.Point(185, 495);
+            this.btnChange.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnChange.Name = "btnChange";
+            this.btnChange.Primary = true;
+            this.btnChange.Size = new System.Drawing.Size(155, 36);
+            this.btnChange.TabIndex = 14;
+            this.btnChange.Text = "Change";
+            this.btnChange.UseVisualStyleBackColor = true;
+            this.btnChange.Click += new System.EventHandler(this.btnChange_Click);
+            // 
             // ForgotPassword
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(600, 727);
+            this.Controls.Add(this.btnChange);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.labelWarning1);
             this.Controls.Add(this.labelWarning2);
@@ -193,7 +199,6 @@
             this.Controls.Add(this.confirmPasstb);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.BackBtn);
-            this.Controls.Add(this.ChangePass);
             this.Controls.Add(this.NewPass);
             this.Controls.Add(this.EmailPass);
             this.Controls.Add(this.tbUsername);
@@ -216,7 +221,6 @@
         private System.Windows.Forms.TextBox tbUsername;
         private System.Windows.Forms.TextBox EmailPass;
         private System.Windows.Forms.TextBox NewPass;
-        private System.Windows.Forms.Button ChangePass;
         private System.Windows.Forms.Button BackBtn;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox confirmPasstb;
@@ -224,5 +228,6 @@
         private System.Windows.Forms.Label labelWarning2;
         private System.Windows.Forms.Label labelWarning1;
         private System.Windows.Forms.Label label5;
+        private MaterialSkin.Controls.MaterialRaisedButton btnChange;
     }
 }
