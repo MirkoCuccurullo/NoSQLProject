@@ -30,15 +30,15 @@ namespace DemoApp
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea7 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series9 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea8 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series10 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea9 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series11 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series12 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Title title3 = new System.Windows.Forms.DataVisualization.Charting.Title();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea25 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series33 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea26 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series34 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea27 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend9 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series35 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series36 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Title title9 = new System.Windows.Forms.DataVisualization.Charting.Title();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -59,7 +59,7 @@ namespace DemoApp
             this.lblCreateTicketError = new System.Windows.Forms.Label();
             this.dtpTicketDate = new System.Windows.Forms.DateTimePicker();
             this.pnlAddUser = new System.Windows.Forms.Panel();
-            this.btnCancel = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnCancelUser = new MaterialSkin.Controls.MaterialFlatButton();
             this.btnCreateUser = new MaterialSkin.Controls.MaterialRaisedButton();
             this.lblDisplay = new System.Windows.Forms.Label();
             this.lblCreatingUserErrorMessage = new System.Windows.Forms.Label();
@@ -87,7 +87,6 @@ namespace DemoApp
             this.userManagementToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.createUserToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlDashboard = new System.Windows.Forms.Panel();
-            this.mdvUrgentTicket = new MaterialSkin.Controls.MaterialDivider();
             this.lblNumberOfUnresolvedTicket = new System.Windows.Forms.Label();
             this.chrtUnresolvedIncident = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.lblNumberOfUrgentTicket = new System.Windows.Forms.Label();
@@ -101,6 +100,9 @@ namespace DemoApp
             this.lblIncidentDeadline = new System.Windows.Forms.Label();
             this.lblUnresolvedIncident = new System.Windows.Forms.Label();
             this.lblCurrentIncident = new System.Windows.Forms.Label();
+            this.mdvUrgentTicket = new MaterialSkin.Controls.MaterialDivider();
+            this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
+            this.materialDivider2 = new MaterialSkin.Controls.MaterialDivider();
             this.pnlTicketOverview = new System.Windows.Forms.Panel();
             this.cBoxPriorityLvl = new System.Windows.Forms.ComboBox();
             this.btnArchive = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -129,8 +131,6 @@ namespace DemoApp
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.materialDivider1 = new MaterialSkin.Controls.MaterialDivider();
-            this.materialDivider2 = new MaterialSkin.Controls.MaterialDivider();
             this.pnlCreateTicket.SuspendLayout();
             this.pnlAddUser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -307,11 +307,11 @@ namespace DemoApp
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Cooper Black", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label9.Location = new System.Drawing.Point(77, 66);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(475, 74);
+            this.label9.Size = new System.Drawing.Size(413, 73);
             this.label9.TabIndex = 21;
             this.label9.Text = "Create Ticket";
             // 
@@ -331,7 +331,7 @@ namespace DemoApp
             this.btnCancelTicket.TabIndex = 20;
             this.btnCancelTicket.Text = "Cancel";
             this.btnCancelTicket.UseVisualStyleBackColor = true;
-            this.btnCancelTicket.Click += new System.EventHandler(this.btnCancelTicket_Click);
+            this.btnCancelTicket.Click += new System.EventHandler(this.btnCancelTicket_Click_1);
             // 
             // btnSubmitTicket
             // 
@@ -371,7 +371,7 @@ namespace DemoApp
             // 
             // pnlAddUser
             // 
-            this.pnlAddUser.Controls.Add(this.btnCancel);
+            this.pnlAddUser.Controls.Add(this.btnCancelUser);
             this.pnlAddUser.Controls.Add(this.btnCreateUser);
             this.pnlAddUser.Controls.Add(this.lblDisplay);
             this.pnlAddUser.Controls.Add(this.lblCreatingUserErrorMessage);
@@ -399,23 +399,23 @@ namespace DemoApp
             this.pnlAddUser.Size = new System.Drawing.Size(1192, 1445);
             this.pnlAddUser.TabIndex = 18;
             // 
-            // btnCancel
+            // btnCancelUser
             // 
-            this.btnCancel.AutoSize = true;
-            this.btnCancel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnCancel.Depth = 0;
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.Icon = null;
-            this.btnCancel.Location = new System.Drawing.Point(141, 1310);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(8, 11, 8, 11);
-            this.btnCancel.MouseState = MaterialSkin.MouseState.HOVER;
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Primary = false;
-            this.btnCancel.Size = new System.Drawing.Size(129, 36);
-            this.btnCancel.TabIndex = 24;
-            this.btnCancel.Text = "Cancel";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancelUser.AutoSize = true;
+            this.btnCancelUser.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnCancelUser.Depth = 0;
+            this.btnCancelUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelUser.Icon = null;
+            this.btnCancelUser.Location = new System.Drawing.Point(141, 1310);
+            this.btnCancelUser.Margin = new System.Windows.Forms.Padding(8, 11, 8, 11);
+            this.btnCancelUser.MouseState = MaterialSkin.MouseState.HOVER;
+            this.btnCancelUser.Name = "btnCancelUser";
+            this.btnCancelUser.Primary = false;
+            this.btnCancelUser.Size = new System.Drawing.Size(129, 36);
+            this.btnCancelUser.TabIndex = 24;
+            this.btnCancelUser.Text = "Cancel";
+            this.btnCancelUser.UseVisualStyleBackColor = true;
+            this.btnCancelUser.Click += new System.EventHandler(this.btnCancelUser_Click_1);
             // 
             // btnCreateUser
             // 
@@ -438,11 +438,11 @@ namespace DemoApp
             // lblDisplay
             // 
             this.lblDisplay.AutoSize = true;
-            this.lblDisplay.Font = new System.Drawing.Font("Cooper Black", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDisplay.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDisplay.Location = new System.Drawing.Point(128, 92);
             this.lblDisplay.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDisplay.Name = "lblDisplay";
-            this.lblDisplay.Size = new System.Drawing.Size(579, 74);
+            this.lblDisplay.Size = new System.Drawing.Size(522, 73);
             this.lblDisplay.TabIndex = 22;
             this.lblDisplay.Text = "Create New User";
             // 
@@ -637,7 +637,7 @@ namespace DemoApp
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(8, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1200, 40);
+            this.menuStrip1.Size = new System.Drawing.Size(1200, 48);
             this.menuStrip1.TabIndex = 17;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -706,18 +706,6 @@ namespace DemoApp
             this.pnlDashboard.Size = new System.Drawing.Size(1192, 1300);
             this.pnlDashboard.TabIndex = 18;
             // 
-            // mdvUrgentTicket
-            // 
-            this.mdvUrgentTicket.BackColor = System.Drawing.Color.White;
-            this.mdvUrgentTicket.Depth = 0;
-            this.mdvUrgentTicket.ForeColor = System.Drawing.SystemColors.Window;
-            this.mdvUrgentTicket.Location = new System.Drawing.Point(612, 189);
-            this.mdvUrgentTicket.MouseState = MaterialSkin.MouseState.HOVER;
-            this.mdvUrgentTicket.Name = "mdvUrgentTicket";
-            this.mdvUrgentTicket.Size = new System.Drawing.Size(510, 598);
-            this.mdvUrgentTicket.TabIndex = 15;
-            this.mdvUrgentTicket.Text = "materialDivider1";
-            // 
             // lblNumberOfUnresolvedTicket
             // 
             this.lblNumberOfUnresolvedTicket.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -735,8 +723,8 @@ namespace DemoApp
             // 
             // chrtUnresolvedIncident
             // 
-            chartArea7.Name = "ChartArea1";
-            this.chrtUnresolvedIncident.ChartAreas.Add(chartArea7);
+            chartArea25.Name = "ChartArea1";
+            this.chrtUnresolvedIncident.ChartAreas.Add(chartArea25);
             this.chrtUnresolvedIncident.Location = new System.Drawing.Point(121, 360);
             this.chrtUnresolvedIncident.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.chrtUnresolvedIncident.Name = "chrtUnresolvedIncident";
@@ -744,10 +732,10 @@ namespace DemoApp
             this.chrtUnresolvedIncident.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0))))),
         System.Drawing.Color.Yellow};
-            series9.ChartArea = "ChartArea1";
-            series9.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series9.Name = "unreslovedIncident";
-            this.chrtUnresolvedIncident.Series.Add(series9);
+            series33.ChartArea = "ChartArea1";
+            series33.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series33.Name = "unreslovedIncident";
+            this.chrtUnresolvedIncident.Series.Add(series33);
             this.chrtUnresolvedIncident.Size = new System.Drawing.Size(451, 400);
             this.chrtUnresolvedIncident.TabIndex = 12;
             this.chrtUnresolvedIncident.Text = "chart1";
@@ -766,8 +754,8 @@ namespace DemoApp
             // 
             // chrtUrgentIncident
             // 
-            chartArea8.Name = "ChartArea1";
-            this.chrtUrgentIncident.ChartAreas.Add(chartArea8);
+            chartArea26.Name = "ChartArea1";
+            this.chrtUrgentIncident.ChartAreas.Add(chartArea26);
             this.chrtUrgentIncident.Location = new System.Drawing.Point(656, 373);
             this.chrtUrgentIncident.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.chrtUrgentIncident.Name = "chrtUrgentIncident";
@@ -775,10 +763,10 @@ namespace DemoApp
             this.chrtUrgentIncident.PaletteCustomColors = new System.Drawing.Color[] {
         System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0))))),
         System.Drawing.Color.Yellow};
-            series10.ChartArea = "ChartArea1";
-            series10.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
-            series10.Name = "urgentIncident";
-            this.chrtUrgentIncident.Series.Add(series10);
+            series34.ChartArea = "ChartArea1";
+            series34.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Doughnut;
+            series34.Name = "urgentIncident";
+            this.chrtUrgentIncident.Series.Add(series34);
             this.chrtUrgentIncident.Size = new System.Drawing.Size(451, 400);
             this.chrtUrgentIncident.TabIndex = 10;
             this.chrtUrgentIncident.Text = "chart1";
@@ -800,31 +788,31 @@ namespace DemoApp
             // 
             // chrtFrequancyOfIncidents
             // 
-            chartArea9.Name = "ChartArea1";
-            this.chrtFrequancyOfIncidents.ChartAreas.Add(chartArea9);
-            legend3.Name = "Legend1";
-            this.chrtFrequancyOfIncidents.Legends.Add(legend3);
+            chartArea27.Name = "ChartArea1";
+            this.chrtFrequancyOfIncidents.ChartAreas.Add(chartArea27);
+            legend9.Name = "Legend1";
+            this.chrtFrequancyOfIncidents.Legends.Add(legend9);
             this.chrtFrequancyOfIncidents.Location = new System.Drawing.Point(104, 840);
             this.chrtFrequancyOfIncidents.Margin = new System.Windows.Forms.Padding(4, 2, 4, 2);
             this.chrtFrequancyOfIncidents.Name = "chrtFrequancyOfIncidents";
             this.chrtFrequancyOfIncidents.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.Excel;
-            series11.ChartArea = "ChartArea1";
-            series11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series11.Legend = "Legend1";
-            series11.Name = "Number of Incident";
-            series12.ChartArea = "ChartArea1";
-            series12.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series12.Legend = "Legend1";
-            series12.Name = "Unresolved Incident";
-            this.chrtFrequancyOfIncidents.Series.Add(series11);
-            this.chrtFrequancyOfIncidents.Series.Add(series12);
+            series35.ChartArea = "ChartArea1";
+            series35.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series35.Legend = "Legend1";
+            series35.Name = "Number of Incident";
+            series36.ChartArea = "ChartArea1";
+            series36.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series36.Legend = "Legend1";
+            series36.Name = "Unresolved Incident";
+            this.chrtFrequancyOfIncidents.Series.Add(series35);
+            this.chrtFrequancyOfIncidents.Series.Add(series36);
             this.chrtFrequancyOfIncidents.Size = new System.Drawing.Size(995, 356);
             this.chrtFrequancyOfIncidents.TabIndex = 7;
             this.chrtFrequancyOfIncidents.Text = "frequancy";
-            title3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            title3.Name = "Title1";
-            title3.Text = "Frequancy of Incident";
-            this.chrtFrequancyOfIncidents.Titles.Add(title3);
+            title9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            title9.Name = "Title1";
+            title9.Text = "Frequancy of Incident";
+            this.chrtFrequancyOfIncidents.Titles.Add(title9);
             // 
             // formsPlot1
             // 
@@ -905,13 +893,49 @@ namespace DemoApp
             // lblCurrentIncident
             // 
             this.lblCurrentIncident.AutoSize = true;
-            this.lblCurrentIncident.Font = new System.Drawing.Font("Cooper Black", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCurrentIncident.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCurrentIncident.Location = new System.Drawing.Point(77, 60);
             this.lblCurrentIncident.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblCurrentIncident.Name = "lblCurrentIncident";
-            this.lblCurrentIncident.Size = new System.Drawing.Size(615, 74);
+            this.lblCurrentIncident.Size = new System.Drawing.Size(517, 73);
             this.lblCurrentIncident.TabIndex = 1;
             this.lblCurrentIncident.Text = "Current incidents";
+            // 
+            // mdvUrgentTicket
+            // 
+            this.mdvUrgentTicket.BackColor = System.Drawing.Color.White;
+            this.mdvUrgentTicket.Depth = 0;
+            this.mdvUrgentTicket.ForeColor = System.Drawing.SystemColors.Window;
+            this.mdvUrgentTicket.Location = new System.Drawing.Point(612, 189);
+            this.mdvUrgentTicket.MouseState = MaterialSkin.MouseState.HOVER;
+            this.mdvUrgentTicket.Name = "mdvUrgentTicket";
+            this.mdvUrgentTicket.Size = new System.Drawing.Size(510, 598);
+            this.mdvUrgentTicket.TabIndex = 15;
+            this.mdvUrgentTicket.Text = "materialDivider1";
+            // 
+            // materialDivider1
+            // 
+            this.materialDivider1.BackColor = System.Drawing.Color.White;
+            this.materialDivider1.Depth = 0;
+            this.materialDivider1.ForeColor = System.Drawing.SystemColors.Window;
+            this.materialDivider1.Location = new System.Drawing.Point(77, 189);
+            this.materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDivider1.Name = "materialDivider1";
+            this.materialDivider1.Size = new System.Drawing.Size(510, 598);
+            this.materialDivider1.TabIndex = 17;
+            this.materialDivider1.Text = "materialDivider1";
+            // 
+            // materialDivider2
+            // 
+            this.materialDivider2.BackColor = System.Drawing.Color.White;
+            this.materialDivider2.Depth = 0;
+            this.materialDivider2.ForeColor = System.Drawing.SystemColors.Window;
+            this.materialDivider2.Location = new System.Drawing.Point(77, 802);
+            this.materialDivider2.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialDivider2.Name = "materialDivider2";
+            this.materialDivider2.Size = new System.Drawing.Size(1045, 452);
+            this.materialDivider2.TabIndex = 18;
+            this.materialDivider2.Text = "materialDivider2";
             // 
             // pnlTicketOverview
             // 
@@ -937,9 +961,9 @@ namespace DemoApp
             this.cBoxPriorityLvl.Items.AddRange(new object[] {
             "High to Low",
             "Low to High"});
-            this.cBoxPriorityLvl.Location = new System.Drawing.Point(88, 180);
+            this.cBoxPriorityLvl.Location = new System.Drawing.Point(85, 288);
             this.cBoxPriorityLvl.Name = "cBoxPriorityLvl";
-            this.cBoxPriorityLvl.Size = new System.Drawing.Size(178, 33);
+            this.cBoxPriorityLvl.Size = new System.Drawing.Size(240, 33);
             this.cBoxPriorityLvl.TabIndex = 33;
             this.cBoxPriorityLvl.Text = "Priority level";
             this.cBoxPriorityLvl.SelectedIndexChanged += new System.EventHandler(this.cBoxPriorityLvl_SelectedIndexChanged);
@@ -1053,7 +1077,7 @@ namespace DemoApp
             // DTPArichive
             // 
             this.DTPArichive.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DTPArichive.Location = new System.Drawing.Point(428, 772);
+            this.DTPArichive.Location = new System.Drawing.Point(744, 1191);
             this.DTPArichive.Margin = new System.Windows.Forms.Padding(3, 1, 3, 1);
             this.DTPArichive.Name = "DTPArichive";
             this.DTPArichive.Size = new System.Drawing.Size(268, 35);
@@ -1066,7 +1090,7 @@ namespace DemoApp
             this.label8.Location = new System.Drawing.Point(77, 60);
             this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(579, 74);
+            this.label8.Size = new System.Drawing.Size(487, 73);
             this.label8.TabIndex = 21;
             this.label8.Text = "Ticket Overview";
             // 
@@ -1093,22 +1117,22 @@ namespace DemoApp
             // clSubject
             // 
             this.clSubject.Text = "Subject";
-            this.clSubject.Width = 150;
+            this.clSubject.Width = 340;
             // 
             // clUser
             // 
             this.clUser.Text = "User";
-            this.clUser.Width = 150;
+            this.clUser.Width = 260;
             // 
             // clDate
             // 
             this.clDate.Text = "Date";
-            this.clDate.Width = 80;
+            this.clDate.Width = 270;
             // 
             // clStatus
             // 
             this.clStatus.Text = "Status";
-            this.clStatus.Width = 100;
+            this.clStatus.Width = 160;
             // 
             // lvUserOverview
             // 
@@ -1187,11 +1211,11 @@ namespace DemoApp
             // lblUserOverview
             // 
             this.lblUserOverview.AutoSize = true;
-            this.lblUserOverview.Font = new System.Drawing.Font("Cooper Black", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUserOverview.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUserOverview.Location = new System.Drawing.Point(77, 60);
             this.lblUserOverview.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblUserOverview.Name = "lblUserOverview";
-            this.lblUserOverview.Size = new System.Drawing.Size(517, 74);
+            this.lblUserOverview.Size = new System.Drawing.Size(451, 73);
             this.lblUserOverview.TabIndex = 22;
             this.lblUserOverview.Text = "User Overview";
             // 
@@ -1215,30 +1239,6 @@ namespace DemoApp
             this.columnHeader9.Text = "Status";
             this.columnHeader9.Width = 100;
             // 
-            // materialDivider1
-            // 
-            this.materialDivider1.BackColor = System.Drawing.Color.White;
-            this.materialDivider1.Depth = 0;
-            this.materialDivider1.ForeColor = System.Drawing.SystemColors.Window;
-            this.materialDivider1.Location = new System.Drawing.Point(77, 189);
-            this.materialDivider1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialDivider1.Name = "materialDivider1";
-            this.materialDivider1.Size = new System.Drawing.Size(510, 598);
-            this.materialDivider1.TabIndex = 17;
-            this.materialDivider1.Text = "materialDivider1";
-            // 
-            // materialDivider2
-            // 
-            this.materialDivider2.BackColor = System.Drawing.Color.White;
-            this.materialDivider2.Depth = 0;
-            this.materialDivider2.ForeColor = System.Drawing.SystemColors.Window;
-            this.materialDivider2.Location = new System.Drawing.Point(77, 802);
-            this.materialDivider2.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialDivider2.Name = "materialDivider2";
-            this.materialDivider2.Size = new System.Drawing.Size(1045, 452);
-            this.materialDivider2.TabIndex = 18;
-            this.materialDivider2.Text = "materialDivider2";
-            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
@@ -1246,12 +1246,11 @@ namespace DemoApp
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(1200, 1448);
             this.Controls.Add(this.menuStrip1);
-            this.Controls.Add(this.pnlDashboard);
-            this.Controls.Add(this.pnlCreateTicket);
-            this.Controls.Add(this.pnlUserOverview);
             this.Controls.Add(this.pnlTicketOverview);
             this.Controls.Add(this.pnlUserOverview);
             this.Controls.Add(this.pnlAddUser);
+            this.Controls.Add(this.pnlDashboard);
+            this.Controls.Add(this.pnlCreateTicket);
             this.MainMenuStrip = this.menuStrip1;
             this.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.Name = "Main";
@@ -1362,7 +1361,7 @@ namespace DemoApp
         private MaterialSkin.Controls.MaterialRaisedButton btnArchive;
         private Label label9;
         private Label lblDisplay;
-        private MaterialSkin.Controls.MaterialFlatButton btnCancel;
+        private MaterialSkin.Controls.MaterialFlatButton btnCancelUser;
         private MaterialSkin.Controls.MaterialRaisedButton btnCreateUser;
         private MaterialSkin.Controls.MaterialRaisedButton btnOpenCreateUser;
         private ComboBox cBoxPriorityLvl;

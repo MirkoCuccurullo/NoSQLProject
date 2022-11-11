@@ -56,6 +56,7 @@ namespace DemoApp
                 btnArchive.Visible = false;
                 lbArchive.Visible = false;
                 DTPArichive.Visible = false;
+                cBoxPriorityLvl.Visible = false;
                
             }
         }
@@ -291,7 +292,6 @@ namespace DemoApp
 
                 if (currentUser.Role == UserRoles.ServiceDeskEmployee)
                 {
-
                     if (cBoxPriorityLvl.SelectedIndex == 0)
                     {
                         tickets = sortLogic.SortList(1);                   
@@ -306,7 +306,6 @@ namespace DemoApp
                         tickets = ticketLogic.GetAllTicket();
                         
                     }
-
                 }
                 else
                 {
@@ -327,7 +326,7 @@ namespace DemoApp
                     User user = userLogic.GetUserById(ticket.UserID);
                     Name name = BsonSerializer.Deserialize<Name>(user.Name);
                     li.SubItems.Add(name.First);
-                    li.SubItems.Add(ticket.DateTime.ToString());
+                    li.SubItems.Add(ticket.DateTime.ToString("MM/dd/yyyy H:mm"));
                     li.SubItems.Add(ticket.Status.ToString());
 
                     //adding item to the list
@@ -605,18 +604,13 @@ namespace DemoApp
                 }
                 MessageBox.Show(messageBoxMessage, "SucessFull");
                 RefreshCreateUser();
+
                 //parsing ticket object to bson document sending it to  DAL and adding to Database
                 BsonDocument document = createdUser.ToBsonDocument();
                 db.AddDocumentToCollection(Database.noSqlProject, document, Collection.Users);
                 DisplayPanel(PanelName.UserOverview);
             }
         }
-
-        private void btnCancel_Click(object sender, EventArgs e)
-        {
-            RefreshCreateUser();
-        }
-
         private void txtBoxPhoneNumber_KeyPress(object sender, KeyPressEventArgs e)
         {
             // only taking no as input 
@@ -625,20 +619,27 @@ namespace DemoApp
 
         private void btnOpenCreateUser_Click(object sender, EventArgs e)
         {
-            DisplayPanel(PanelName.CreateTicket);
+            DisplayPanel(PanelName.CreateUser);
         }
 
         private void cBoxPriorityLvl_SelectedIndexChanged(object sender, EventArgs e)
         {
            
+            DisplayPanel(PanelName.TicketOverview);
+        }
 
-                if (cBoxPriorityLvl.SelectedIndex == 0 || cBoxPriorityLvl.SelectedIndex == 1)
-                {
-                     DisplayPanel(PanelName.TicketOverview);
+        private void btnCancelTicket_Click_1(object sender, EventArgs e)
+        {
+            RefreshCreateUser();
+            pnlCreateTicket.Hide();
+            DisplayPanel(PanelName.TicketOverview);
+        }
 
-                }
-          
-
+        private void btnCancelUser_Click_1(object sender, EventArgs e)
+        {
+            RefreshCreateUser();
+            pnlAddUser.Hide();
+            DisplayPanel(PanelName.UserOverview);
         }
     }
 }
