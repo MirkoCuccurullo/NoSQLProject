@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿
 using System.Collections.Generic;
 using System.Linq;
 using Model;
@@ -20,7 +19,7 @@ namespace DAL
             try
             {
 
-                //getting user collection
+                //getting ticket collection
                 var collection = ReturnCollection(Database.noSqlProject, Collection.Ticket);
 
                 //getting all documents in the collection 
@@ -48,7 +47,7 @@ namespace DAL
             try
             {
 
-                //getting user collection
+                //getting ticket collection
                 var collection = ReturnCollection(Database.noSqlProject, Collection.Ticket);
 
                 var filter = Builders<BsonDocument>.Filter.Eq("userID", currentUser.Id);
@@ -71,6 +70,29 @@ namespace DAL
             return tickets;
         }
 
+        public Ticket GetTicketByUser(User user)
+        {
+            Ticket ticket = new Ticket();
+            try
+            {
+                var collection = ReturnCollection(Database.noSqlProject, Collection.Ticket);
+                var builder = Builders<BsonDocument>.Filter;
+                var baseFilter = builder.Eq("userID", user.Id) & builder.Eq("status", TicketStatus.Open);
+                var documents = collection.Find(baseFilter, null).ToList();
+
+                foreach (BsonDocument document in documents)
+                {
+                    ticket = BsonSerializer.Deserialize<Ticket>(document);
+                }
+            }
+            catch (MongoException)
+            {
+                throw new MongoException("something went wrong while loading ticket");
+            }
+
+            return ticket;
+        }
+
         public void UpdateTicketStatus(Ticket ticket, TicketStatus status)
         {
             try
@@ -88,31 +110,6 @@ namespace DAL
             {
                 throw new MongoException("something went wrong while updating a ticket");
             }
-        }
-
-        public Ticket GetTicketByUser(User user)
-        {
-            Ticket ticket = new Ticket();
-            try
-            {
-                var collection = ReturnCollection(Database.noSqlProject, Collection.Ticket);
-                var builder = Builders<BsonDocument>.Filter;
-                var baseFilter = builder.Eq("userID", user.Id) & builder.Eq("status", TicketStatus.Open);
-                var documents = collection.Find(baseFilter, null).ToList();
-
-                foreach (BsonDocument document in documents)
-                {
-                   ticket = BsonSerializer.Deserialize<Ticket>(document);
-                }
-                
-
-            }
-            catch (MongoException)
-            {
-                throw new MongoException("something went wrong while loading ticket");
-            }
-
-            return ticket;
         }
 
         public void UpdateTicketUser(Ticket ticket, User user)
