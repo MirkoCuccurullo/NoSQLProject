@@ -9,7 +9,7 @@ namespace DAL
     public class SortDAO : DAO
     {
         //Sorting list of tickets by priority 
-        public List<Ticket> SortList(int sortOrder)
+        public List<Ticket> SortList(SortOrder sortOrder)
         {
             List<Ticket> list = new List<Ticket>();
 

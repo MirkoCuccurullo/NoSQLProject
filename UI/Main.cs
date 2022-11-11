@@ -294,12 +294,12 @@ namespace DemoApp
                 {
                     if (cBoxPriorityLvl.SelectedIndex == 0)
                     {
-                        tickets = sortLogic.SortList(1);                   
+                        tickets = sortLogic.SortList(Model.SortOrder.Ascending);                   
                         
                     }
                     else if (cBoxPriorityLvl.SelectedIndex == 1)
                     {
-                        tickets = sortLogic.SortList(-1);
+                        tickets = sortLogic.SortList(Model.SortOrder.Descending);
                     }
                     else
                     {
