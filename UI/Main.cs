@@ -56,6 +56,7 @@ namespace DemoApp
                 btnArchive.Visible = false;
                 lbArchive.Visible = false;
                 DTPArichive.Visible = false;
+               
             }
         }
 
@@ -85,7 +86,7 @@ namespace DemoApp
                 case PanelName.TicketOverview:
                     HideAllPanels();
                     pnlTicketOverview.Show();
-                    PickPriorityLevel();
+                    PopulateTicketListView();
                     InitComboBoxes();                  
                     break;
                 case PanelName.UserOverview:
@@ -117,6 +118,7 @@ namespace DemoApp
             cbIncidentType.DataSource = Enum.GetValues(typeof(TicketType));
             comboBoxTypeOfUser.DataSource = Enum.GetValues(typeof(UserRoles));
             comboBoxLocation.DataSource = Enum.GetValues(typeof(Branch));
+
 
 
             //adding users to combobox and tagging them
@@ -276,48 +278,41 @@ namespace DemoApp
                 chrtFrequancyOfIncidents.Series[i].Points.Clear();
         }
        
-        private void PickPriorityLevel()
-        {
-            if (currentUser.Role == UserRoles.ServiceDeskEmployee)
-            {
-
-                if (cBoxPriorityLvl.SelectedIndex == 0)
-                {
-                    tickets = sortLogic.SortList(1);
-                }
-                else if (cBoxPriorityLvl.SelectedIndex == 1)
-                {
-                    tickets = sortLogic.SortList(-1);
-                }
-                else
-                {
-                    tickets = ticketLogic.GetAllTicket();
-
-                }
-
-            }
-            else
-            {
-                tickets = ticketLogic.GetAllTicketOfCurrentUser(currentUser);
-            }
-
-
-            DisplayPanel(PanelName.TicketOverview);
-            PopulateTicketListView();
-           
-        }
         
         public void PopulateTicketListView()
         {
             try
-            {
-                
+            {         
 
+                if (currentUser.Role == UserRoles.ServiceDeskEmployee)
+                {
 
+                    if (cBoxPriorityLvl.SelectedIndex == 0)
+                    {
+                        tickets = sortLogic.SortList(1);                   
+                        
+                    }
+                    else if (cBoxPriorityLvl.SelectedIndex == 1)
+                    {
+                        tickets = sortLogic.SortList(-1);
+                    }
+                    else
+                    {
+                        tickets = ticketLogic.GetAllTicket();
+                        
+                    }
+
+                }
+                else
+                {
+                    tickets = ticketLogic.GetAllTicketOfCurrentUser(currentUser);
+                }
+
+              
                 //clearing preavious items
                 lvTicketOverview.Items.Clear();
 
-                //checking each item in the drinkList
+                //checking each item in the ticket list
                 foreach (Ticket ticket in tickets)
                 {
                     Incident incident = BsonSerializer.Deserialize<Incident>(ticket.IncidentDocument);
@@ -628,20 +623,16 @@ namespace DemoApp
             DisplayPanel(PanelName.CreateTicket);
         }
 
-        private void txtBox_FilterBy_TextChanged(object sender, EventArgs e)
+        private void cBoxPriorityLvl_SelectedIndexChanged(object sender, EventArgs e)
         {
            
-        }
-        private void filter(string input)
-        {
-     
-        }
 
-        private void btnFilter_Click(object sender, EventArgs e)
-        {
-           
-            
-        
+                if (cBoxPriorityLvl.SelectedIndex == 0 || cBoxPriorityLvl.SelectedIndex == 1)
+                {
+                     DisplayPanel(PanelName.TicketOverview);
+
+                }
+          
 
         }
     }

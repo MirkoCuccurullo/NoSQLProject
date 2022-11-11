@@ -104,6 +104,7 @@ namespace DemoApp
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.pnlTicketOverview = new System.Windows.Forms.Panel();
+            this.cBoxPriorityLvl = new System.Windows.Forms.ComboBox();
             this.btnArchive = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnCloseTicket = new MaterialSkin.Controls.MaterialRaisedButton();
             this.btnEscalateTicket = new MaterialSkin.Controls.MaterialRaisedButton();
@@ -130,7 +131,6 @@ namespace DemoApp
             this.columnHeader7 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader8 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader9 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.cBoxPriorityLvl = new System.Windows.Forms.ComboBox();
             this.pnlCreateTicket.SuspendLayout();
             this.pnlAddUser.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -617,7 +617,7 @@ namespace DemoApp
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(1200, 48);
+            this.menuStrip1.Size = new System.Drawing.Size(1200, 38);
             this.menuStrip1.TabIndex = 17;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -626,7 +626,7 @@ namespace DemoApp
             this.dashboardToolStripMenuItem.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.dashboardToolStripMenuItem.ForeColor = System.Drawing.SystemColors.ControlText;
             this.dashboardToolStripMenuItem.Name = "dashboardToolStripMenuItem";
-            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(149, 46);
+            this.dashboardToolStripMenuItem.Size = new System.Drawing.Size(149, 36);
             this.dashboardToolStripMenuItem.Text = "Dashboard";
             this.dashboardToolStripMenuItem.Click += new System.EventHandler(this.dashboardToolStripMenuItem_Click);
             // 
@@ -635,7 +635,7 @@ namespace DemoApp
             this.incidentManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createTicketToolStripMenuItem});
             this.incidentManagementToolStripMenuItem.Name = "incidentManagementToolStripMenuItem";
-            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(270, 46);
+            this.incidentManagementToolStripMenuItem.Size = new System.Drawing.Size(270, 36);
             this.incidentManagementToolStripMenuItem.Text = "Incident Management";
             this.incidentManagementToolStripMenuItem.Click += new System.EventHandler(this.incidentManagementToolStripMenuItem_Click);
             // 
@@ -651,7 +651,7 @@ namespace DemoApp
             this.userManagementToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createUserToolStripMenuItem});
             this.userManagementToolStripMenuItem.Name = "userManagementToolStripMenuItem";
-            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(231, 46);
+            this.userManagementToolStripMenuItem.Size = new System.Drawing.Size(231, 36);
             this.userManagementToolStripMenuItem.Text = "User Management";
             this.userManagementToolStripMenuItem.Click += new System.EventHandler(this.userManagementToolStripMenuItem_Click);
             // 
@@ -918,6 +918,19 @@ namespace DemoApp
             this.pnlTicketOverview.Size = new System.Drawing.Size(1200, 1339);
             this.pnlTicketOverview.TabIndex = 18;
             // 
+            // cBoxPriorityLvl
+            // 
+            this.cBoxPriorityLvl.FormattingEnabled = true;
+            this.cBoxPriorityLvl.Items.AddRange(new object[] {
+            "High to Low",
+            "Low to High"});
+            this.cBoxPriorityLvl.Location = new System.Drawing.Point(88, 180);
+            this.cBoxPriorityLvl.Name = "cBoxPriorityLvl";
+            this.cBoxPriorityLvl.Size = new System.Drawing.Size(178, 33);
+            this.cBoxPriorityLvl.TabIndex = 33;
+            this.cBoxPriorityLvl.Text = "Priority level";
+            this.cBoxPriorityLvl.SelectedIndexChanged += new System.EventHandler(this.cBoxPriorityLvl_SelectedIndexChanged);
+            // 
             // btnArchive
             // 
             this.btnArchive.AutoSize = true;
@@ -1180,18 +1193,6 @@ namespace DemoApp
             // 
             this.columnHeader9.Text = "Status";
             this.columnHeader9.Width = 100;
-            // 
-            // cBoxPriorityLvl
-            // 
-            this.cBoxPriorityLvl.FormattingEnabled = true;
-            this.cBoxPriorityLvl.Items.AddRange(new object[] {
-            "High to Low",
-            "Low to High"});
-            this.cBoxPriorityLvl.Location = new System.Drawing.Point(88, 180);
-            this.cBoxPriorityLvl.Name = "cBoxPriorityLvl";
-            this.cBoxPriorityLvl.Size = new System.Drawing.Size(178, 33);
-            this.cBoxPriorityLvl.TabIndex = 33;
-            this.cBoxPriorityLvl.Text = "Priority level";
             // 
             // Main
             // 
